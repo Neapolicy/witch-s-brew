@@ -1,13 +1,8 @@
-import java.util.Scanner;
 public class Main {
     public static void main(String[] args)
     {
-        Scanner s = new Scanner(System.in);
         printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
-        String answer = s.nextLine();
-        answer = answer.toLowerCase();
-        System.out.flush();
-        System.out.println("lol");
+        Shop s = new Shop(10);
     }
 
     private static void printSlow(String text)
