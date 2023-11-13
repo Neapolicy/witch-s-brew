@@ -1,8 +1,9 @@
 public class Main {
     public static void main(String[] args)
     {
-        printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
-        Shop s = new Shop(10);
+        //printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
+        Shop s = new Shop();
+        s.goods();
     }
 
     private static void printSlow(String text)
