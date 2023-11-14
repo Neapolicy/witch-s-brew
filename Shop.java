@@ -6,14 +6,14 @@ public class Shop {
     private Scanner s = new Scanner(System.in);
     private String answer;
     private ArrayList<String> goods = new ArrayList<>();
-    private ArrayList<String> bought = new ArrayList<String>(); // keeps track of bought good
+    private ArrayList<String> bought = new ArrayList<>(); // keeps track of bought good
 
     public Shop() {
         addItems();
     }
 
     public void goods() {
-        System.out.println("What would you like to buy?\nYou have " + balance + " shells\nType -1 to exit");
+        System.out.println("\nWhat would you like to buy?\nYou have " + balance + " shells\nType -1 to exit, -2 for inventory");
         for (int i = 0; i < goods.size(); i++) {
             System.out.println(i + 1 + ": " + goods.get(i));
         }
@@ -26,29 +26,25 @@ public class Shop {
         return s.nextLine().toLowerCase();
     }
 
-    public int findItem(String item) {
-        for (int i = 0; i < goods.size(); i++) {
-            if (goods.get(i).contains(item)) {
-                System.out.println(i);
-                return i;
-            }
-        }
-        return -1; // Item not found
-    }
 
     public void priceComparison(int cost, String item) {
         if (balance >= cost) {
             balance -= cost;
-            System.out.println("You have successfully bought " + item);
-            int index = findItem(item);
-            if (index != -1) {
-                goods.remove(index);
-            }
+            System.out.println("You have successfully bought a " + item);
+            bought.add(item);
             goods();
         } else {
             System.out.println("Invalid, please try again\n");
             goods();
         }
+    }
+    public void printInv()
+    {
+        System.out.println();
+        for (int i = 0; i < bought.size(); i++) {
+            System.out.println(i + 1 + ": " + bought.get(i));
+        }
+        goods();
     }
 
     public void buyItems(String res) {
@@ -61,8 +57,8 @@ public class Shop {
             case "surgeons toolkit", "6" -> priceComparison(40, "Surgeons Toolkit");
             case "smoke bomb", "7" -> priceComparison(60, "Smoke Bomb");
             case "powdered wig", "8" -> priceComparison(500, "Powdered Wig");
-            case "-1" -> {
-            }
+            case "-1" -> {}
+            case "-2" -> printInv();
             default -> {
                 System.out.println("Invalid choice, please try again\n");
                 goods();
