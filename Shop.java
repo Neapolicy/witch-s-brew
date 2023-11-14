@@ -17,6 +17,7 @@ public class Shop {
         for (int i = 0; i < goods.size(); i++) {
             System.out.println(i + 1 + ": " + goods.get(i));
         }
+        System.out.println();
         answer = getUserInput();
         buyItems(answer);
     }
@@ -41,8 +42,14 @@ public class Shop {
     public void printInv()
     {
         System.out.println();
-        for (int i = 0; i < bought.size(); i++) {
-            System.out.println(i + 1 + ": " + bought.get(i));
+        if (bought.size() == 0)
+        {
+            System.out.println("You've got nothing!\n");
+        }
+        else {
+            for (int i = 0; i < bought.size(); i++) {
+                System.out.println(i + 1 + ": " + bought.get(i));
+            }
         }
         goods();
     }
@@ -68,6 +75,11 @@ public class Shop {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public ArrayList<String> getItemsBought()
+    {
+        return bought;
     }
 
     public void addItems() {
