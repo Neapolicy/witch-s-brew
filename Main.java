@@ -2,8 +2,7 @@ public class Main {
     public static void main(String[] args)
     {
         //printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
-        Shop s = new Shop();
-        s.goods();
+        Lobby lobby = new Lobby();
     }
 
     private static void printSlow(String text)

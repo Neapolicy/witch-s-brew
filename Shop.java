@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Shop {
-    private int balance = 4999;
+    private int balance;
     private Scanner s = new Scanner(System.in);
     private String answer;
     private ArrayList<String> goods = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Shop {
     public void priceComparison(int cost, String item) {
         if (balance >= cost) {
             balance -= cost;
-            System.out.println("You have successfully bought a " + item);
+            System.out.println("Successfully bought " + item + "!");
             bought.add(item);
             goods();
         } else {
@@ -64,6 +64,7 @@ public class Shop {
             case "surgeons toolkit", "6" -> priceComparison(40, "Surgeons Toolkit");
             case "smoke bomb", "7" -> priceComparison(60, "Smoke Bomb");
             case "powdered wig", "8" -> priceComparison(500, "Powdered Wig");
+            case "offhand revolver", "9" -> priceComparison(500, "Off-hand Revolver");
             case "-1" -> {}
             case "-2" -> printInv();
             default -> {
@@ -91,5 +92,6 @@ public class Shop {
         goods.add("Surgeons Toolkit (Accessory) - 40 shells");
         goods.add("Smoke Bomb (Accessory) - 60 shells");
         goods.add("Powdered Wig (Accessory) - 500 shells");
+        goods.add("Off-hand Revolver (Off-hand Weapon) - 500 shells");
     }
 }
