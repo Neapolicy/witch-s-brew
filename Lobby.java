@@ -17,7 +17,11 @@ public class Lobby {
     public void decisionMaker()
     {
         System.out.println("\nWhat would " + name + " like to do?\n");
-        System.out.println("Lower this island's security (1), invest in the stock market (2), access the shop (3), or check inventory? (4)");
+        System.out.println("Lower this island's security (1)");
+        System.out.println("Invest in the stock market (2)");
+        System.out.println("Access the shop (3)");
+        System.out.println("Check your inventory (4)");
+        System.out.println("Edit character (5)");
         System.out.println("(You currently have " + balance + " shells");
         answer = s.nextLine();
         switch (answer)
