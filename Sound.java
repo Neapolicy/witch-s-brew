@@ -6,7 +6,6 @@ import javax.sound.sampled.Clip;
 
 public class Sound
 {
-
     public void sound(String name) { // code found on stack overflow
         // (https://stackoverflow.com/questions/69870550/java-music-file-returns-no-such-file-or-directory-but-path-seems-correct)
         try {
