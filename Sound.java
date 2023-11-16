@@ -10,7 +10,6 @@ public class Sound
         // (https://stackoverflow.com/questions/69870550/java-music-file-returns-no-such-file-or-directory-but-path-seems-correct)
         try {
 
-            System.out.println("music is now playing");
             File file = new File("Sound/Music/" + name + ".wav");
             AudioInputStream stream = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();
@@ -18,7 +17,7 @@ public class Sound
             clip.start();
 
             // sleep to allow enough time for the clip to play
-            Thread.sleep(10);
+            Thread.sleep(400);
 
             stream.close();
 
