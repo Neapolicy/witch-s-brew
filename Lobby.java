@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Lobby {
     private String name;
+    private Sound sound = new Sound();
     private Shop shop = new Shop();
     private StockMarket stockMarket = new StockMarket();
     private int balance = 4000;
