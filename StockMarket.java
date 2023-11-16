@@ -9,8 +9,9 @@ public class StockMarket {
     public void setCash(int cash)
     {
         this.cash = cash;
-        System.out.println("Invest (1), sell (2), or leave? (3) (Current balance is " + cash + ")");
-        System.out.println("Your stocks are currently worth $" + stockVal);
+        cashFlow();
+        System.out.println("Invest (1), sell (2), or leave? (3) (Current balance is " + cash + " shells)");
+        System.out.println("Your stocks are currently worth " + stockVal + " shells\n");
         answer = s.nextInt();
         if (answer == 1)
         {
@@ -39,7 +40,8 @@ public class StockMarket {
         else
         {
             stockVal += answer;
-            cashFlow();
+            cash -= answer;
+            cashBack();
         }
     }
     public void sell()
@@ -67,6 +69,6 @@ public class StockMarket {
     public void cashFlow()
     {
         double multiplier = rand.nextDouble(-.2, .2);
-        stockVal *= (1 + multiplier);
+        stockVal *=  (1 + multiplier);
     }
 }

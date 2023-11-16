@@ -8,7 +8,7 @@ public class Lobby {
     private ArrayList<String> boughtStuff = new ArrayList<>();
     private String answer;
     private final Scanner s = new Scanner(System.in);
-    public Lobby()
+    public Lobby() // i might have to delegate cash flow to the lobby function instead of doing it in the stock market itself
     {
         System.out.println("And what's your name, o questionable hero(?)");
         name = s.nextLine();
@@ -17,7 +17,8 @@ public class Lobby {
     public void decisionMaker()
     {
         System.out.println("\nWhat would " + name + " like to do?\n");
-        System.out.println("lower this island's security (1), invest in the stock market (2), access the shop (3), or check inventory? (4)");
+        System.out.println("Lower this island's security (1), invest in the stock market (2), access the shop (3), or check inventory? (4)");
+        System.out.println("(You currently have " + balance + " shells");
         answer = s.nextLine();
         switch (answer)
         {
@@ -26,6 +27,7 @@ public class Lobby {
             case "2":
                 stockMarket.setCash(balance);
                 balance = stockMarket.cashBack();
+                updateBalance();
                 decisionMaker();
             case "3":
                 shop.setBalance(balance);
@@ -48,5 +50,10 @@ public class Lobby {
             default:
                 decisionMaker();
         }
+    }
+
+    public void updateBalance()
+    {
+        balance = stockMarket.cashBack();
     }
 }
