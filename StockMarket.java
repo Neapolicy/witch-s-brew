@@ -9,8 +9,7 @@ public class StockMarket {
     public void setCash(int cash)
     {
         this.cash = cash;
-        cashFlow();
-        System.out.println("Invest (1), sell (2), or leave? (3) (Current balance is " + cash + " shells)");
+        System.out.println("Invest (1) or sell (2)? (Current balance is " + cash + " shells)");
         System.out.println("Your stocks are currently worth " + stockVal + " shells\n");
         answer = s.nextInt();
         if (answer == 1)
@@ -21,7 +20,6 @@ public class StockMarket {
         {
             sell();
         }
-        else if (answer == 3){}
         else
         {
             System.out.println("...Please try again");

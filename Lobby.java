@@ -38,9 +38,11 @@ public class Lobby {
                 stockMarket.setCash(balance);
                 balance = stockMarket.cashBack();
                 updateBalance();
+                decisionMaker();
             case "3":
                 shop.setBalance(balance);
                 shop.goods();
+                decisionMaker();
             case "4":
                 boughtStuff = shop.getItemsBought();
                 if (boughtStuff.size() == 0) {
@@ -51,6 +53,7 @@ public class Lobby {
                         System.out.println(boughtStuff.size());
                     }
                 }
+                decisionMaker();
             default:
                 decisionMaker();
         }
@@ -64,6 +67,7 @@ public class Lobby {
     {
         if (turnZero())
         {
+            stockMarket.cashFlow();
             System.out.println("day pass");
             days += 1;
             turns = 2;
