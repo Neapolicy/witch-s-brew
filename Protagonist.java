@@ -76,7 +76,7 @@ public class Protagonist {
             default:
                 sound.sound("Gun_Load", 350);
                 sound.sound("Gun_Fire", 400);
-                sound.sound("Revolver_Reload", 2000);
+                sound.sound("Revolver_Reload", 2700);
                 break;
         }
         if (sideArm.equals("Off-hand Revolver"))
