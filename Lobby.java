@@ -16,7 +16,7 @@ public class Lobby {
 
     public Lobby() // i might have to delegate cash flow to the lobby function instead of doing it in the stock market itself
     {
-        System.out.println("And what's your name, o questionable hero(?)");
+        System.out.print("And what's your name, o questionable hero(?): ");
         name = s.nextLine();
         decisionMaker();
     }
