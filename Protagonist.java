@@ -8,7 +8,7 @@ public class Protagonist {
     private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
-    private String sideArm;
+    private String sideArm = "";
     private Scanner s = new Scanner(System.in);
     private int choice;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
@@ -24,14 +24,19 @@ public class Protagonist {
             switch (accessoriesOn.get(i))
             {
                 case "Surgeons Toolkit":
+                    charStats[2] += 200;
                     break;
                 case "Smoke Bomb":
+                    charStats[4] += 10;
                     break;
                 case "Powdered Wig":
+                    charStats[0] *= 2;
                     break;
                 case "Stronger Steel":
+                    charStats[1] += 20;
                     break;
-                case "Mechanical Arm":
+                case "Better Boots":
+                    charStats[3] += 25;
                     break;
             }
         }
@@ -76,14 +81,17 @@ public class Protagonist {
             default:
                 sound.sound("Gun_Load", 400);
                 sound.sound("Gun_Fire", 800);
-                sound.sound("Revolver_Reload", 2700);
                 break;
         }
         if (sideArm.equals("Off-hand Revolver"))
         {
-            sound.sound("Gun_Load", 350);
-            sound.sound("Gun_Fire", 400);
-            sound.sound("Revolver_Reload", 2000);
+            sound.sound("Gun_Load", 400);
+            sound.sound("Gun_Fire", 800);
+            sound.sound("Revolver_Reload", 2700);
+        }
+        else
+        {
+            sound.sound("Revolver_Reload", 2700);
         }
     }
 

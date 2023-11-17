@@ -4,10 +4,10 @@ public class Main {
         //Lobby lobby = new Lobby();
         Sound sound  = new Sound();
         sound.sound("Gun_Load", 400);
+        sound.sound("Gun_Fire", 700);
+        sound.sound("Gun_Load", 300);
         sound.sound("Gun_Fire", 800);
-        sound.sound("Revolver_Reload", 2700);
-        sound.sound("Gun_Load", 400);
-        sound.sound("Gun_Fire", 800);
+        System.out.print("lol");
     }
 
     private static void printSlow(String text)
