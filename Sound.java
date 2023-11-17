@@ -6,7 +6,7 @@ import javax.sound.sampled.Clip;
 
 public class Sound
 {
-    public void sound(String name) { // code found on stack overflow
+    public void sound(String name, int time) { // code found on stack overflow, but this plays sound
         // (https://stackoverflow.com/questions/69870550/java-music-file-returns-no-such-file-or-directory-but-path-seems-correct)
         try {
 
@@ -17,7 +17,7 @@ public class Sound
             clip.start();
 
             // sleep to allow enough time for the clip to play
-            Thread.sleep(400);
+            Thread.sleep(time);
 
             stream.close();
 

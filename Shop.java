@@ -64,7 +64,7 @@ public class Shop {
             case "surgeons toolkit", "6" -> priceComparison(40, "Surgeons Toolkit");
             case "smoke bomb", "7" -> priceComparison(60, "Smoke Bomb");
             case "powdered wig", "8" -> priceComparison(500, "Powdered Wig");
-            case "offhand revolver", "9" -> priceComparison(500, "Off-hand Revolver");
+            case "off-hand revolver", "9" -> priceComparison(500, "Off-hand Revolver");
             case "-1" -> {}
             case "-2" -> printInv();
             default -> {
