@@ -70,12 +70,12 @@ public class Protagonist {
     public void weaponCheck() {
         switch (weapon) {
             case "Switchblade", "Sword":
-                sound.sound("Melee-Swing", 270);
-                sound.sound("Hit", 200);
+                sound.sound("Melee-Swing", 300);
+                sound.sound("Hit", 400);
                 break;
             default:
-                sound.sound("Gun_Load", 350);
-                sound.sound("Gun_Fire", 400);
+                sound.sound("Gun_Load", 400);
+                sound.sound("Gun_Fire", 800);
                 sound.sound("Revolver_Reload", 2700);
                 break;
         }
