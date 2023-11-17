@@ -9,6 +9,7 @@ public class Protagonist {
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
     private String sideArm = "";
+    private int skillPoints = 0;
     private Scanner s = new Scanner(System.in);
     private int choice;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
@@ -19,24 +20,25 @@ public class Protagonist {
     }
     public void accessoriesCheck()
     {
+        skillPoints = 3;
         for (int i = 0; i < accessoriesOn.size(); i++)
         {
             switch (accessoriesOn.get(i))
             {
                 case "Surgeons Toolkit":
-                    charStats[2] += 200;
+                    battleStats[2] += 200;
                     break;
                 case "Smoke Bomb":
-                    charStats[4] += 10;
+                    battleStats[4] += 10;
                     break;
                 case "Powdered Wig":
-                    charStats[0] *= 2;
+                    battleStats[0] *= 2;
                     break;
                 case "Stronger Steel":
-                    charStats[1] += 20;
+                    battleStats[1] += 20;
                     break;
                 case "Better Boots":
-                    charStats[3] += 25;
+                    battleStats[3] += 25;
                     break;
             }
         }
@@ -55,21 +57,22 @@ public class Protagonist {
             else {
                 switch (choice) {
                     case 1:
+                        skillPoints += 1;
                         weaponCheck();
                         break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
+                    case 2, 3, 4, 5:
+                        skill();
                         break;
                 }
                 break;
             }
         }
         return choice;
+    }
+
+    public void skill()
+    {
+
     }
 
     public void weaponCheck() {
@@ -93,6 +96,11 @@ public class Protagonist {
         {
             sound.sound("Revolver_Reload", 2700);
         }
+    }
+
+    public int getSkillPoints()
+    {
+        return skillPoints;
     }
 
 
