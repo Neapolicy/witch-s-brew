@@ -9,6 +9,7 @@ public class StockMarket {
     public void setCash(int cash)
     {
         this.cash = cash;
+        cashFlow();
         System.out.println("Invest (1) or sell (2)? (Current balance is " + cash + " shells)");
         System.out.println("Your stocks are currently worth " + stockVal + " shells\n");
         answer = s.nextInt();
