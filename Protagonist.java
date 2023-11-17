@@ -103,6 +103,11 @@ public class Protagonist {
         return skillPoints;
     }
 
+    public void editChar(ArrayList<String> inv)
+    {
+        System.out.print("Character Stats");
+
+    }
 
     public int[] getStats() {
         return charStats;

@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         //printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
-        //Lobby lobby = new Lobby();
+        Lobby lobby = new Lobby();
         Sound sound  = new Sound();
         sound.sound("Gun_Load", 400);
         sound.sound("Gun_Fire", 700);

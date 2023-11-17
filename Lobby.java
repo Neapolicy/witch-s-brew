@@ -27,8 +27,7 @@ public class Lobby {
             System.out.println("Lower this island's security (1)");
             System.out.println("Invest in the stock market (2)");
             System.out.println("Access the shop (3)");
-            System.out.println("Check your inventory (4)");
-            System.out.println("Edit character (5)");
+            System.out.println("Edit character (4)");
             System.out.println("(You currently have " + balance + " shells");
             System.out.println(turns); // remember to remove this in the final version
             answer = s.nextLine();
@@ -50,15 +49,14 @@ public class Lobby {
                 case "4":
                     boughtStuff = shop.getItemsBought();
                     if (boughtStuff.size() == 0) {
-                        System.out.println("Nothing here...");
+                        System.out.println("Nothing here...\n");
                     } else {
                         System.out.println("This is your inventory");
                         for (int i = 0; i < boughtStuff.size(); i++) {
                             System.out.println(boughtStuff.size());
                         }
                     }
-                    break;
-                default:
+                    pro.editChar(boughtStuff);
                     break;
             }
         }
