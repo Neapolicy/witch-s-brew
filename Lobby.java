@@ -11,6 +11,7 @@ public class Lobby {
     private String answer;
     private int turns = 2;
     private int days = 1;
+    private Protagonist pro = new Protagonist();
     private final Scanner s = new Scanner(System.in);
 
     public Lobby() // i might have to delegate cash flow to the lobby function instead of doing it in the stock market itself
@@ -90,5 +91,10 @@ public class Lobby {
 
     public void updateBalance() {
         balance = stockMarket.cashBack();
+    }
+
+    public Protagonist getProtag()
+    {
+        return pro;
     }
 }
