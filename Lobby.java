@@ -20,7 +20,7 @@ public class Lobby {
         decisionMaker();
     }
 
-    public void decisionMaker() {
+    public void decisionMaker() { // make your choice, spend your day wisely
         while (turns != 0 && days != 7) {
             System.out.println("\nWhat would " + name + " like to do?\n");
             System.out.println("Lower this island's security (1)");
