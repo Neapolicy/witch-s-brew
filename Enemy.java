@@ -43,10 +43,6 @@ public class Enemy { // day one enemy
 
     public int choice() { // enemy makes their decision
         while (true) {
-            System.out.println("\nPick your move");
-            for (int i = 0; i < skills.size(); i++) {
-                System.out.println("(" + i + 1 + ") " + skills.get(i));
-            }
             if (skillPoints <= 0)
             {
                 choice = 1;
@@ -70,7 +66,8 @@ public class Enemy { // day one enemy
         return choice;
     }
 
-    public void skill() {
+    public void skill()
+    {
 
     }
 

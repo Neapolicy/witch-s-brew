@@ -111,10 +111,6 @@ public class Protagonist {
 
     }
 
-    public int[] getStats() {
-        return charStats;
-    }
-
     public int getDmgDealt()
     {
         return dmgDealt;
