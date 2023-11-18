@@ -1,31 +1,27 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Random;
 
-// once i finish protagonist, I might be able to use inheritance and have enemies borrow most of this code (except for variables cuz of that one req)
-public class Protagonist {
+public class Enemy { // day one enemy
     private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, speed, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
-    private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
     private String sideArm = "";
     private int skillPoints = 0;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
-    private Scanner s = new Scanner(System.in);
+    private Random rand = new Random();
     private int choice;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
 
-    public Protagonist() {
+    public Enemy() {
         skills.add("Basic Attack");
     }
-    public void accessoriesCheck()
-    {
+
+    public void accessoriesCheck() { //enemies can have accessories too!
         skillPoints = 3;
-        for (int i = 0; i < accessoriesOn.size(); i++)
-        {
-            switch (accessoriesOn.get(i))
-            {
+        for (int i = 0; i < accessoriesOn.size(); i++) {
+            switch (accessoriesOn.get(i)) {
                 case "Surgeons Toolkit":
                     battleStats[2] += 200;
                     break;
@@ -45,35 +41,36 @@ public class Protagonist {
         }
     }
 
-    public int choice() { // The place where Daler(you) make your choice
+    public int choice() { // enemy makes their decision
         while (true) {
             System.out.println("\nPick your move");
             for (int i = 0; i < skills.size(); i++) {
                 System.out.println("(" + i + 1 + ") " + skills.get(i));
             }
-            choice = s.nextInt();
-            if (choice > skills.size() || choice < skills.size()) {
-                choice();
+            if (skillPoints <= 0)
+            {
+                choice = 1;
             }
-            else {
-                switch (choice) {
-                    case 1:
-                        skillPoints += 1;
-                        dmgDealt = battleStats[0];
-                        weaponCheck();
-                        break;
-                    case 2, 3, 4, 5:
-                        skill();
-                        break;
-                }
-                break;
+            else
+            {
+                choice = rand.nextInt(1, 6);
             }
+            switch (choice) {
+                case 1:
+                    skillPoints += 1;
+                    dmgDealt = battleStats[0];
+                    weaponCheck();
+                    break;
+                case 2, 3, 4, 5:
+                    skill();
+                    break;
+            }
+            break;
         }
         return choice;
     }
 
-    public void skill()
-    {
+    public void skill() {
 
     }
 
@@ -88,28 +85,15 @@ public class Protagonist {
                 sound.sound("Gun_Fire", 800);
                 break;
         }
-        if (sideArm.equals("Off-hand Revolver"))
-        {
+        if (sideArm.equals("Off-hand Revolver")) {
             sound.sound("Gun_Load", 400);
             sound.sound("Gun_Fire", 800);
             sound.sound("Revolver_Reload", 2700);
-        }
-        else
-        {
+        } else {
             sound.sound("Revolver_Reload", 2700);
         }
     }
 
-    public int getSkillPoints()
-    {
-        return skillPoints;
-    }
-
-    public void editChar(ArrayList<String> inv)
-    {
-        System.out.print("Character Stats");
-
-    }
 
     public int[] getStats() {
         return charStats;
@@ -120,17 +104,17 @@ public class Protagonist {
         return dmgDealt;
     }
 
-    public void takeDmg(int damage)
-    {
+
+    public void takeDmg(int damage) {
         battleStats[0] -= damage;
     }
 
-    public ArrayList<String> getSkills()
-    {
+    public ArrayList<String> getSkills() {
         return skills;
     }
 
     public int[] getBattleStats() {
         return battleStats;
-    } // possible enemy move, use a while loop to generate a number, ex, number you want is five, and it keeps track of how much times it loops until it generates a five
+    }
+
 }

@@ -22,6 +22,8 @@ public class Lobby {
     }
 
     public void decisionMaker() { // make your choice, spend your day wisely
+        System.out.println("Day " + days);
+        System.out.println("You have " + (7 - days) + " days left");
         while (turns != 0 && days != 7) {
             System.out.println("\nWhat would " + name + " like to do?\n");
             System.out.println("Lower this island's security (1)");
@@ -29,7 +31,7 @@ public class Lobby {
             System.out.println("Access the shop (3)");
             System.out.println("Edit character (4)");
             System.out.println("(You currently have " + balance + " shells");
-            System.out.println(turns); // remember to remove this in the final version
+            System.out.println("You have " + turns + " moves left" );
             answer = s.nextLine();
             switch (answer) {
                 case "1":
@@ -90,10 +92,5 @@ public class Lobby {
 
     public void updateBalance() {
         balance = stockMarket.cashBack();
-    }
-
-    public Protagonist getProtag()
-    {
-        return pro;
     }
 }

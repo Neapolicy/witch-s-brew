@@ -2,9 +2,9 @@ import java.util.Random;
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int balance;
-    private Protagonist pro = null;
+    private Protagonist pro;
     private int days;
-    private Object enemy = null;
+    private Enemy enemy = null;;
 
     public Gameboard(int days, Protagonist character) //initiates the shop and the game
     {
@@ -15,15 +15,47 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
     public void game()
     {
+        pro.accessoriesCheck();
+        enemy.accessoriesCheck();
+        while (pro.getBattleStats()[0] > 0) {
+            getInfo();
 
-    }
-    public boolean results()
-    {
-        if (pro.getBattleStats()[0] <= 0)
-        {
-            return false;
+            int protagChoice = pro.choice();
+
+            if (protagChoice == 1) {
+                enemy.takeDmg(pro.getDmgDealt());
+            }
+            else
+            {
+                skillCheck();
+            }
+            if (enemy.getBattleStats()[0] <= 0) {
+                enemy.getBattleStats()[0] = 0; // sets enemy health to zero
+                System.out.println("CEO goon taken down!");
+                getBalance();
+                getResults();
+                break;
+            }
+
+            enemy.choice();
+            pro.takeDmg(enemy.getDmgDealt());
+
+            if (pro.getBattleStats()[0] <= 0) {
+                pro.getBattleStats()[0] = 0; // Set player's health to zero
+                getBalance();
+                getResults();
+                break;
+            }
+            // Display stats at the end of the turn
         }
-        return true;
+    }
+
+    public void skillCheck()
+    {
+        for (int i = 0; i < pro.getSkills().size(); i++)
+        {
+
+        }
     }
 
     public void dayCheck()
@@ -31,19 +63,22 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         switch (days)
         {
             case 1:
-                //enemy
+                enemy = new Enemy();
                 break;
             case 2:
+                enemy = new Enemy();
                 break;
             case 3:
+                enemy = new Enemy();
                 break;
             case 4:
+                enemy = new Enemy();
                 break;
             case 5:
+                enemy = new Enemy();
                 break;
             case 6:
-                break;
-            case 7:
+                enemy = new Enemy(); // 2-5 are all placeholders for now
                 break;
         }
     }
@@ -58,7 +93,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
 
     public void getInfo() {
-        System.out.println("Daler's stats: " + pro.getBattleStats()[0] + " health, " + pro.getSkillPoints() + " points");
+        System.out.println("Your stats: " + pro.getBattleStats()[0] + " health, " + pro.getSkillPoints() + " points");
         // print enemy status on this line, but should be vague, like they're injured, and thats it
     }
 
