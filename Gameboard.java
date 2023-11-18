@@ -54,7 +54,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 getResults();
                 break;
             }
-            // Display stats at the end of the turn
+            // Display stats at the start of the turn
         }
     }
 
