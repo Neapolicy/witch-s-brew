@@ -4,7 +4,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     private int balance;
     private Protagonist pro;
     private int days;
-    private Enemy enemy = null;;
+    private Enemy enemy = null;
 
     public Gameboard(int days, Protagonist character) //initiates the shop and the game
     {
