@@ -44,7 +44,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             if (turns % 2 == 0)
             {
                 int enemyDec = enemy.choice();
-                System.out.println(enemyDec);
+                System.out.println(enemy.getDmgDealt());
                 if (enemyDec == 1) {
                     pro.takeDmg(enemy.getDmgDealt());;
                 }
@@ -81,7 +81,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 enemy = new Enemy();
                 break;
             case 2:
-                enemy = (Enemy) new Protagonist();
+                enemy = new Enemy2();
                 break;
             case 3:
                 enemy = null;

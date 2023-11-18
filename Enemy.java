@@ -8,7 +8,7 @@ public class Enemy extends Protagonist { // day one enemy
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
     private String sideArm = "";
-    private int skillPoints = 0;
+    private int skillPoints = 3;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
     private int choice = 1;
