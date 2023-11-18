@@ -74,19 +74,19 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 enemy = new Enemy();
                 break;
             case 2:
-                enemy = new Enemy();
+                enemy = null;
                 break;
             case 3:
-                enemy = new Enemy();
+                enemy = null;
                 break;
             case 4:
-                enemy = new Enemy();
+                enemy = null;
                 break;
             case 5:
-                enemy = new Enemy();
+                enemy = null;
                 break;
             case 6:
-                enemy = new Enemy(); // 2-5 are all placeholders for now
+                enemy = null; // 2-5 are all placeholders for now
                 break;
         }
     }
