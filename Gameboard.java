@@ -86,7 +86,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 enemy = null;
                 break;
             case 6:
-                enemy = null; // 2-5 are all placeholders for now
+                enemy = null; // 2-5 are all placeholders for now (nulls delete the object so i can create a new enemy type object under same name)
                 break;
         }
     }
