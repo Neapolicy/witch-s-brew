@@ -94,7 +94,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
 
     public void getInfo() {
         System.out.println("Your stats: " + pro.getBattleStats()[0] + " health, " + pro.getSkillPoints() + " points");
-        // print enemy status on this line, but should be vague, like they're injured, and thats it
+        System.out.println(enemy.status());
     }
 
 }

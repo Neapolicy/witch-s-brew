@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Enemy { // day one enemy
+public class Enemy extends Protagonist { // day one enemy
     private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, speed, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
+    private int health;
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
     private String sideArm = "";
@@ -39,6 +40,7 @@ public class Enemy { // day one enemy
                     break;
             }
         }
+        health = battleStats[0];
     }
 
     public int choice() { // enemy makes their decision
@@ -66,52 +68,20 @@ public class Enemy { // day one enemy
         return choice;
     }
 
-    public void skill()
+    public String status()
     {
-
-    }
-
-    public void weaponCheck() {
-        switch (weapon) {
-            case "Switchblade", "Sword":
-                sound.sound("Melee-Swing", 300);
-                sound.sound("Hit", 400);
-                break;
-            default:
-                sound.sound("Gun_Load", 400);
-                sound.sound("Gun_Fire", 800);
-                break;
+        if (battleStats[0] > (.66) * health)
+        {
+            return "Healthy";
         }
-        if (sideArm.equals("Off-hand Revolver")) {
-            sound.sound("Gun_Load", 400);
-            sound.sound("Gun_Fire", 800);
-            sound.sound("Revolver_Reload", 2700);
-        } else {
-            sound.sound("Revolver_Reload", 2700);
+        else if (battleStats[0] > (.66) * health)
+        {
+            return "Moderate";
         }
-    }
-
-
-    public int[] getStats() {
-        return charStats;
-    }
-
-    public int getDmgDealt()
-    {
-        return dmgDealt;
-    }
-
-
-    public void takeDmg(int damage) {
-        battleStats[0] -= damage;
-    }
-
-    public ArrayList<String> getSkills() {
-        return skills;
-    }
-
-    public int[] getBattleStats() {
-        return battleStats;
+        else
+        {
+            return "Terrible";
+        }
     }
 
 }
