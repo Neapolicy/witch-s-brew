@@ -75,7 +75,7 @@ public class Enemy extends Protagonist { // day one enemy
         return health;
     }
 
-    public int getDmgDealt()
+    public int getDmgDealt() //every enemy needs their own dedicated getter, idk why
     {
         return dmgDealt;
     }
