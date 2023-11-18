@@ -1,20 +1,19 @@
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int balance;
-    private int turns = 1;
+    private int turns = 1; //internal counter, if i add another turn counter, create new variable to handle that
     private Protagonist pro;
     private int days;
     private Enemy enemy = null;
 
-    public Gameboard(int days, Protagonist character) //initiates the shop and the game
+    public Gameboard(int days, Protagonist character) throws InterruptedException //initiates the shop and the game
     {
         this.pro = character;
         this.days = days;
         dayCheck();
         game();
     }
-    public void game()
-    {
+    public void game() throws InterruptedException {
         pro.accessoriesCheck();
         enemy.accessoriesCheck();
         while (pro.getBattleStats()[2] > 0) {
@@ -27,6 +26,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 getResults();
                 break;
             }
+            sleep(300);
+            // time interval in milliseconds
 
             enemyAction();
             if (pro.getBattleStats()[2] <= 0) {
@@ -35,8 +36,13 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 getResults();
                 break;
             }
+            sleep(300);
             // Display stats at the start of the turn
         }
+    }
+
+    public void sleep(int time) throws InterruptedException {
+        Thread.sleep(time);
     }
 
     public void enemyAction()

@@ -14,14 +14,14 @@ public class Lobby {
     private Protagonist pro = new Protagonist();
     private final Scanner s = new Scanner(System.in);
 
-    public Lobby() // i might have to delegate cash flow to the lobby function instead of doing it in the stock market itself
+    public Lobby() throws InterruptedException // i might have to delegate cash flow to the lobby function instead of doing it in the stock market itself
     {
         System.out.print("And what's your name, questionable hero(?): ");
         name = s.nextLine();
         decisionMaker();
     }
 
-    public void decisionMaker() { // make your choice, spend your day wisely
+    public void decisionMaker() throws InterruptedException { // make your choice, spend your day wisely
         System.out.println("Day " + days);
         System.out.println("You have " + (7 - days) + " days left");
         while (turns != 0 && days != 7) {
@@ -65,16 +65,14 @@ public class Lobby {
         dayCheck();
     }
 
-    public void dayCount()
-    {
+    public void dayCount() throws InterruptedException {
         stockMarket.cashFlow();
         System.out.println("day pass");
         days += 1;
         turns = 2;
         decisionMaker();
     }
-    public void dayCheck()
-    {
+    public void dayCheck() throws InterruptedException {
         if (days == 7)
         {
             bossRaidOni();

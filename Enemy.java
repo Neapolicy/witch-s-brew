@@ -15,7 +15,7 @@ public class Enemy extends Protagonist { // day one enemy
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
 
-    public Enemy() {
+    public Enemy() { // add accessories here and skills
         skills.add("Basic Attack");
     }
 
