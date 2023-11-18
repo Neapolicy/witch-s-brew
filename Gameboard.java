@@ -49,14 +49,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     {
         if (turns % 2 == 0)
         {
-            int enemyDec = enemy.choice();
-            if (enemyDec == 1) {
-                pro.takeDmg(enemy.getDmgDealt());;
-            }
-            else
-            {
-                skillCheck();
-            }
+            enemy.enemyChoice();
+            pro.takeDmg(enemy.getDmgDealt());
             turns += 1;
         }
     }

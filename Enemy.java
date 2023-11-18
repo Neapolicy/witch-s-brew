@@ -43,9 +43,8 @@ public class Enemy extends Protagonist { // day one enemy
         health = battleStats[2];
     }
 
-    public int choice() { // enemy makes their decision
+    public void enemyChoice() { // enemy makes their decision
         dmgDealt = 0;
-        while (true) {
             /*if (skillPoints <= 0)
             {
                 choice = 1;
@@ -63,19 +62,21 @@ public class Enemy extends Protagonist { // day one enemy
                         skillPoints = 5;
                     }
                     dmgDealt = battleStats[0];
-                    System.out.println(dmgDealt);
                     weaponCheck();
                     break;
                 case 2, 3, 4, 5:
                     skill();
                     break;
             }
-            break;
         }
-        return choice;
-    }
+
     public int getHealth()
     {
         return health;
+    }
+
+    public int getDmgDealt()
+    {
+        return dmgDealt;
     }
 }
