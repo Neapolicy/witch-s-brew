@@ -1,4 +1,3 @@
-import java.util.Random;
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int balance;
