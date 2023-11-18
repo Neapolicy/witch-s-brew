@@ -55,7 +55,6 @@ public class Enemy extends Protagonist { // day one enemy
             }*/
             switch (choice) {
                 case 1:
-                    System.out.println("attacked");
                     skillPoints += 1;
                     if (skillPoints > 5)
                     {
