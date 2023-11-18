@@ -96,5 +96,4 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         System.out.println("Your stats: " + pro.getBattleStats()[0] + " health, " + pro.getSkillPoints() + " points");
         System.out.println(enemy.status());
     }
-
 }
