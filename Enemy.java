@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Enemy extends Protagonist { // day one enemy
-    private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, speed, evasion, do not modify these in battle, also remember to alter this
+    private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health;
     private String weapon = "Switchblade";
@@ -35,7 +35,7 @@ public class Enemy extends Protagonist { // day one enemy
                 case "Stronger Steel":
                     battleStats[1] += 20;
                     break;
-                case "Better Boots":
+                case "Cool Looking Helmet":
                     battleStats[3] += 25;
                     break;
             }
@@ -44,6 +44,7 @@ public class Enemy extends Protagonist { // day one enemy
     }
 
     public int choice() { // enemy makes their decision
+        dmgDealt = 0;
         while (true) {
             /*if (skillPoints <= 0)
             {
@@ -55,12 +56,14 @@ public class Enemy extends Protagonist { // day one enemy
             }*/
             switch (choice) {
                 case 1:
+                    System.out.println("attacked");
                     skillPoints += 1;
                     if (skillPoints > 5)
                     {
                         skillPoints = 5;
                     }
                     dmgDealt = battleStats[0];
+                    System.out.println(dmgDealt);
                     weaponCheck();
                     break;
                 case 2, 3, 4, 5:

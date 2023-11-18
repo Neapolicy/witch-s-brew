@@ -59,8 +59,8 @@ public class Shop {
             case "sword", "1" -> priceComparison(20, "Sword");
             case "flintlock", "2" -> priceComparison(70, "Flintlock");
             case "musket", "3" -> priceComparison(100, "Musket");
-            case "mechanical arm", "4" -> priceComparison(35, "Better Boots");
-            case "better boots", "5" -> priceComparison(30, "Stronger Steel");
+            case "cool looking helmet", "4" -> priceComparison(35, "Cool Looking Helmet");
+            case "stronger steel", "5" -> priceComparison(30, "Stronger Steel");
             case "surgeons toolkit", "6" -> priceComparison(40, "Surgeons Toolkit");
             case "smoke bomb", "7" -> priceComparison(60, "Smoke Bomb");
             case "powdered wig", "8" -> priceComparison(500, "Powdered Wig");
@@ -87,7 +87,7 @@ public class Shop {
         goods.add("Sword (Weapon) - 20 shells");
         goods.add("Flintlock (Weapon) - 70 shells");
         goods.add("Musket (Weapon) - 100 shells");
-        goods.add("Better Boots (Accessory) - 35 shells");
+        goods.add("Cool Looking Helmet (Accessory) - 35 shells");
         goods.add("Stronger Steel (Accessory) - 30 shells");
         goods.add("Surgeons Toolkit (Accessory) - 40 shells");
         goods.add("Smoke Bomb (Accessory) - 60 shells");

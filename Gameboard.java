@@ -13,7 +13,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         dayCheck();
         game();
     }
-    public void game() throws InterruptedException {
+    public void game() throws InterruptedException { //remember to change this to prioritize speed
         pro.accessoriesCheck();
         enemy.accessoriesCheck();
         while (pro.getBattleStats()[2] > 0) {
@@ -50,7 +50,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         if (turns % 2 == 0)
         {
             int enemyDec = enemy.choice();
-            System.out.println(enemy.getDmgDealt());
             if (enemyDec == 1) {
                 pro.takeDmg(enemy.getDmgDealt());;
             }
@@ -64,7 +63,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
 
     public void playerAction()
     {
-        if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 2
+        if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 1, also,
         {
             int protagChoice = pro.choice();
             if (protagChoice == 1) {

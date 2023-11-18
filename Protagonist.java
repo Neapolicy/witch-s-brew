@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 // once i finish protagonist, I might be able to use inheritance and have enemies borrow most of this code (except for variables cuz of that one req)
 public class Protagonist {
-    private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, speed, evasion, do not modify these in battle
+    private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int health;
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
@@ -39,7 +39,7 @@ public class Protagonist {
                 case "Stronger Steel":
                     battleStats[1] += 20;
                     break;
-                case "Better Boots":
+                case "Cool Looking Helmet":
                     battleStats[3] += 25;
                     break;
             }
