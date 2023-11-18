@@ -11,7 +11,7 @@ public class Enemy extends Protagonist { // day one enemy
     private int skillPoints = 0;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
-    private int choice;
+    private int choice = 1;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
 
@@ -40,22 +40,26 @@ public class Enemy extends Protagonist { // day one enemy
                     break;
             }
         }
-        health = battleStats[0];
+        health = battleStats[2];
     }
 
     public int choice() { // enemy makes their decision
         while (true) {
-            if (skillPoints <= 0)
+            /*if (skillPoints <= 0)
             {
                 choice = 1;
             }
             else
             {
                 choice = rand.nextInt(1, 6);
-            }
+            }*/
             switch (choice) {
                 case 1:
                     skillPoints += 1;
+                    if (skillPoints > 5)
+                    {
+                        skillPoints = 5;
+                    }
                     dmgDealt = battleStats[0];
                     weaponCheck();
                     break;
@@ -67,21 +71,8 @@ public class Enemy extends Protagonist { // day one enemy
         }
         return choice;
     }
-
-    public String status()
+    public int getHealth()
     {
-        if (battleStats[0] > (.66) * health)
-        {
-            return "Healthy";
-        }
-        else if (battleStats[0] > (.66) * health)
-        {
-            return "Moderate";
-        }
-        else
-        {
-            return "Terrible";
-        }
+        return health;
     }
-
 }

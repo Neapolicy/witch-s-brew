@@ -17,7 +17,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     {
         pro.accessoriesCheck();
         enemy.accessoriesCheck();
-        while (pro.getBattleStats()[0] > 0) {
+        while (pro.getBattleStats()[2] > 0) {
             getInfo();
 
             if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 2
@@ -33,8 +33,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 turns += 1;
             }
 
-            if (enemy.getBattleStats()[0] <= 0) {
-                enemy.getBattleStats()[0] = 0; // sets enemy health to zero
+            if (enemy.getBattleStats()[2] <= 0) {
+                enemy.getBattleStats()[2] = 0; // sets enemy health to zero
                 System.out.println("CEO goon taken down!");
                 getBalance();
                 getResults();
@@ -43,13 +43,20 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
 
             if (turns % 2 == 0)
             {
-                enemy.choice();
-                pro.takeDmg(enemy.getDmgDealt());
+                int enemyDec = enemy.choice();
+                System.out.println(enemyDec);
+                if (enemyDec == 1) {
+                    pro.takeDmg(enemy.getDmgDealt());;
+                }
+                else
+                {
+                    skillCheck();
+                }
                 turns += 1;
             }
 
-            if (pro.getBattleStats()[0] <= 0) {
-                pro.getBattleStats()[0] = 0; // Set player's health to zero
+            if (pro.getBattleStats()[2] <= 0) {
+                pro.getBattleStats()[2] = 0; // Set player's health to zero
                 getBalance();
                 getResults();
                 break;
@@ -74,7 +81,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 enemy = new Enemy();
                 break;
             case 2:
-                enemy = null;
+                enemy = (Enemy) new Protagonist();
                 break;
             case 3:
                 enemy = null;
@@ -92,7 +99,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
 
     public boolean getResults() {
-        return pro.getBattleStats()[0] <= 0;
+        return pro.getBattleStats()[2] <= 0;
     }
 
     public int getBalance() {
@@ -101,7 +108,24 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
 
     public void getInfo() {
-        System.out.println("Your stats: " + pro.getBattleStats()[0] + " health, " + pro.getSkillPoints() + " points");
-        System.out.println(enemy.status());
+        System.out.println("Your stats: " + pro.getBattleStats()[2] + " health, " + pro.getSkillPoints() + " points");
+        System.out.println(status());
+        System.out.println(enemy.getBattleStats()[2]);
+    }
+
+    public String status()
+    {
+        if (enemy.getBattleStats()[2] > (.66) * enemy.getHealth())
+        {
+            return "Healthy";
+        }
+        else if ((enemy.getBattleStats()[2] < (.66) * enemy.getHealth()) && (enemy.getBattleStats()[2] > (.33) * enemy.getHealth()))
+        {
+            return "Moderate";
+        }
+        else
+        {
+            return "Terrible";
+        }
     }
 }

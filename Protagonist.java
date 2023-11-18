@@ -4,6 +4,7 @@ import java.util.Scanner;
 // once i finish protagonist, I might be able to use inheritance and have enemies borrow most of this code (except for variables cuz of that one req)
 public class Protagonist {
     private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, speed, evasion, do not modify these in battle
+    private int health;
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
     private String weapon = "Switchblade";
@@ -43,22 +44,27 @@ public class Protagonist {
                     break;
             }
         }
+        health = battleStats[2];
     }
 
     public int choice() { // The place where Daler(you) make your choice
         while (true) {
             System.out.println("\nPick your move");
             for (int i = 0; i < skills.size(); i++) {
-                System.out.println("(" + i + 1 + ") " + skills.get(i));
+                System.out.println("(" + (i + 1) + ") " + skills.get(i));
             }
             choice = s.nextInt();
             if (choice > skills.size() || choice < skills.size()) {
-                choice();
+                System.out.println("Invalid!");
             }
             else {
                 switch (choice) {
                     case 1:
                         skillPoints += 1;
+                        if (skillPoints > 5)
+                        {
+                            skillPoints = 5;
+                        }
                         dmgDealt = battleStats[0];
                         weaponCheck();
                         break;
@@ -86,8 +92,12 @@ public class Protagonist {
             default:
                 sound.sound("Gun_Load", 400);
                 sound.sound("Gun_Fire", 800);
+                sideArm();
                 break;
         }
+    }
+    public void sideArm()
+    {
         if (sideArm.equals("Off-hand Revolver"))
         {
             sound.sound("Gun_Load", 400);
@@ -118,7 +128,7 @@ public class Protagonist {
 
     public void takeDmg(int damage)
     {
-        battleStats[0] -= damage;
+        battleStats[2] -= damage;
     }
 
     public ArrayList<String> getSkills()
