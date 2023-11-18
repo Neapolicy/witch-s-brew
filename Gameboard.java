@@ -19,20 +19,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         enemy.accessoriesCheck();
         while (pro.getBattleStats()[2] > 0) {
             getInfo();
-
-            if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 2
-            {
-                int protagChoice = pro.choice();
-                if (protagChoice == 1) {
-                    enemy.takeDmg(pro.getDmgDealt());
-                }
-                else
-                {
-                    skillCheck();
-                }
-                turns += 1;
-            }
-
+            playerAction();
             if (enemy.getBattleStats()[2] <= 0) {
                 enemy.getBattleStats()[2] = 0; // sets enemy health to zero
                 System.out.println("CEO goon taken down!");
@@ -41,20 +28,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 break;
             }
 
-            if (turns % 2 == 0)
-            {
-                int enemyDec = enemy.choice();
-                System.out.println(enemy.getDmgDealt());
-                if (enemyDec == 1) {
-                    pro.takeDmg(enemy.getDmgDealt());;
-                }
-                else
-                {
-                    skillCheck();
-                }
-                turns += 1;
-            }
-
+            enemyAction();
             if (pro.getBattleStats()[2] <= 0) {
                 pro.getBattleStats()[2] = 0; // Set player's health to zero
                 getBalance();
@@ -62,6 +36,39 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 break;
             }
             // Display stats at the start of the turn
+        }
+    }
+
+    public void enemyAction()
+    {
+        if (turns % 2 == 0)
+        {
+            int enemyDec = enemy.choice();
+            System.out.println(enemy.getDmgDealt());
+            if (enemyDec == 1) {
+                pro.takeDmg(enemy.getDmgDealt());;
+            }
+            else
+            {
+                skillCheck();
+            }
+            turns += 1;
+        }
+    }
+
+    public void playerAction()
+    {
+        if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 2
+        {
+            int protagChoice = pro.choice();
+            if (protagChoice == 1) {
+                enemy.takeDmg(pro.getDmgDealt());
+            }
+            else
+            {
+                skillCheck();
+            }
+            turns += 1;
         }
     }
 
