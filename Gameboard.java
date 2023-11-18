@@ -1,6 +1,7 @@
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int balance;
+    private int turns = 1;
     private Protagonist pro;
     private int days;
     private Enemy enemy = null;
@@ -19,15 +20,19 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         while (pro.getBattleStats()[0] > 0) {
             getInfo();
 
-            int protagChoice = pro.choice();
-
-            if (protagChoice == 1) {
-                enemy.takeDmg(pro.getDmgDealt());
-            }
-            else
+            if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 2
             {
-                skillCheck();
+                int protagChoice = pro.choice();
+                if (protagChoice == 1) {
+                    enemy.takeDmg(pro.getDmgDealt());
+                }
+                else
+                {
+                    skillCheck();
+                }
+                turns += 1;
             }
+
             if (enemy.getBattleStats()[0] <= 0) {
                 enemy.getBattleStats()[0] = 0; // sets enemy health to zero
                 System.out.println("CEO goon taken down!");
@@ -36,8 +41,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 break;
             }
 
-            enemy.choice();
-            pro.takeDmg(enemy.getDmgDealt());
+            if (turns % 2 == 0)
+            {
+                enemy.choice();
+                pro.takeDmg(enemy.getDmgDealt());
+                turns += 1;
+            }
 
             if (pro.getBattleStats()[0] <= 0) {
                 pro.getBattleStats()[0] = 0; // Set player's health to zero
