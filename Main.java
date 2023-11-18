@@ -3,11 +3,11 @@ public class Main {
         //printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
         Lobby lobby = new Lobby();
         Sound sound  = new Sound();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 1; i++)
         {
             sound.sound("Gun_Load", 400);
-            sound.sound("Gun_Fire", 700);
-            sound.sound("Gun_Load", 300);
+            sound.sound("Gun_Fire", 800);
+            sound.sound("Gun_Load", 400);
             sound.sound("Gun_Fire", 800);
         }
     }
