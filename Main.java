@@ -3,10 +3,10 @@ public class Main {
         //printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
         Lobby lobby = new Lobby();
         Sound sound = new Sound();
-        sound.sound("FIGHT-BACK", 2500);
+        /*sound.sound("FIGHT-BACK", 2500);
         sound.sound("Finger-Snap", 500);
         sound.sound("Fireball", 400);
-        sound.sound("Explosion", 400);
+        sound.sound("Explosion", 400);*/
     }
 
     private static void printSlow(String text) {
