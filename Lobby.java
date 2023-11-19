@@ -18,6 +18,7 @@ public class Lobby {
     {
         System.out.print("And what's your name, questionable hero(?): ");
         name = s.nextLine();
+        pro.setName(name);
         decisionMaker();
     }
 

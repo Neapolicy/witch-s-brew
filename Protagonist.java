@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Protagonist {
     private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int health;
+    private String name;
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
     private String weapon = "Switchblade";
@@ -20,13 +21,11 @@ public class Protagonist {
     public Protagonist() {
         skills.add("Basic Attack");
     }
-    public void accessoriesCheck()
-    {
+
+    public void accessoriesCheck() {
         skillPoints = 3;
-        for (int i = 0; i < accessoriesOn.size(); i++)
-        {
-            switch (accessoriesOn.get(i))
-            {
+        for (int i = 0; i < accessoriesOn.size(); i++) {
+            switch (accessoriesOn.get(i)) {
                 case "Surgeons Toolkit":
                     battleStats[2] += 200;
                     break;
@@ -56,13 +55,11 @@ public class Protagonist {
             choice = s.nextInt();
             if (choice > skills.size() || choice < skills.size()) {
                 System.out.println("Invalid!");
-            }
-            else {
+            } else {
                 switch (choice) {
                     case 1:
                         skillPoints += 1;
-                        if (skillPoints > 5)
-                        {
+                        if (skillPoints > 5) {
                             skillPoints = 5;
                         }
                         dmgDealt = battleStats[0];
@@ -78,8 +75,7 @@ public class Protagonist {
         return choice;
     }
 
-    public void skill()
-    {
+    public void skill() {
 
     }
 
@@ -96,47 +92,47 @@ public class Protagonist {
                 break;
         }
     }
-    public void sideArm()
-    {
-        if (sideArm.equals("Off-hand Revolver"))
-        {
+
+    public void sideArm() {
+        if (sideArm.equals("Off-hand Revolver")) {
             sound.sound("Gun_Load", 400);
             sound.sound("Gun_Fire", 800);
             sound.sound("Revolver_Reload", 2700);
-        }
-        else
-        {
+        } else {
             sound.sound("Revolver_Reload", 2700);
         }
     }
 
-    public int getSkillPoints()
-    {
+    public int getSkillPoints() {
         return skillPoints;
     }
 
-    public void editChar(ArrayList<String> inv)
-    {
+    public void editChar(ArrayList<String> inv) {
         System.out.print("Character Stats");
 
     }
 
-    public int getDmgDealt()
-    {
+    public int getDmgDealt() {
         return dmgDealt;
     }
 
-    public void takeDmg(int damage)
-    {
+    public void takeDmg(int damage) {
         battleStats[2] -= damage;
     }
 
-    public ArrayList<String> getSkills()
-    {
+    public ArrayList<String> getSkills() {
         return skills;
     }
 
     public int[] getBattleStats() {
         return battleStats;
     } // possible enemy move, use a while loop to generate a number, ex, number you want is five, and it keeps track of how much times it loops until it generates a five
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

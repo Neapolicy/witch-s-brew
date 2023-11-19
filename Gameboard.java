@@ -1,10 +1,13 @@
+import java.util.Random;
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int balance;
     private int turns = 1; //internal counter, if i add another turn counter, create new variable to handle that
     private Protagonist pro;
     private int days;
+    private Random rand = new Random();
     private Enemy enemy = null;
+
 
     public Gameboard(int days, Protagonist character) throws InterruptedException //initiates the shop and the game
     {
@@ -21,7 +24,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             playerAction();
             if (enemy.getBattleStats()[2] <= 0) {
                 enemy.getBattleStats()[2] = 0; // sets enemy health to zero
-                System.out.println("CEO goon taken down!");
+                System.out.println(enemy.getName() + " has been taken down!");
                 getBalance();
                 getResults();
                 break;
@@ -50,7 +53,13 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         if (turns % 2 == 0)
         {
             enemy.enemyChoice();
-            pro.takeDmg(enemy.getDmgDealt());
+            if (!evasionCheck(pro.getBattleStats()[4], enemy.getName()))
+            {
+                pro.takeDmg(enemy.getDmgDealt());
+            }
+            else{
+                pro.takeDmg(0);
+            }
             turns += 1;
         }
     }
@@ -61,7 +70,13 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         {
             int protagChoice = pro.choice();
             if (protagChoice == 1) {
-                enemy.takeDmg(pro.getDmgDealt());
+                if (!evasionCheck(enemy.getBattleStats()[4], pro.getName()))
+                {
+                    enemy.takeDmg(pro.getDmgDealt());
+                }
+                else{
+                    enemy.takeDmg(0);
+                }
             }
             else
             {
@@ -69,6 +84,16 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             }
             turns += 1;
         }
+    }
+
+    public boolean evasionCheck(int evasion, String name)
+    {
+        if (rand.nextInt(1, 101) <= evasion)
+        {
+            System.out.println(name + " whiffs their attack!");
+            return true;
+        }
+        return false;
     }
 
     public void skillCheck()

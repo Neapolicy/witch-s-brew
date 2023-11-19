@@ -77,4 +77,7 @@ public class Enemy2 extends Enemy{
     {
         return dmgDealt;
     }
+    public int[] getBattleStats() {
+        return battleStats;
+    }
 }

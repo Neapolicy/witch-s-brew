@@ -2,11 +2,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Enemy extends Protagonist { // day one enemy
-    private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
+    private int[] charStats = {8, 5, 30, 7, 7}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health;
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
+    private String name = "CEO Goon";
     private String sideArm = "";
     private int skillPoints = 3;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
@@ -77,5 +78,17 @@ public class Enemy extends Protagonist { // day one enemy
     public int getDmgDealt() //every enemy needs their own dedicated getter, idk why
     {
         return dmgDealt;
+    }
+
+    public int[] getBattleStats() {
+        return battleStats;
+    }
+
+    public void takeDmg(int damage) {
+        battleStats[2] -= damage;
+    }
+
+    public String getName() {
+        return name;
     }
 }
