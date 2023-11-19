@@ -31,13 +31,23 @@ public class Lobby {
             System.out.println("Invest in the stock market (2)");
             System.out.println("Access the shop (3)");
             System.out.println("Edit character (4)");
-            System.out.println("(You currently have " + balance + " shells");
+            System.out.println("(You currently have " + balance + " shells)");
             System.out.println("You have " + turns + " moves left" );
             answer = s.nextLine();
             switch (answer) {
                 case "1":
                     Gameboard g = new Gameboard(days, pro);
-                    turns -= 1;
+                    if (!g.getResults())
+                    {
+                        balance += g.getBalance();
+                        turns -= 1;
+                    }
+                    else
+                    {
+                        System.out.println("\nYour soul got sent to the depths, harsh lesson you learned from the CEO goons huh?\n");
+                        System.out.println("\nGame Over, Thanks For Playing!");
+                        System.exit(1);
+                    }
                     break;
                 case "2":
                     stockMarket.setCash(balance);

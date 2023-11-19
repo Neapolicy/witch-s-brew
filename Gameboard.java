@@ -1,7 +1,6 @@
 import java.util.Random;
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
-    private int balance;
     private int turns = 1; //internal counter, if i add another turn counter, create new variable to handle that
     private Protagonist pro;
     private int days;
@@ -134,8 +133,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
 
     public int getBalance() {
-        balance += (200 * days);
-        return balance;
+        return 200 * days;
     }
 
     public void getInfo() {
