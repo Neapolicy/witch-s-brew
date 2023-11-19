@@ -85,7 +85,7 @@ public class Enemy extends Protagonist { // day one enemy
     }
 
     public void takeDmg(int damage) {
-        battleStats[2] -= damage;
+        battleStats[2] -= (int) (damage * (100.0/(100 + battleStats[1])));
     }
 
     public String getName() {
