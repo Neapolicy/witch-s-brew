@@ -132,6 +132,11 @@ public class Protagonist {
         this.name = name;
     }
 
+    public void resetStats()
+    {
+        battleStats = charStats;
+    }
+
     public String getName() {
         return name;
     }

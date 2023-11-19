@@ -16,6 +16,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         game();
     }
     public void game() throws InterruptedException { //remember to change this to prioritize speed
+        pro.resetStats();
         pro.accessoriesCheck();
         enemy.accessoriesCheck();
         while (pro.getBattleStats()[2] > 0) {
