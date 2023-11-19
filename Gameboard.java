@@ -12,11 +12,11 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     {
         this.pro = character;
         this.days = days;
+        pro.resetStats();
         dayCheck();
         game();
     }
     public void game() throws InterruptedException { //remember to change this to prioritize speed
-        pro.resetStats();
         pro.accessoriesCheck();
         enemy.accessoriesCheck();
         while (pro.getBattleStats()[2] > 0) {
@@ -26,7 +26,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 enemy.getBattleStats()[2] = 0; // sets enemy health to zero
                 System.out.println(enemy.getName() + " has been taken down!");
                 getBalance();
-                getResults();
                 break;
             }
             sleep(300);
@@ -35,8 +34,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             enemyAction();
             if (pro.getBattleStats()[2] <= 0) {
                 pro.getBattleStats()[2] = 0; // Set player's health to zero
-                getBalance();
-                getResults();
                 break;
             }
             sleep(300);

@@ -40,6 +40,7 @@ public class Lobby {
                     if (!g.getResults())
                     {
                         balance += g.getBalance();
+                        pro.updateStats(days);
                         turns -= 1;
                     }
                     else

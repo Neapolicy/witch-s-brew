@@ -36,7 +36,7 @@ public class Enemy2 extends Enemy{
                     battleStats[1] += 20;
                     break;
                 case "Cool Looking Helmet":
-                    battleStats[3] += 25;
+                    battleStats[3] += 15;
                     break;
             }
         }
@@ -76,6 +76,10 @@ public class Enemy2 extends Enemy{
     public int getDmgDealt() //every enemy needs their own dedicated getter, idk why
     {
         return dmgDealt;
+    }
+
+    public void takeDmg(int damage) {
+        battleStats[2] -= (int) (damage * (100.0/(100 + battleStats[1])));
     }
     public int[] getBattleStats() {
         return battleStats;

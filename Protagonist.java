@@ -6,7 +6,7 @@ public class Protagonist {
     private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int health;
     private String name;
-    private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
+    private int[] battleStats = charStats.clone(); //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
@@ -39,7 +39,7 @@ public class Protagonist {
                     battleStats[1] += 20;
                     break;
                 case "Cool Looking Helmet":
-                    battleStats[3] += 25;
+                    battleStats[3] += 15;
                     break;
             }
         }
@@ -134,7 +134,15 @@ public class Protagonist {
 
     public void resetStats()
     {
-        battleStats = charStats;
+        battleStats = charStats.clone();
+    }
+
+    public void updateStats(int days)
+    {
+        for (int i = 0; i < charStats.length; i++)
+        {
+            charStats[i] += days;
+        }
     }
 
     public String getName() {
