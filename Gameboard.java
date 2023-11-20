@@ -82,11 +82,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         {
             protagChoice = pro.choice();
             if (protagChoice == 1) {
-                if (!evasionCheck(enemy.getBattleStats()[4], pro.getName()))
+                if ((!evasionCheck(enemy.getBattleStats()[4], pro.getName())))
                 {
                     enemy.takeDmg(pro.getDmgDealt());
                 }
                 else{
+                    enemy.resetParry();
                     enemy.takeDmg(0);
                 }
             }
@@ -122,6 +123,10 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                         turns += 1;
                     }
                 }
+                break;
+            case "Parry":
+                pro.resetParry();
+                System.out.println(enemy.getName() + " parries " + pro.getName() + "'s attack!");
                 break;
         }
     }

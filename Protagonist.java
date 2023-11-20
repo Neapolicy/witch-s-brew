@@ -115,7 +115,7 @@ public class Protagonist {
 
     public void parry()
     {
-
+        System.out.println(name + " prepares to parry the next attack");
     }
 
 
@@ -219,6 +219,11 @@ public class Protagonist {
         {
             charStats[i] += days;
         }
+    }
+
+    public void resetParry()
+    {
+        dmgDealt = 0;
     }
 
 

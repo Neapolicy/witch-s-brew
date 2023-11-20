@@ -12,7 +12,7 @@ public class Enemy2 extends Enemy{
     private int skillPoints = 0;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
-    private int choice = 1;
+    private int choice = 2;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
     public Enemy2() {
