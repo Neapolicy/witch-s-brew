@@ -61,4 +61,4 @@ adjust the item prices
 <br>
 make sure the accessories actually work
 <br>
-
+CC resist
