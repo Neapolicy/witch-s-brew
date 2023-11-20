@@ -89,7 +89,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     enemy.takeDmg(pro.getDmgDealt());
                 }
                 else{
-                    enemy.resetParry();
                     enemy.takeDmg(0);
                 }
             }
@@ -154,7 +153,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 break;
             case "Parry":
                 enemy.resetParry();
-                System.out.println(pro.getName() + " parries " + enemy.getName() + "'s attack!");
+                System.out.println(enemy.getName() + " parries " + pro.getName() + "'s attack!");
                 break;
         }
     }
