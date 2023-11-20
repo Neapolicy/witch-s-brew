@@ -5,6 +5,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     private Protagonist pro;
     private int days;
     private Random rand = new Random();
+    private int protagChoice;
+    private String skill;
     private Enemy enemy = null;
 
 
@@ -65,7 +67,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     {
         if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 1, also,
         {
-            int protagChoice = pro.choice();
+            protagChoice = pro.choice();
             if (protagChoice == 1) {
                 if (!evasionCheck(enemy.getBattleStats()[4], pro.getName()))
                 {
@@ -75,8 +77,33 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     enemy.takeDmg(0);
                 }
             }
+            else
+            {
+                skillCheck();
+                enemy.takeDmg(pro.getDmgDealt());
+            }
             turns += 1;
         }
+    }
+
+    public void skillCheck()
+    {
+        skill  = pro.getSkills().get(protagChoice - 1);
+        switch (skill)
+        {
+            case "Uppercut": //should only determine stun, theoretically
+                if (rand.nextBoolean())
+                {
+                    System.out.println("Enemy is stunned! Use this chance to strike them again!");
+                    turns += 1;
+                }
+                break;
+        }
+    }
+
+    public void enemySkillCheck()
+    {
+        skill = enemy.getSkills().get(enemy.getChoice() - 1);
     }
 
     public boolean evasionCheck(int evasion, String name)

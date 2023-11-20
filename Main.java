@@ -3,8 +3,8 @@ public class Main {
         //printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
         Lobby lobby = new Lobby();
         Sound sound = new Sound();
-        /*sound.sound("FIGHT-BACK", 2500);
-        sound.sound("Finger-Snap", 500);
+        sound.sound("Uppercut", 900);
+        /*sound.sound("Finger-Snap", 500);
         sound.sound("Fireball", 400);
         sound.sound("Explosion", 400);*/
     }
