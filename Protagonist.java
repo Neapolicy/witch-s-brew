@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 // once i finish protagonist, I might be able to use inheritance and have enemies borrow most of this code (except for variables cuz of that one req)
 public class Protagonist {
     private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
-    private int health;
+    private Random rand = new Random();
     private String name;
     private int[] battleStats = charStats.clone(); //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
@@ -20,6 +21,7 @@ public class Protagonist {
 
     public Protagonist() {
         skills.add("Basic Attack");
+        skills.add("Uppercut");
     }
 
     public void accessoriesCheck() {
@@ -43,7 +45,6 @@ public class Protagonist {
                     break;
             }
         }
-        health = battleStats[2];
     }
 
     public int choice() { // The place where Daler(you) make your choice
@@ -53,7 +54,7 @@ public class Protagonist {
                 System.out.println("(" + (i + 1) + ") " + skills.get(i));
             }
             choice = s.nextInt();
-            if (choice > skills.size() || choice < skills.size()) {
+            if (choice > skills.size() || choice < 1) {
                 System.out.println("Invalid!");
             } else {
                 switch (choice) {
@@ -75,8 +76,24 @@ public class Protagonist {
         return choice;
     }
 
-    public void skill() {
+    public void skill()
+    {
+        String skill = skills.get(choice - 1);
+        switch(skill)
+        {
+            case "Uppercut":
+                skillPoints -= 1;
+                if (rand.nextInt(2) == 1)
+                {
 
+                }
+                break;
+        }
+    }
+
+    public void addSkill(String skillName)
+    {
+        skills.add(skillName);
     }
 
     public void weaponCheck() {
