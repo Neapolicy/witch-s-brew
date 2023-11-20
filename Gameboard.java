@@ -5,6 +5,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     private Protagonist pro;
     private int days;
     private Random rand = new Random();
+    private int enemyChoice;
     private int protagChoice;
     private String skill;
     private Enemy enemy = null;
@@ -49,6 +50,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
 
     public void enemyAction()
     {
+        enemyChoice = enemy.enemyChoice();
         if (turns % 2 == 0)
         {
             int enemyChoice = enemy.enemyChoice();
@@ -125,15 +127,36 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 }
                 break;
             case "Parry":
-                pro.resetParry();
-                System.out.println(enemy.getName() + " parries " + pro.getName() + "'s attack!");
+                enemy.resetParry();
+                System.out.println(pro.getName() + " parries " + enemy.getName() + "'s attack!");
                 break;
         }
     }
 
     public void enemySkillCheck()
     {
-        skill = enemy.getSkills().get(enemy.getChoice() - 1);
+        skill = enemy.getSkills().get(enemyChoice - 1);
+        switch (skill)
+        {
+            case "Uppercut": //should only determine stun, theoretically
+                if (rand.nextBoolean())
+                {
+                    if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3])
+                    {
+                        System.out.println("Enemy resisted the stun!");
+                    }
+                    else
+                    {
+                        System.out.println("Enemy is stunned! Use this chance to strike them again!");
+                        turns += 1;
+                    }
+                }
+                break;
+            case "Parry":
+                enemy.resetParry();
+                System.out.println(pro.getName() + " parries " + enemy.getName() + "'s attack!");
+                break;
+        }
     }
 
     public boolean evasionCheck(int evasion, String name)
