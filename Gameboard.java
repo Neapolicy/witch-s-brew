@@ -167,15 +167,15 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     {
         if (enemy.getBattleStats()[2] > (.66) * enemy.getHealth())
         {
-            return "Healthy";
+            return enemy.getName() + " looks unscathed, ready to take on the world! Yeah...";
         }
         else if ((enemy.getBattleStats()[2] < (.66) * enemy.getHealth()) && (enemy.getBattleStats()[2] > (.33) * enemy.getHealth()))
         {
-            return "Moderate";
+            return enemy.getName() + " looks a bit injured, but still able to keep fighting.";
         }
         else
         {
-            return "Terrible";
+            return enemy.getName() + " looks like they're two steps from keeling over.";
         }
     }
 }
