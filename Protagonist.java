@@ -7,6 +7,7 @@ public class Protagonist {
     private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private Random rand = new Random();
     private String name;
+    private Skills skillSet = new Skills();
     private int[] battleStats = charStats.clone(); //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
     private String weapon = "Switchblade";
@@ -67,28 +68,15 @@ public class Protagonist {
                         weaponCheck();
                         break;
                     case 2, 3, 4, 5:
-                        skill();
+                        String skill = skills.get(choice - 1);
+                        skillSet.skillBook(skill, skillPoints);
+                        skillPoints = skillSet.getSkillpoints();
                         break;
                 }
                 break;
             }
         }
         return choice;
-    }
-
-    public void skill()
-    {
-        String skill = skills.get(choice - 1);
-        switch(skill)
-        {
-            case "Uppercut":
-                skillPoints -= 1;
-                if (rand.nextInt(2) == 1)
-                {
-
-                }
-                break;
-        }
     }
 
     public void addSkill(String skillName)

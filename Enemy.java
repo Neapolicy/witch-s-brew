@@ -6,6 +6,7 @@ public class Enemy extends Protagonist { // day one enemy
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health;
     private String weapon = "Switchblade";
+    private Skills skillSet = new Skills();
     private Sound sound = new Sound();
     private String name = "CEO Goon";
     private String sideArm = "";
@@ -79,7 +80,9 @@ public class Enemy extends Protagonist { // day one enemy
                     weaponCheck();
                     break;
                 case 2, 3, 4, 5:
-                    skill();
+                    String skill = skills.get(choice - 1);
+                    skillSet.skillBook(skill, skillPoints);
+                    skillPoints = skillSet.getSkillpoints();
                     break;
             }
         }

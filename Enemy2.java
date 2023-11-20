@@ -6,6 +6,7 @@ public class Enemy2 extends Enemy{
     private int[] charStats = {6, 5, 30, 7, 5}; ////attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health;
+    private Skills skillSet = new Skills();
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
     private String sideArm = "";
@@ -63,7 +64,9 @@ public class Enemy2 extends Enemy{
                 weaponCheck();
                 break;
             case 2, 3, 4, 5:
-                skill();
+                String skill = skills.get(choice - 1);
+                skillSet.skillBook(skill, skillPoints);
+                skillPoints = skillSet.getSkillpoints();
                 break;
         }
     }

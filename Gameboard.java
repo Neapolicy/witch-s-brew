@@ -75,10 +75,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     enemy.takeDmg(0);
                 }
             }
-            else
-            {
-                skillCheck();
-            }
             turns += 1;
         }
     }
@@ -93,13 +89,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         return false;
     }
 
-    public void skillCheck()
-    {
-        for (int i = 0; i < pro.getSkills().size(); i++)
-        {
-
-        }
-    }
 
     public void dayCheck()
     {
