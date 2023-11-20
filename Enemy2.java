@@ -42,7 +42,7 @@ public class Enemy2 extends Enemy{
         }
         health = battleStats[2];
     }
-    public void enemyChoice() { // enemy makes their decision
+    public int enemyChoice() { // enemy makes their decision
         dmgDealt = 0;
             /*if (skillPoints <= 0)
             {
@@ -67,6 +67,7 @@ public class Enemy2 extends Enemy{
                 skillBook(skill, skillPoints);
                 break;
         }
+        return choice;
     }
 
     public int getHealth()

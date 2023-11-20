@@ -26,8 +26,8 @@ public class Protagonist {
 
     public void accessoriesCheck() {
         skillPoints = 3;
-        for (int i = 0; i < accessoriesOn.size(); i++) {
-            switch (accessoriesOn.get(i)) {
+        for (String value : accessoriesOn) {
+            switch (value) {
                 case "Surgeons Toolkit":
                     battleStats[2] += 200;
                     break;

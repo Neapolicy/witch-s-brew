@@ -22,23 +22,13 @@ public class Enemy extends Protagonist { // day one enemy
 
     public void accessoriesCheck() { //enemies can have accessories too!
         skillPoints = 3;
-        for (int i = 0; i < accessoriesOn.size(); i++) {
-            switch (accessoriesOn.get(i)) {
-                case "Surgeons Toolkit":
-                    battleStats[2] += 200;
-                    break;
-                case "Smoke Bomb":
-                    battleStats[4] += 10;
-                    break;
-                case "Powdered Wig":
-                    battleStats[0] *= 2;
-                    break;
-                case "Stronger Steel":
-                    battleStats[1] += 20;
-                    break;
-                case "Cool Looking Helmet":
-                    battleStats[3] += 15;
-                    break;
+        for (String s : accessoriesOn) {
+            switch (s) {
+                case "Surgeons Toolkit" -> battleStats[2] += 200;
+                case "Smoke Bomb" -> battleStats[4] += 10;
+                case "Powdered Wig" -> battleStats[0] *= 2;
+                case "Stronger Steel" -> battleStats[1] += 20;
+                case "Cool Looking Helmet" -> battleStats[3] += 15;
             }
         }
         health = battleStats[2];
@@ -58,7 +48,7 @@ public class Enemy extends Protagonist { // day one enemy
         }
     }
 
-    public void enemyChoice() { // enemy makes their decision
+    public int enemyChoice() { // enemy makes their decision
         dmgDealt = 0;
             /*if (skillPoints <= 0)
             {
@@ -83,6 +73,7 @@ public class Enemy extends Protagonist { // day one enemy
                     skillBook(skill, skillPoints);
                     break;
             }
+            return choice;
         }
 
     public int getHealth()

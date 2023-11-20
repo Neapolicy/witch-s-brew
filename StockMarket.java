@@ -11,7 +11,7 @@ public class StockMarket {
         this.cash = cash;
         cashFlow();
         System.out.println("Invest (1) or sell (2)? (Current balance is " + cash + " shells)");
-        System.out.println("Your stocks are currently worth " + stockVal + " shells\n");
+        System.out.println("Your stocks are currently worth " + stockVal + " shells");
         answer = s.nextInt();
         if (answer == 1)
         {
@@ -67,7 +67,7 @@ public class StockMarket {
 
     public void cashFlow()
     {
-        double multiplier = rand.nextDouble(-.2, .2);
+        double multiplier = rand.nextDouble(-.2, .35);
         stockVal *=  (1 + multiplier);
     }
 }

@@ -30,7 +30,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 getBalance();
                 break;
             }
-            sleep(300);
+            sleep(200);
             // time interval in milliseconds
 
             enemyAction();
@@ -38,7 +38,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 pro.getBattleStats()[2] = 0; // Set player's health to zero
                 break;
             }
-            sleep(300);
+            sleep(200);
             // Display stats at the start of the turn
         }
     }
@@ -51,13 +51,26 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     {
         if (turns % 2 == 0)
         {
-            enemy.enemyChoice();
-            if (!evasionCheck(pro.getBattleStats()[4], enemy.getName()))
+            int enemyChoice = enemy.enemyChoice();
+            if (enemyChoice == 1)
             {
-                pro.takeDmg(enemy.getDmgDealt());
+                if (!evasionCheck(pro.getBattleStats()[4], enemy.getName()))
+                {
+                    pro.takeDmg(enemy.getDmgDealt());
+                }
+                else{
+                    pro.takeDmg(0);
+                }
             }
-            else{
-                pro.takeDmg(0);
+            else
+            {
+                if (!evasionCheck(pro.getBattleStats()[4], enemy.getName())) {
+                    skillCheck();
+                    pro.takeDmg(enemy.getDmgDealt());
+                }
+                else{
+                    pro.takeDmg(0);
+                }
             }
             turns += 1;
         }
@@ -79,8 +92,13 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             }
             else
             {
-                skillCheck();
-                enemy.takeDmg(pro.getDmgDealt());
+                if (!evasionCheck(enemy.getBattleStats()[4], pro.getName())) {
+                    skillCheck();
+                    enemy.takeDmg(pro.getDmgDealt());
+                }
+                else{
+                    enemy.takeDmg(0);
+                }
             }
             turns += 1;
         }
