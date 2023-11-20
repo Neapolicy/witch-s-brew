@@ -94,8 +94,15 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Uppercut": //should only determine stun, theoretically
                 if (rand.nextBoolean())
                 {
-                    System.out.println("Enemy is stunned! Use this chance to strike them again!");
-                    turns += 1;
+                    if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3])
+                    {
+                        System.out.println("Enemy resisted the stun!");
+                    }
+                    else
+                    {
+                        System.out.println("Enemy is stunned! Use this chance to strike them again!");
+                        turns += 1;
+                    }
                 }
                 break;
         }
