@@ -56,7 +56,7 @@ public class Shop {
 
     public void buyItems(String res) {
         switch (res) {
-            case "sword", "1" -> priceComparison(20, "Sword");
+            case "machete", "1" -> priceComparison(20, "Machete");
             case "flintlock", "2" -> priceComparison(70, "Flintlock");
             case "musket", "3" -> priceComparison(100, "Musket");
             case "cool looking helmet", "4" -> priceComparison(35, "Cool Looking Helmet");
@@ -84,7 +84,7 @@ public class Shop {
     }
 
     public void addItems() {
-        goods.add("Sword (Weapon) - 20 shells");
+        goods.add("Machete (Weapon) - 20 shells");
         goods.add("Flintlock (Weapon) - 70 shells");
         goods.add("Musket (Weapon) - 100 shells");
         goods.add("Cool Looking Helmet (Accessory) - 35 shells");

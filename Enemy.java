@@ -44,6 +44,20 @@ public class Enemy extends Protagonist { // day one enemy
         health = battleStats[2];
     }
 
+    public void weaponCheck() {
+        switch (weapon) {
+            case "Switchblade", "Machete":
+                sound.sound("Melee-Swing", 300);
+                sound.sound("Hit", 400);
+                break;
+            default:
+                sound.sound("Gun_Load", 400);
+                sound.sound("Gun_Fire", 800);
+                sideArm();
+                break;
+        }
+    }
+
     public void enemyChoice() { // enemy makes their decision
         dmgDealt = 0;
             /*if (skillPoints <= 0)

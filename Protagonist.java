@@ -81,7 +81,7 @@ public class Protagonist {
 
     public void weaponCheck() {
         switch (weapon) {
-            case "Switchblade", "Sword":
+            case "Switchblade", "Machete":
                 sound.sound("Melee-Swing", 300);
                 sound.sound("Hit", 400);
                 break;
