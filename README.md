@@ -1,9 +1,10 @@
 # witch-s-brew
-QUEST TO DEFEAT CEO OF RACISM GONE WRONG (what happens next will shock you) 
+**QUEST TO DEFEAT CEO OF RACISM GONE WRONG** (what happens next will shock you) 
 
 ### **Synopsis**
 
 Your handler sent you to this island to carry out a contract, they want you to liquidate the CEO of racism
+<br>
 Not because racism is bad or anything, they just got on your handler's bad side, and he decided to send you onto
 his private island, where his company's HQ is located at
 <br>
@@ -29,15 +30,19 @@ Failing to carry out this hit will most likely result in your death under "myste
  - Time system! You have six days to defeat the CEO, and are limited to two actions a day, use it wisely!
  - Multiple fun skills to play around with!
  - Unique enemies!
+ - Sound effects! 
 
 ## Inspirations & Sources
 
 ### Sound Effects Sources
 [Deepwoken](https://deepwoken.fandom.com/wiki/OST_%26_Sounds) for most moves
 <br>
-Rogue Lineage for the move **Fight Back**
+Rogue Lineage for the move **FIGHT BACK**
 <br>
-Honkai Impact 3rd, Herscher of Flamescion for fireball
+Honkai Impact 3rd, Herrscher of Flamescion for fireball sound effect
+
+### Inspirations
+None so far
 
 ## Self Reminders to implement these features
 skill system
