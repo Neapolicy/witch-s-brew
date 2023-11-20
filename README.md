@@ -13,7 +13,6 @@ so you better be able to prepare yourself, because the CEO is a formidable foe i
 ## Installation
 
 Download as ZIP file and extract it in a Java IDE
-<br>
 The project and zip file can be found [here](https://github.com/Neapolicy/witch-s-brew)
 
 ## Game Description
