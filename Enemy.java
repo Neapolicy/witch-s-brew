@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Enemy extends Protagonist { // day one enemy
-    private int[] charStats = {7, 4, 25, 7, 7}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
+    private int[] charStats = {7, 4, 35, 7, 7}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health;
     private boolean parry;
