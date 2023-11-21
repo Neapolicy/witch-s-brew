@@ -25,24 +25,14 @@ public class Protagonist {
     }
 
     public void accessoriesCheck() {
-        skillPoints = 5;
+        skillPoints = 3;
         for (String value : accessoriesOn) {
             switch (value) {
-                case "Surgeons Toolkit":
-                    battleStats[2] += 200;
-                    break;
-                case "Smoke Bomb":
-                    battleStats[4] += 10;
-                    break;
-                case "Powdered Wig":
-                    battleStats[0] *= 2;
-                    break;
-                case "Stronger Steel":
-                    battleStats[1] += 20;
-                    break;
-                case "Cool Looking Helmet":
-                    battleStats[3] += 15;
-                    break;
+                case "Surgeons Toolkit" -> battleStats[2] += 200;
+                case "Smoke Bomb" -> battleStats[4] += 10;
+                case "Powdered Wig" -> battleStats[0] *= 2;
+                case "Stronger Steel" -> battleStats[1] += 20;
+                case "Cool Looking Helmet" -> battleStats[3] += 15;
             }
         }
     }
@@ -60,7 +50,7 @@ public class Protagonist {
                 System.out.println("Invalid!");
             } else {
                 switch (choice) {
-                    case 1:
+                    case 1 -> {
                         System.out.println(name + " strikes!\n");
                         skillPoints += 1;
                         if (skillPoints > 5) {
@@ -68,11 +58,11 @@ public class Protagonist {
                         }
                         dmgDealt = battleStats[0];
                         weaponCheck();
-                        break;
-                    case 2, 3, 4, 5:
+                    }
+                    case 2, 3, 4, 5 -> {
                         String skill = skills.get(choice - 1);
                         skillBook(skill, skillPoints);
-                        break;
+                    }
                 }
                 break;
             }
@@ -83,29 +73,26 @@ public class Protagonist {
     public void skillBook(String skill, int skillPoints)
     {
         this.skillPoints = skillPoints;
-        switch(skill)
-        {
-            case "Uppercut": // 40% to stun the opponent, but only does ok dmg
-                if (skillCheck(1))
-                {
+        switch (skill) {
+            case "Uppercut" -> { // 40% to stun the opponent, but only does ok dmg
+                if (skillCheck(1)) {
                     uppercut();
                 }
-                break;
-            case "Parry": // prepare to counter the next attack, makes it so that if the enemy attacks while you're parrying, it does no damage
+            }
+            case "Parry" -> { // prepare to counter the next attack, makes it so that if the enemy attacks while you're parrying, it does no damage
                 if (skillCheck(1)) parry(name);
-                break;
-            case "Fireball": //fireball attack, doesn't do much dmg, but has DOT across two turns? just timestamp
+            }
+            case "Fireball" -> { //fireball attack, doesn't do much dmg, but has DOT across two turns? just timestamp
                 if (skillCheck(1)) fireball();
-                break;
-            case "Chainsaw": // this attack requires investment with skill points, can do a lot if you "rev" (invest enough sp) it up enough, also does DOT
-                chainsaw();
-                break;
-            case "Deus Ex Machina": // hc gun barrage lmao, it just does the BIG damage, but is costs a decent amount of sp
+            }
+            case "Chainsaw" -> // this attack requires investment with skill points, can do a lot if you "rev" (invest enough sp) it up enough, also does DOT
+                    chainsaw();
+            case "Deus Ex Machina" -> { // hc gun barrage lmao, it just does the BIG damage, but is costs a decent amount of sp
                 if (skillCheck(4)) deusEx();
-                break;
-            case "Recover":  // simple move that restores 30% of your hp
+            }
+            case "Recover" -> {  // simple move that restores 30% of your hp
                 if (skillCheck(1)) recover();
-                break;
+            }
         }
     }
 
@@ -205,9 +192,13 @@ public class Protagonist {
         return skillPoints;
     }
 
-    public void editChar(ArrayList<String> inv) {
-        System.out.print("Character Stats");
-
+    public void editChar(ArrayList<String> inv, ArrayList<String> invWep) {
+        System.out.print("Character Stats (attack, defense, health, resistance to debuffs, evasion, respectively)");
+        System.out.println("Do note that this is before the modifications of your stats through accessories");
+        for (int charStat : charStats) {
+            System.out.print(charStat + " ");
+        }
+        System.out.println("How would you like to modify your character?");
     }
 
     public int getDmgDealt() {
