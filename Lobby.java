@@ -79,7 +79,7 @@ public class Lobby {
 
     public void dayCount() throws InterruptedException {
         stockMarket.cashFlow();
-        System.out.println("day pass");
+        System.out.println("A day had passed");
         days += 1;
         turns = 2;
         decisionMaker();

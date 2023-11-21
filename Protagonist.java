@@ -16,6 +16,7 @@ public class Protagonist {
     private Scanner s = new Scanner(System.in);
     private int choice;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
+    private ArrayList<String> skillList = new ArrayList<String>();
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
 
     public Protagonist() {
@@ -229,6 +230,28 @@ public class Protagonist {
         {
             charStats[i] += days;
         }
+        switch (days)
+        {
+            case 2:
+                checkObtained("Uppercut");
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+        }
+    }
+
+    public void checkObtained(String name)
+    {
+        if (!skillList.contains(name))
+        {
+            skillList.add(name);
+        }
     }
 
     public void resetParry()
@@ -240,7 +263,10 @@ public class Protagonist {
     {
         return parry;
     }
-
+    public ArrayList<String> getSkillList() // prints out all your skills, meant to be used when doing character editing
+    {
+        return skillList;
+    }
 
     public String getName() {
         return name;
