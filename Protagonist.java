@@ -60,6 +60,7 @@ public class Protagonist {
             } else {
                 switch (choice) {
                     case 1:
+                        System.out.println(name + " strikes!");
                         skillPoints += 1;
                         if (skillPoints > 5) {
                             skillPoints = 5;

@@ -66,6 +66,7 @@ public class Enemy extends Protagonist { // day one enemy
         count++;
         switch (choice) {
             case 1:
+                System.out.println(getName() + " strikes!");
                 skillPoints += 1;
                 if (skillPoints > 5) {
                     skillPoints = 5;
@@ -98,7 +99,7 @@ public class Enemy extends Protagonist { // day one enemy
     public void parry(String name) {
         parry = true;
         sound.sound("Block_Attempt", 500);
-        System.out.println("\n" + getName() + " prepares to parry the next attack!\n");
+        System.out.println("\n" + getName() + " prepares to block the next attack!\n");
     }
 
     public int[] getBattleStats() {

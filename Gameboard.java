@@ -84,8 +84,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Basic Attack": // parries only work against basic attacks, not skills, also enemy parries work slightly differently, i give up on fixing this bug, so its a feature now
                 if (enemy.getParry()) //this function only works if theres a certain property to the move, ie stun dot etc
                 {
-                    System.out.println(enemy.getName() + " parries " + pro.getName() + "'s attack!");
-                    sound.sound("Parry", 1200);
+                    System.out.println(enemy.getName() + " blocked " + pro.getName() + "'s attack!");
+                    sound.sound("Blocked", 1000);
                     pro.resetDmg();
                 }
                 enemy.resetParry();
