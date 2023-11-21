@@ -24,7 +24,6 @@ public class Enemy extends Protagonist { // day one enemy
     }
 
     public void accessoriesCheck() { //enemies can have accessories too!
-        skillPoints = 3;
         for (String s : accessoriesOn) {
             switch (s) {
                 case "Surgeons Toolkit" -> battleStats[2] += 200;

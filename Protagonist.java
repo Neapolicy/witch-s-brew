@@ -20,7 +20,6 @@ public class Protagonist {
 
     public Protagonist() {
         skills.add("Basic Attack");
-        skills.add("Uppercut");
         skills.add("Parry");
     }
 

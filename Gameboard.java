@@ -84,11 +84,11 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Basic Attack":
                 if (enemy.getParry())
                 {
-                    enemy.resetParry();
                     System.out.println(enemy.getName() + " parries " + pro.getName() + "'s attack!");
                     sound.sound("Parry", 1200);
                     pro.resetDmg();
                 }
+                enemy.resetParry();
                 break;
             case "Uppercut": //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
@@ -113,9 +113,9 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 {
                     System.out.println(pro.getName() + " parries " + enemy.getName() + "'s attack!");
                     sound.sound("Parry", 1200);
-                    pro.resetParry();
                     enemy.resetDmg();
                 }
+                pro.resetParry();
                 break;
             case "Uppercut": //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
