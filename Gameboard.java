@@ -1,4 +1,5 @@
 import java.util.Random;
+
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int turns = 1; //internal counter, if i add another turn counter, create new variable to handle that
@@ -7,6 +8,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     private Random rand = new Random();
     private int enemyChoice;
     private int protagChoice;
+    private Sound sound = new Sound();
     private String skill;
     private Enemy enemy = null;
 
@@ -19,6 +21,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         dayCheck();
         game();
     }
+
     public void game() throws InterruptedException { //remember to change this to prioritize speed
         pro.accessoriesCheck();
         enemy.accessoriesCheck();
@@ -48,120 +51,89 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         Thread.sleep(time);
     }
 
-    public void enemyAction()
-    {
+    public void enemyAction() {
         enemyChoice = enemy.enemyChoice();
-        if (turns % 2 == 0)
-        {
-            int enemyChoice = enemy.enemyChoice();
-            if (enemyChoice == 1)
-            {
-                if (!evasionCheck(pro.getBattleStats()[4], enemy.getName()))
-                {
-                    pro.takeDmg(enemy.getDmgDealt());
-                }
-                else{
-                    pro.takeDmg(0);
-                }
-            }
-            else
-            {
-                if (!evasionCheck(pro.getBattleStats()[4], enemy.getName())) {
-                    skillCheck();
-                    pro.takeDmg(enemy.getDmgDealt());
-                }
-                else{
-                    pro.takeDmg(0);
-                }
+        if (turns % 2 == 0) {
+            if (!evasionCheck(pro.getBattleStats()[4], enemy.getName())) {
+                enemySkillCheck();
+                pro.takeDmg(enemy.getDmgDealt());
+            } else {
+                pro.takeDmg(0);
             }
             turns += 1;
         }
     }
 
-    public void playerAction()
-    {
+    public void playerAction() {
         if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 1, also,
         {
             protagChoice = pro.choice();
-            if (protagChoice == 1) {
-                if ((!evasionCheck(enemy.getBattleStats()[4], pro.getName())))
-                {
-                    enemy.takeDmg(pro.getDmgDealt());
-                }
-                else{
-                    enemy.takeDmg(0);
-                }
-            }
-            else
-            {
-                if (!evasionCheck(enemy.getBattleStats()[4], pro.getName())) {
-                    skillCheck();
-                    enemy.takeDmg(pro.getDmgDealt());
-                }
-                else{
-                    enemy.takeDmg(0);
-                }
+            if ((!evasionCheck(enemy.getBattleStats()[4], pro.getName()))) {
+                skillCheck();
+                enemy.takeDmg(pro.getDmgDealt());
+            } else {
+                enemy.takeDmg(0);
             }
             turns += 1;
         }
     }
 
-    public void skillCheck()
-    {
-        skill  = pro.getSkills().get(protagChoice - 1);
-        switch (skill)
-        {
-            case "Uppercut": //should only determine stun, theoretically
-                if (rand.nextBoolean())
+    public void skillCheck() {
+        skill = pro.getSkills().get(protagChoice - 1);
+        switch (skill) {
+            case "Basic Attack":
+                if (enemy.getParry())
                 {
-                    if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3])
-                    {
+                    enemy.resetParry();
+                    System.out.println(enemy.getName() + " parries " + pro.getName() + "'s attack!");
+                    sound.sound("Parry", 1200);
+                    pro.resetDmg();
+                }
+                break;
+            case "Uppercut": //should only determine stun, theoretically
+                if (rand.nextBoolean()) {
+                    if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
                         System.out.println("Enemy resisted the stun!");
-                    }
-                    else
-                    {
+                    } else {
                         System.out.println("Enemy is stunned! Use this chance to strike them again!");
                         turns += 1;
                     }
                 }
                 break;
             case "Parry":
-                enemy.resetParry();
-                System.out.println(pro.getName() + " parries " + enemy.getName() + "'s attack!");
                 break;
         }
     }
 
-    public void enemySkillCheck()
-    {
+    public void enemySkillCheck() {
         skill = enemy.getSkills().get(enemyChoice - 1);
-        switch (skill)
-        {
-            case "Uppercut": //should only determine stun, theoretically
-                if (rand.nextBoolean())
+        switch (skill) {
+            case "Basic Attack":
+                if (pro.getParry())
                 {
-                    if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3])
-                    {
+                    System.out.println(pro.getName() + " parries " + enemy.getName() + "'s attack!");
+                    sound.sound("Parry", 1200);
+                    pro.resetParry();
+                    enemy.resetDmg();
+                }
+                break;
+            case "Uppercut": //should only determine stun, theoretically
+                if (rand.nextBoolean()) {
+                    if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
                         System.out.println("Enemy resisted the stun!");
-                    }
-                    else
-                    {
+                    } else {
                         System.out.println("Enemy is stunned! Use this chance to strike them again!");
                         turns += 1;
                     }
                 }
                 break;
             case "Parry":
-                enemy.resetParry();
-                System.out.println(enemy.getName() + " parries " + pro.getName() + "'s attack!");
                 break;
         }
     }
 
-    public boolean evasionCheck(int evasion, String name)
-    {
-        if (rand.nextInt(1, 101) <= evasion)
-        {
+    public boolean evasionCheck(int evasion, String name) {
+        if (rand.nextInt(1, 101) <= evasion) {
             System.out.println(name + " whiffs their attack!");
             return true;
         }
@@ -169,10 +141,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
 
 
-    public void dayCheck()
-    {
-        switch (days)
-        {
+    public void dayCheck() {
+        switch (days) {
             case 1:
                 enemy = new Enemy();
                 break;
@@ -208,18 +178,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         System.out.println(enemy.getBattleStats()[2]);
     }
 
-    public String status()
-    {
-        if (enemy.getBattleStats()[2] > (.66) * enemy.getHealth())
-        {
+    public String status() {
+        if (enemy.getBattleStats()[2] > (.66) * enemy.getHealth()) {
             return enemy.getName() + " looks unscathed, ready to take on the world! Yeah...";
-        }
-        else if ((enemy.getBattleStats()[2] < (.66) * enemy.getHealth()) && (enemy.getBattleStats()[2] > (.33) * enemy.getHealth()))
-        {
+        } else if ((enemy.getBattleStats()[2] < (.66) * enemy.getHealth()) && (enemy.getBattleStats()[2] > (.33) * enemy.getHealth())) {
             return enemy.getName() + " looks a bit injured, but still able to keep fighting.";
-        }
-        else
-        {
+        } else {
             return enemy.getName() + " looks like they're two steps from keeling over.";
         }
     }

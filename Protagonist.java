@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Random;
 
 // once i finish protagonist, I might be able to use inheritance and have enemies borrow most of this code (except for variables cuz of that one req)
 public class Protagonist {
     private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
-    private Random rand = new Random();
+    private boolean parry;
     private String name;
     private int[] battleStats = charStats.clone(); //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
@@ -22,6 +21,7 @@ public class Protagonist {
     public Protagonist() {
         skills.add("Basic Attack");
         skills.add("Uppercut");
+        skills.add("Parry");
     }
 
     public void accessoriesCheck() {
@@ -91,7 +91,7 @@ public class Protagonist {
                 }
                 break;
             case "Parry": // prepare to counter the next attack, makes it so that if the enemy attacks while you're parrying, it does no damage
-                if (skillCheck(1)) parry();
+                if (skillCheck(1)) parry(name);
                 break;
             case "Fireball": //fireball attack, doesn't do much dmg, but has DOT across two turns? just timestamp
                 if (skillCheck(1)) fireball();
@@ -113,9 +113,11 @@ public class Protagonist {
     }
 
 
-    public void parry()
+    public void parry(String name)
     {
-        System.out.println(name + " prepares to parry the next attack");
+        parry = true;
+        sound.sound("Block_Attempt", 500);
+        System.out.println("\n" + name + " prepares to parry the next attack!\n");
     }
 
 
@@ -153,6 +155,11 @@ public class Protagonist {
     public void addSkill(String skillName)
     {
         skills.add(skillName);
+    }
+
+    public void resetDmg()
+    {
+        dmgDealt = 0;
     }
 
     public void weaponCheck() {
@@ -223,7 +230,12 @@ public class Protagonist {
 
     public void resetParry()
     {
-        dmgDealt = 0;
+        parry = false;
+    }
+
+    public boolean getParry()
+    {
+        return parry;
     }
 
 
