@@ -25,7 +25,7 @@ public class Protagonist {
     }
 
     public void accessoriesCheck() {
-        skillPoints = 3;
+        skillPoints = 5;
         for (String value : accessoriesOn) {
             switch (value) {
                 case "Surgeons Toolkit":
@@ -55,12 +55,13 @@ public class Protagonist {
                 System.out.println("(" + (i + 1) + ") " + skills.get(i));
             }
             choice = s.nextInt();
+            System.out.println();
             if (choice > skills.size() || choice < 1) {
                 System.out.println("Invalid!");
             } else {
                 switch (choice) {
                     case 1:
-                        System.out.println(name + " strikes!");
+                        System.out.println(name + " strikes!\n");
                         skillPoints += 1;
                         if (skillPoints > 5) {
                             skillPoints = 5;
@@ -87,8 +88,7 @@ public class Protagonist {
             case "Uppercut": // 40% to stun the opponent, but only does ok dmg
                 if (skillCheck(1))
                 {
-                    dmgDealt = (int) (battleStats[0] * .7);
-                    sound.sound("Uppercut", 1000);
+                    uppercut();
                 }
                 break;
             case "Parry": // prepare to counter the next attack, makes it so that if the enemy attacks while you're parrying, it does no damage
@@ -101,12 +101,19 @@ public class Protagonist {
                 chainsaw();
                 break;
             case "Deus Ex Machina": // hc gun barrage lmao, it just does the BIG damage, but is costs a decent amount of sp
-                if (skillCheck(3)) deusEx();
+                if (skillCheck(4)) deusEx();
                 break;
             case "Recover":  // simple move that restores 30% of your hp
                 if (skillCheck(1)) recover();
                 break;
         }
+    }
+
+    public void uppercut()
+    {
+        System.out.println("You tried to perform an uppercut, but accidentally strike them in the throat!");
+        dmgDealt = (int) (battleStats[0] * .7);
+        sound.sound("Uppercut", 1000);
     }
     public void fireball()
     {
@@ -130,6 +137,7 @@ public class Protagonist {
 
     public void recover()
     {
+        System.out.println("You drink some vending machine coffee, restoring some HP in the process!\n");
         battleStats[2] += (int) (charStats[2] * .3);
         if (battleStats[2] > charStats[2])
         {
@@ -139,7 +147,9 @@ public class Protagonist {
 
     public void deusEx()
     {
-
+        System.out.println("You used a teeny bit of magic to project some magical guns\nThen unleashed a barrage of bullets!");
+        sound.sound("Deus_Ex", 5000);
+        dmgDealt = battleStats[0] * 3;
     }
 
     public boolean skillCheck(int cost)
