@@ -64,3 +64,7 @@ adjust the item prices
 make sure the accessories actually work
 <br>
 CC resist
+<br>
+give the lines flair by giving it color and improve readability
+<br>
+make sure evrything works / no bugs
