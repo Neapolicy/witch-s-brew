@@ -128,7 +128,11 @@ public class Protagonist {
 
     public void recover()
     {
-
+        battleStats[2] += (int) (charStats[2] * .3);
+        if (battleStats[2] > charStats[2])
+        {
+            battleStats[2] = charStats[2];
+        }
     }
 
     public void deusEx()
