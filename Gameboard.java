@@ -29,7 +29,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             getInfo();
             playerAction();
             if (enemy.getBattleStats()[2] <= 0) {
-                enemy.getBattleStats()[2] = 0; // sets enemy health to zero
                 System.out.println(enemy.getName() + " has been taken down!");
                 getBalance();
                 break;
@@ -38,10 +37,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             // time interval in milliseconds
 
             enemyAction();
-            if (pro.getBattleStats()[2] <= 0) {
-                pro.getBattleStats()[2] = 0; // Set player's health to zero
-                break;
-            }
+            if (pro.getBattleStats()[2] <= 0) {break;}
             sleep(200);
             // Display stats at the start of the turn
         }
