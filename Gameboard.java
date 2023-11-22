@@ -96,12 +96,21 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     }
                 }
                 enemy.resetParry();
-                break; // dont include parry, is redudant
+                break; // dont include parry, (nvm it is relevant)
+            case "Parry":
+                enemy.resetParry();
+                break;
         }
     }
 
     public void enemySkillCheck() {
-        skill = enemy.getSkills().get(enemyChoice - 1);
+        try {
+            skill = enemy.getSkills().get(enemyChoice - 1);
+        }
+        catch (Exception e)
+        {
+            skill = "Basic Attack"; //defaults to basic attack if the number roller is index out of bounds
+        }
         switch (skill) {
             case "Basic Attack":
                 if (pro.getParry())

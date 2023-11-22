@@ -6,7 +6,6 @@ public class Enemy extends Protagonist { // day one enemy
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health = charStats[2];
     private boolean parry;
-    private final String weapon = "Switchblade";
     private Sound sound = new Sound();
     private String name = "CEO Goon";
     private final String sideArm = "";
@@ -32,12 +31,12 @@ public class Enemy extends Protagonist { // day one enemy
         if (skillPoints <= 0) {
             choice = 1;
         } else {
-            choice = rand.nextInt(1, 3);
+            choice = rand.nextInt(1, 6);
         }
-        if (count == 1) choice = 1;
+        if (count == 1) choice = 2; // first turn, enemy will always parry
         count++;
         switch (choice) {
-            case 1:
+            case 1, 3, 4, 5:
                 System.out.println(getName() + " strikes!\n");
                 skillPoints += 1;
                 if (skillPoints > 5) {
