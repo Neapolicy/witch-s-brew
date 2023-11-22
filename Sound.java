@@ -9,7 +9,6 @@ public class Sound
     public void sound(String name, int time) { // code found on stack overflow, but this plays sound
         // (https://stackoverflow.com/questions/69870550/java-music-file-returns-no-such-file-or-directory-but-path-seems-correct)
         try {
-
             File file = new File("Sound/Music/" + name + ".wav");
             AudioInputStream stream = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();
@@ -25,5 +24,4 @@ public class Sound
             System.out.println(ex.getMessage());
         }
     }
-
 }

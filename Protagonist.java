@@ -3,18 +3,16 @@ import java.util.Scanner;
 
 // once i finish protagonist, I might be able to use inheritance and have enemies borrow most of this code (except for variables cuz of that one req)
 public class Protagonist {
-    private int[] charStats = {8, 5, 30, 7, 5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
+    private int[] charStats = {8, 5, 30, 7, -5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private boolean parry;
     private String name;
     private int[] battleStats = charStats.clone(); //these are the stats that are used in battle, as i plan on hp carrying over (?)
-    private ArrayList<String> inv = new ArrayList<String>(); //  contains everything
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
     private String sideArm = "";
     private int skillPoints;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Scanner s = new Scanner(System.in);
-    private int choice;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private ArrayList<String> skillList = new ArrayList<String>();
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
@@ -44,7 +42,7 @@ public class Protagonist {
             for (int i = 0; i < skills.size(); i++) {
                 System.out.println("(" + (i + 1) + ") " + skills.get(i));
             }
-            choice = s.nextInt();
+            int choice = s.nextInt();
             System.out.println();
             if (choice > skills.size() || choice < 1) {
                 System.out.println("Invalid!");
@@ -64,10 +62,9 @@ public class Protagonist {
                         skillBook(skill, skillPoints);
                     }
                 }
-                break;
+                return choice;
             }
         }
-        return choice;
     }
 
     public void skillBook(String skill, int skillPoints)
@@ -166,15 +163,15 @@ public class Protagonist {
 
     public void weaponCheck() {
         switch (weapon) {
-            case "Switchblade", "Machete":
+            case "switchblade", "machete" -> {
                 sound.sound("Melee-Swing", 300);
                 sound.sound("Hit", 400);
-                break;
-            default:
+            }
+            default -> {
                 sound.sound("Gun_Load", 400);
                 sound.sound("Gun_Fire", 800);
                 sideArm();
-                break;
+            }
         }
     }
 
@@ -190,15 +187,6 @@ public class Protagonist {
 
     public int getSkillPoints() {
         return skillPoints;
-    }
-
-    public void editChar(ArrayList<String> inv, ArrayList<String> invWep) {
-        System.out.print("Character Stats (attack, defense, health, resistance to debuffs, evasion, respectively)");
-        System.out.println("Do note that this is before the modifications of your stats through accessories");
-        for (int charStat : charStats) {
-            System.out.print(charStat + " ");
-        }
-        System.out.println("How would you like to modify your character?");
     }
 
     public int getDmgDealt() {
@@ -268,6 +256,11 @@ public class Protagonist {
     public ArrayList<String> getSkillList() // prints out all your skills, meant to be used when doing character editing
     {
         return skillList;
+    }
+
+    public void setWeapon(String weapon)
+    {
+        this.weapon = weapon;
     }
 
     public String getName() {

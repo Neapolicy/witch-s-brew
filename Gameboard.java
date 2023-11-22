@@ -17,14 +17,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     {
         this.pro = character;
         this.days = days;
-        pro.resetStats();
         dayCheck();
         game();
     }
 
     public void game() throws InterruptedException { //remember to change this to prioritize speed
         pro.accessoriesCheck();
-        enemy.accessoriesCheck();
         while (pro.getBattleStats()[2] > 0) {
             getInfo();
             playerAction();
@@ -124,9 +122,9 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Uppercut": //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
                     if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
-                        System.out.println("Enemy resisted the stun!");
+                        System.out.println(pro.getName() + " resisted the stun!");
                     } else {
-                        System.out.println("Enemy is stunned! Use this chance to strike them again!");
+                        System.out.println(pro.getName() + " is stunned!");
                         turns += 1;
                     }
                 }

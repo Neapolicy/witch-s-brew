@@ -6,6 +6,8 @@ public class Enemy2 extends Enemy{
     private int[] charStats = {6, 5, 50, 7, 5}; ////attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health;
+    private int count;
+    private String name = "Underpaid CEO Goon";
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
     private String sideArm = "";
@@ -14,64 +16,51 @@ public class Enemy2 extends Enemy{
     private Random rand = new Random();
     private int choice = 2;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
-    private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
     public Enemy2() {
         skills.add("Basic Attack");
+        skills.add("Uppercut");
     }
 
-    public void accessoriesCheck() { //enemies can have accessories too!
-        skillPoints = 3;
-        for (int i = 0; i < accessoriesOn.size(); i++) {
-            switch (accessoriesOn.get(i)) {
-                case "Surgeons Toolkit":
-                    battleStats[2] += 200;
-                    break;
-                case "Smoke Bomb":
-                    battleStats[4] += 10;
-                    break;
-                case "Powdered Wig":
-                    battleStats[0] *= 2;
-                    break;
-                case "Stronger Steel":
-                    battleStats[1] += 20;
-                    break;
-                case "Cool Looking Helmet":
-                    battleStats[3] += 15;
-                    break;
-            }
-        }
-        health = battleStats[2];
+
+    public void weaponCheck() { // play weapon sound
+        sound.sound("Melee-Swing", 300);
+        sound.sound("Hit", 400);
     }
+
     public int enemyChoice() { // enemy makes their decision
-        dmgDealt = 0;
-            /*if (skillPoints <= 0)
-            {
-                choice = 1;
-            }
-            else
-            {
-                choice = rand.nextInt(1, 6);
-            }*/
+        resetDmg();
+        if (skillPoints <= 0) {
+            choice = 1;
+        } else {
+            choice = rand.nextInt(1, 6);
+        }
+        if (count == 1) choice = 2; // first turn, enemy will always parry
+        count++;
         switch (choice) {
-            case 1:
+            case 1, 3, 4, 5:
+                System.out.println(getName() + " strikes!\n");
                 skillPoints += 1;
-                if (skillPoints > 5)
-                {
+                if (skillPoints > 5) {
                     skillPoints = 5;
                 }
                 dmgDealt = battleStats[0];
                 weaponCheck();
                 break;
-            case 2, 3, 4, 5:
+            case 2:
                 String skill = skills.get(choice - 1);
                 skillBook(skill, skillPoints);
                 break;
         }
         return choice;
     }
-
-    public int getHealth()
+    public void uppercut()
     {
+        System.out.println(name.toString() + " tried to perform an uppercut, but accidentally punches your face!");
+        dmgDealt = (int) (battleStats[0] * .7);
+        sound.sound("Uppercut", 1000);
+    }
+
+    public int getHealth() {
         return health;
     }
 
@@ -80,10 +69,24 @@ public class Enemy2 extends Enemy{
         return dmgDealt;
     }
 
-    public void takeDmg(int damage) {
-        battleStats[2] -= (int) (damage * (100.0/(100 + battleStats[1])));
-    }
     public int[] getBattleStats() {
         return battleStats;
+    }
+
+    public void takeDmg(int damage) {
+        battleStats[2] -= (int) (damage * (100.0 / (100 + battleStats[1])));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getSkills() {
+        return skills;
+    }
+
+    public void resetDmg()
+    {
+        dmgDealt = 0;
     }
 }
