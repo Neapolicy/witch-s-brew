@@ -123,6 +123,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 }
                 break;
             case "Parry":
+                pro.resetParry();
                 break;
         }
     }
