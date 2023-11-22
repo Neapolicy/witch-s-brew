@@ -77,7 +77,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     public void skillCheck() {
         skill = pro.getSkills().get(protagChoice - 1);
         switch (skill) {
-            case "Basic Attack": // parries only work against basic attacks, not skills, also enemy parries work slightly differently, i give up on fixing this bug, so its a feature now
+            case "Basic Attack", "Deus Ex Machina": // parries only work against basic attacks, not skills, also enemy parries work slightly differently, i give up on fixing this bug, so its a feature now
                 if (enemy.getParry()) //this function only works if theres a certain property to the move, ie stun dot etc
                 {
                     System.out.println(enemy.getName() + " blocked " + pro.getName() + "'s attack!");
@@ -86,7 +86,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 }
                 enemy.resetParry();
                 break;
-            case "Uppercut": //should only determine stun, theoretically
+            case "Uppercut": //should only determine stun, theoretically, also uppercut goes past guard, it is intentional
                 if (rand.nextBoolean()) {
                     if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
                         System.out.println("Enemy resisted the stun!");
@@ -95,7 +95,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                         turns += 1;
                     }
                 }
-                break;
+                enemy.resetParry();
+                break; // dont include parry, is redudant
         }
     }
 
@@ -167,7 +168,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
 
     public void getInfo() {
-        System.out.println("Your stats: " + pro.getBattleStats()[2] + " health, " + pro.getSkillPoints() + " points");
+        System.out.println("Your stats: " + pro.getBattleStats()[2] + " health, " + pro.getSkillPoints() + " skill points");
         System.out.println(status());
         System.out.println(enemy.getBattleStats()[2]);
     }

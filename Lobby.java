@@ -7,7 +7,6 @@ public class Lobby {
     private Shop shop = new Shop();
     private StockMarket stockMarket = new StockMarket();
     private int balance = 4000;
-    private ArrayList<String> boughtStuff = new ArrayList<>();
     private String answer;
     private int turns = 2;
     private int days = 1;
@@ -61,16 +60,18 @@ public class Lobby {
                     shop.goods();
                     break;
                 case "4":
-                    boughtStuff = shop.getItemsBought();
-                    if (boughtStuff.isEmpty()) {
+                    if (shop.getItemsBought().size() == 0 && shop.getWeaponsBought().size() == 0) {
                         System.out.println("Nothing here...\n");
                     } else {
                         System.out.println("This is your inventory");
-                        for (int i = 0; i < boughtStuff.size(); i++) {
-                            System.out.println(boughtStuff.size());
+                        for (int i = 0; i < shop.getItemsBought().size(); i++) {
+                            System.out.println(shop.getItemsBought().get(i));
+                        }
+                        for (int i = 0; i < shop.getWeaponsBought().size(); i++) {
+                            System.out.println(shop.getWeaponsBought().get(i));
                         }
                     }
-                    pro.editChar(boughtStuff);
+                    pro.editChar(shop.getItemsBought(), shop.getWeaponsBought());
                     break;
             }
         }
