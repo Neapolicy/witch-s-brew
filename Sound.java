@@ -4,6 +4,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+
 public class Sound
 {
     public void sound(String name, int time) { // code found on stack overflow, but this plays sound
@@ -22,6 +23,23 @@ public class Sound
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public void loopSound(String name)
+    {
+        try
+        {
+            File file = new File("Sound/Music/" + name + ".wav");
+            AudioInputStream stream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(stream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.start();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
         }
     }
 }

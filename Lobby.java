@@ -148,17 +148,6 @@ public class Lobby {
             }
         }
     }
-
-    public void printAccessory()
-    {
-        if (pro.getInvSize() > 0) {
-            System.out.println("\nHere's the item you currently have equipped");
-            for (int i = 0; i < pro.getAccessoriesOn().size(); i++)
-            {
-                System.out.println(pro.getAccessoriesOn().get(i));
-            }
-        }
-    }
     public void changeWep()
     {
         if (!shop.getWeaponsBought().isEmpty())
@@ -188,7 +177,16 @@ public class Lobby {
     {
 
     }
-
+    public void printAccessory()
+    {
+        if (pro.getInvSize() > 0) {
+            System.out.println("\nHere's the item you currently have equipped");
+            for (int i = 0; i < pro.getAccessoriesOn().size(); i++)
+            {
+                System.out.println(pro.getAccessoriesOn().get(i));
+            }
+        }
+    }
     public void updateBalance() {
         balance = stockMarket.cashBack();
     }
