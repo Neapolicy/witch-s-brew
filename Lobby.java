@@ -173,7 +173,7 @@ public class Lobby {
             }
         }
     }
-    public void changeSkill()
+    public void changeSkill() //skill editing, will do once i get the motivation to finish accessory changing
     {
 
     }
