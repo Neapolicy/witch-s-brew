@@ -8,7 +8,6 @@ public class Enemy extends Protagonist { // day one enemy
     private boolean parry;
     private Sound sound = new Sound();
     private String name = "CEO Goon";
-    private final String sideArm = "";
     private int skillPoints = 3;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();

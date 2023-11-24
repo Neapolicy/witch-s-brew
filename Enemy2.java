@@ -5,12 +5,10 @@ public class Enemy2 extends Enemy{
 
     private int[] charStats = {6, 5, 50, 7, 5}; ////attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
-    private int health;
+    private int health = charStats[2];
     private int count;
     private String name = "Underpaid CEO Goon";
-    private String weapon = "Switchblade";
     private Sound sound = new Sound();
-    private String sideArm = "";
     private int skillPoints = 0;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();

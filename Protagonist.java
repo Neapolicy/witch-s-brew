@@ -161,16 +161,6 @@ public class Protagonist {
         }
     }
 
-    public void addSkill(String skillName)
-    {
-        skills.add(skillName);
-    }
-
-    public void resetDmg()
-    {
-        dmgDealt = 0;
-    }
-
     public void weaponCheck() {
         switch (weapon) {
             case "Switchblade", "Machete" -> {
@@ -191,35 +181,6 @@ public class Protagonist {
             sound.sound("Gun_Load", 400);
             sound.sound("Gun_Fire", 800);
         }
-    }
-
-    public int getSkillPoints() {
-        return skillPoints;
-    }
-
-    public int getDmgDealt() {
-        return dmgDealt;
-    }
-
-    public void takeDmg(int damage) {
-        battleStats[2] -=  (int) (damage * (100.0/(100 + battleStats[1])));
-    }
-
-    public ArrayList<String> getSkills() {
-        return skills;
-    }
-
-    public int[] getBattleStats() {
-        return battleStats;
-    } // possible enemy move, use a while loop to generate a number, ex, number you want is five, and it keeps track of how much times it loops until it generates a five
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void resetStats()
-    {
-        battleStats = charStats.clone();
     }
 
     public void updateStats(int days)
@@ -245,36 +206,16 @@ public class Protagonist {
     }
 
     public void checkObtained(String name)
-    {
-        if (!skillList.contains(name))
-        {
-            skillList.add(name);
-        }
-    }
+    {if (!skillList.contains(name)) {skillList.add(name);}}
 
-    public void resetParry()
-    {
-        parry = false;
-    }
+    public void resetParry() {parry = false;}
 
-    public boolean getParry()
-    {
-        return parry;
-    }
-    public ArrayList<String> getSkillList() // prints out all your skills, meant to be used when doing character editing
-    {
-        return skillList;
-    }
+    public boolean getParry() {return parry;}
+    public ArrayList<String> getSkillList() {return skillList;} // prints out all your skills, meant to be used when doing character editing
 
-    public void setWeapon(String weapon)
-    {
-        this.weapon = weapon;
-    }
+    public void setWeapon(String weapon) {this.weapon = weapon;}
 
-    public void setSide(String weapon)
-    {
-        this.sideArm = weapon;
-    }
+    public void setSide(String weapon) {this.sideArm = weapon;}
 
     public void addAccessory(String accessory)
     {
@@ -294,4 +235,17 @@ public class Protagonist {
     {
         return accessoriesOn;
     }
+    public int getSkillPoints() {return skillPoints;}
+    public int getDmgDealt() {return dmgDealt;}
+
+    public void takeDmg(int damage) {battleStats[2] -=  (int) (damage * (100.0/(100 + battleStats[1])));}
+
+    public ArrayList<String> getSkills() {return skills;}
+
+    public int[] getBattleStats() {return battleStats;} // possible enemy move, use a while loop to generate a number, ex, number you want is five, and it keeps track of how much times it loops until it generates a five
+
+    public void setName(String name) {this.name = name;}
+
+    public void resetStats() {battleStats = charStats.clone();}
+    public void resetDmg() {dmgDealt = 0;}
 }
