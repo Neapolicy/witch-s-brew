@@ -7,6 +7,7 @@ public class Lobby {
     private Shop shop = new Shop();
     private StockMarket stockMarket = new StockMarket();
     private int balance = 4000;
+    private int equipNum;
     private String answer;
     private int turns = 2;
     private int days = 1;
@@ -61,7 +62,7 @@ public class Lobby {
                     if (shop.getItemsBought().size() == 0 && shop.getWeaponsBought().size() == 0) {
                         System.out.println("Nothing here...\n");
                     } else {
-                        System.out.println("This is your inventory");
+                        System.out.println("\nThis is your inventory");
                         for (int i = 0; i < shop.getItemsBought().size(); i++) {
                             System.out.println(shop.getItemsBought().get(i));
                         }
@@ -69,7 +70,7 @@ public class Lobby {
                             System.out.println(shop.getWeaponsBought().get(i));
                         }
                     }
-                    editChar(shop.getItemsBought(), shop.getWeaponsBought());
+                    editChar();
                 }
             }
         }
@@ -99,13 +100,13 @@ public class Lobby {
 
     }
 
-    public void editChar(ArrayList<String> inv, ArrayList<String> invWep) {
-        System.out.print("Character Stats (attack, defense, health, resistance to debuffs, evasion, respectively)");
+    public void editChar() {
+        System.out.println("\nCharacter Stats (Attack, Defense, Health, Debuff Resistance, and Evasion, respectively)");
         System.out.println("Do note that this is after the modifications of your stats through accessories");
         for (int charStat : pro.getBattleStats()) {
             System.out.print(charStat + " ");
         }
-        System.out.println("How would you like to modify your character?");
+        System.out.println("\n\nHow would you like to modify your character?");
         System.out.println("1) Change Weapons");
         System.out.println("2) Add/Alter Skills");
         System.out.println("3) Equip Accessories");
@@ -120,21 +121,66 @@ public class Lobby {
 
     public void changeAcc()
     {
+        if (!shop.getItemsBought().isEmpty()) // checks if accessory is empty
+        {
+            System.out.println("\nWhich accessories would you like to equip? (-1) to exit");
+            for (int i = 0; i < shop.getItemsBought().size(); i++) {
+                if (i == 0) System.out.println("Here's your accessories!!");
+                System.out.println(i + 1 + ": " + shop.getItemsBought().get(i));
+            }
+            printAccessory();
+            System.out.println("Please type the number corresponding to the accessory you would like to equip");
+            equipNum = s.nextInt();
+            if (shop.getItemsBought().contains(shop.getItemsBought().get(equipNum - 1)))
+            {
+                if (pro.getInvSize() > 3)
+                {
+                    System.out.println("Inventory is full!\nWhich item would you like to remove");
+                    printAccessory();
+                }
+                else {pro.addAccessory(shop.getItemsBought().get(equipNum - 1));}
+            }
+            else if (equipNum == -1) {}
+            else
+            {
+                System.out.println("Invalid option, please try again!");
+                changeAcc();
+            }
+        }
+    }
 
+    public void printAccessory()
+    {
+        if (pro.getInvSize() > 0) {
+            System.out.println("\nHere's the item you currently have equipped");
+            for (int i = 0; i < pro.getAccessoriesOn().size(); i++)
+            {
+                System.out.println(pro.getAccessoriesOn().get(i));
+            }
+        }
     }
     public void changeWep()
     {
         if (!shop.getWeaponsBought().isEmpty())
         {
-            System.out.println("Which weapon would you like to equip?");
+            System.out.println("\nWhich weapon would you like to equip? (-1) to exit");
             for (int i = 0; i < shop.getWeaponsBought().size(); i++) {
                 if (i == 0) System.out.println("Here's your weapons!!");
                 System.out.println(i + 1 + ": " + shop.getWeaponsBought().get(i));
             }
-            answer = s.nextLine().toLowerCase();
-            if (shop.getWeaponsBought().contains(answer))
+            System.out.println("Please type the number corresponding to the weapon you would like to equip");
+            equipNum = s.nextInt();
+            if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
             {
-                pro.setWeapon(answer);
+                String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the qeapon you equipped is a side arm
+                if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
+                else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
+            }
+            else if (equipNum == -1) {}
+            else
+            {
+                System.out.println("Invalid option, please try again!");
+                changeWep();
             }
         }
     }

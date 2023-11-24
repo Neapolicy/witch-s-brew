@@ -35,9 +35,19 @@ public class Protagonist {
         }
     }
 
+    public void weaponBoost() {
+            switch (weapon) {
+                case "Machete" -> battleStats[2] += 20;
+                case "Flintlock" -> battleStats[4] += 40;
+                case "Musket" -> battleStats[0] = 60;
+            }
+            if (sideArm.equals("Off-hand Revolver")) {battleStats[0] *= 1.3;}
+        }
+
     public int choice() { // The place where you make your choice
         while (true) {
             dmgDealt = 0;
+            System.out.println(sideArm);
             System.out.println("\nPick your move");
             for (int i = 0; i < skills.size(); i++) {
                 System.out.println("(" + (i + 1) + ") " + skills.get(i));
@@ -163,11 +173,12 @@ public class Protagonist {
 
     public void weaponCheck() {
         switch (weapon) {
-            case "switchblade", "machete" -> {
+            case "Switchblade", "Machete" -> {
                 sound.sound("Melee-Swing", 300);
                 sound.sound("Hit", 400);
+                sideArm();
             }
-            default -> {
+            case "Musket", "Flintlock" -> {
                 sound.sound("Gun_Load", 400);
                 sound.sound("Gun_Fire", 800);
                 sideArm();
@@ -179,9 +190,6 @@ public class Protagonist {
         if (sideArm.equals("Off-hand Revolver")) {
             sound.sound("Gun_Load", 400);
             sound.sound("Gun_Fire", 800);
-            sound.sound("Revolver_Reload", 2700);
-        } else {
-            sound.sound("Revolver_Reload", 2700);
         }
     }
 
@@ -263,7 +271,27 @@ public class Protagonist {
         this.weapon = weapon;
     }
 
+    public void setSide(String weapon)
+    {
+        this.sideArm = weapon;
+    }
+
+    public void addAccessory(String accessory)
+    {
+        accessoriesOn.add(accessory);
+    }
+
+    public int getInvSize()
+    {
+        return accessoriesOn.size();
+    }
+
     public String getName() {
         return name;
+    }
+
+    public ArrayList<String> getAccessoriesOn()
+    {
+        return accessoriesOn;
     }
 }

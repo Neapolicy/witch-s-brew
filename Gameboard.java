@@ -23,6 +23,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
 
     public void game() throws InterruptedException { //remember to change this to prioritize speed
         pro.accessoriesCheck();
+        pro.weaponBoost();
         while (pro.getBattleStats()[2] > 0) {
             getInfo();
             playerAction();
