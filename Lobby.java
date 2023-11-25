@@ -60,7 +60,7 @@ public class Lobby {
                     shop.goods();
                 }
                 case "4" -> {
-                    if (shop.getItemsBought().size() == 0 && shop.getWeaponsBought().size() == 0) {
+                    if (shop.getItemsBought().isEmpty() && shop.getWeaponsBought().isEmpty()) {
                         System.out.println("Nothing here...\n");
                     } else {
                         System.out.println("\nThis is your inventory");
