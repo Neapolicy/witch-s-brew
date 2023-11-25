@@ -86,14 +86,8 @@ public class Lobby {
         decisionMaker();
     }
     public void dayCheck() throws InterruptedException {
-        if (days == 7)
-        {
-            bossRaidOni();
-        }
-        else
-        {
-            dayCount();
-        }
+        if (days == 7) {bossRaidOni();}
+        else {dayCount();}
     }
 
     private void bossRaidOni()
