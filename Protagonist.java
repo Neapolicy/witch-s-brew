@@ -14,12 +14,14 @@ public class Protagonist {
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Scanner s = new Scanner(System.in);
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
-    private ArrayList<String> skillList = new ArrayList<String>();
+    private ArrayList<String> skillList = new ArrayList<String>(); //list of skills you have
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
 
     public Protagonist() {
         skills.add("Basic Attack");
         skills.add("Parry");
+        skillList.add("Basic Attack");
+        skillList.add("Parry");
     }
 
     public void accessoriesCheck() {
@@ -39,7 +41,7 @@ public class Protagonist {
             switch (weapon) {
                 case "Machete" -> battleStats[2] += 20;
                 case "Flintlock" -> battleStats[4] += 40;
-                case "Musket" -> battleStats[0] = 60;
+                case "Musket" -> battleStats[0] += 60;
             }
             if (sideArm.equals("Off-hand Revolver")) {battleStats[0] *= 1.3;}
         }
@@ -205,6 +207,8 @@ public class Protagonist {
         }
     }
 
+    public void addSkill(String skillName) {skills.add(skillName);}
+
     public void checkObtained(String name)
     {if (!skillList.contains(name)) {skillList.add(name);}}
 
@@ -217,10 +221,7 @@ public class Protagonist {
 
     public void setSide(String weapon) {this.sideArm = weapon;}
 
-    public void addAccessory(String accessory)
-    {
-        accessoriesOn.add(accessory);
-    }
+    public void addAccessory(String accessory) {accessoriesOn.add(accessory);}
 
     public int getInvSize()
     {
@@ -248,4 +249,5 @@ public class Protagonist {
 
     public void resetStats() {battleStats = charStats.clone();}
     public void resetDmg() {dmgDealt = 0;}
+    public void removeAccessory(String name) {accessoriesOn.remove(name);}
 }

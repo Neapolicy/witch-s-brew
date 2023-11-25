@@ -119,7 +119,7 @@ public class Lobby {
         }
     }
 
-    public void changeAcc()
+    public void changeAcc() //change accessories
     {
         if (!shop.getItemsBought().isEmpty()) // checks if accessory is empty
         {
@@ -133,12 +133,24 @@ public class Lobby {
             equipNum = s.nextInt();
             if (shop.getItemsBought().contains(shop.getItemsBought().get(equipNum - 1)))
             {
-                if (pro.getInvSize() > 3)
+                if (pro.getInvSize() > 2)
                 {
-                    System.out.println("Inventory is full!\nWhich item would you like to remove");
+                    System.out.println("Inventory is full!\nWhich item would you like to remove?");
                     printAccessory();
+                    try {
+                        int temp = s.nextInt();
+                        shop.addAccessory(pro.getAccessoriesOn().get(temp - 1)); // returns the removed item back to your inventory
+                        pro.getAccessoriesOn().remove(temp - 1); //actually removes it from your inventory
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println("Can't do that!");
+                    }
                 }
-                else {pro.addAccessory(shop.getItemsBought().get(equipNum - 1));}
+                else {
+                    pro.addAccessory(shop.getItemsBought().get(equipNum - 1));
+                    shop.getItemsBought().remove(equipNum - 1);
+                }
             }
             else if (equipNum == -1) {}
             else
@@ -173,14 +185,34 @@ public class Lobby {
             }
         }
     }
-    public void changeSkill() //skill editing, will do once i get the motivation to finish accessory changing
+    public void changeSkill() //skill editing, will do once i get the motivation to finish accessory changing, actually i might just lower the number of skills down to 4
     {
+        System.out.println("Here are your skills! (-1 to exit)\n");
+        for (int i = 0; i < pro.getSkillList().size(); i++) {
+            System.out.println(i + 1 + ": " + pro.getSkillList().get(i));
+        }
+        System.out.println("Please type the number corresponding to the skill you would like to equip/change\n(You cannot swap out your basic attack)");
+        equipNum = s.nextInt();
+        if (shop.getItemsBought().contains(shop.getItemsBought().get(equipNum - 1)))
+        {
+            if (pro.getSkillList().size() > 4)
+            {
+                System.out.println("Skill list is full!\nWhich skill would you like to replace?");
 
+            }
+            else {pro.addSkill(pro.getSkillList().get(equipNum - 1));}
+        }
+        else if (equipNum == -1) {}
+        else
+        {
+            System.out.println("Invalid option, please try again!");
+            changeAcc();
+        }
     }
     public void printAccessory()
     {
         if (pro.getInvSize() > 0) {
-            System.out.println("\nHere's the item you currently have equipped");
+            System.out.println("\nHere's the items you currently have equipped\n");
             for (int i = 0; i < pro.getAccessoriesOn().size(); i++)
             {
                 System.out.println(pro.getAccessoriesOn().get(i));

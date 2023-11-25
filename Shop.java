@@ -100,6 +100,10 @@ public class Shop {
     {
         return boughtWeapons;
     }
+    public void addAccessory(String name)
+    {
+        bought.add(name);
+    }
 
 
     public void addItems() {
