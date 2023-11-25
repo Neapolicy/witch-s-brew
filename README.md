@@ -41,7 +41,7 @@ Rogue Lineage for the move **FIGHT BACK**
 <br>
 Honkai Impact 3rd, Herrscher of Flamescion for fireball sound effect 
 <br>
-Guilty Gear Strive, Happy Chaos overdrive for Deus Ex
+[Death Sound Effect](https://www.youtube.com/watch?v=vthaBJaTWcE)
 
 ### Inspirations
 None so far
