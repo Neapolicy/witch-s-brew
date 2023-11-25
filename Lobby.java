@@ -45,6 +45,7 @@ public class Lobby {
                     } else {
                         System.out.println("\nYour soul got sent to the depths, harsh lesson you learned from the CEO goons huh?\n");
                         System.out.println("\nGame Over, Thanks For Playing!");
+                        sound.sound("To_The_Depths!", 2000);
                         System.exit(1);
                     }
                 }
