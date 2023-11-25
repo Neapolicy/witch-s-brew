@@ -133,7 +133,7 @@ public class Lobby {
             equipNum = s.nextInt();
             if (shop.getItemsBought().contains(shop.getItemsBought().get(equipNum - 1)))
             {
-                if (pro.getInvSize() > 2)
+                if (pro.getInvSize() == 3)
                 {
                     System.out.println("Inventory is full!\nWhich item would you like to remove?");
                     printAccessory();
@@ -145,6 +145,7 @@ public class Lobby {
                     catch (Exception e)
                     {
                         System.out.println("Can't do that!");
+                        changeAcc();
                     }
                 }
                 else {
