@@ -39,8 +39,8 @@ public class Protagonist {
 
     public void weaponBoost() {
             switch (weapon) {
-                case "Machete" -> battleStats[2] += 20;
-                case "Flintlock" -> battleStats[4] += 40;
+                case "Machete" -> battleStats[0] += 20;
+                case "Flintlock" -> battleStats[0] += 40;
                 case "Musket" -> battleStats[0] += 60;
             }
             if (sideArm.equals("Off-hand Revolver")) {battleStats[0] *= 1.3;}
