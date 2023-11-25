@@ -172,6 +172,7 @@ public class Lobby {
                 String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the qeapon you equipped is a side arm
                 if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
                 else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
+                sound.sound("Equip", 1800);
             }
             else if (equipNum == -1) {}
             else
