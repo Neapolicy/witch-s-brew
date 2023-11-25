@@ -249,5 +249,4 @@ public class Protagonist {
 
     public void resetStats() {battleStats = charStats.clone();}
     public void resetDmg() {dmgDealt = 0;}
-    public void removeAccessory(String name) {accessoriesOn.remove(name);}
 }

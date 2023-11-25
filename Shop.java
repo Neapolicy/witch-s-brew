@@ -50,7 +50,7 @@ public class Shop {
     public void printInv() throws InterruptedException {
         System.out.println();
         Thread.sleep(500);
-        if (bought.size() == 0 && boughtWeapons.size() == 0)
+        if (bought.isEmpty() && boughtWeapons.isEmpty())
         {
             System.out.println("You've got nothing!\n");
         }
