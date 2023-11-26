@@ -44,7 +44,7 @@ Honkai Impact 3rd, Herrscher of Flamescion for fireball sound effect
 [Death Sound Effect](https://www.youtube.com/watch?v=vthaBJaTWcE)
 
 ### Inspirations
-None so far
+Deepwoken, mostly just for the atmosphere though, and also some of the sound effects that I managed to trace it back to!
 
 ## Self Reminders to implement these features
 skill system
