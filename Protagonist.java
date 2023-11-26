@@ -31,7 +31,7 @@ public class Protagonist {
                 case "Surgeons Toolkit" -> battleStats[2] += 200;
                 case "Smoke Bomb" -> battleStats[4] += 10;
                 case "Powdered Wig" -> battleStats[0] *= 2;
-                case "Stronger Steel" -> battleStats[1] += 20;
+                case "Padded Armor" -> battleStats[1] += 20;
                 case "Cool Looking Helmet" -> battleStats[3] += 15;
             }
         }
