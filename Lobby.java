@@ -156,7 +156,7 @@ public class Lobby {
             }
         }
     }
-    public void changeWep()
+    public void changeWep() // REMEMBER TO ADD SFX TO ACCESSORY EQUIP, SKILL EQUIP(IDK IF I HAVE TO DO THIS IF I'M LOWERING THE SKILLS YOU CAN GET), AND ACCESSORY REMOVAL
     {
         if (!shop.getWeaponsBought().isEmpty())
         {
