@@ -157,7 +157,6 @@ public class Protagonist {
     }
     /** method plays sound corresponding to the weapon the player has equipped**/
 
-
     public void sideArm() {
         if (sideArm.equals("Off-hand Revolver")) {
             sound.sound("Gun_Load", 400);
