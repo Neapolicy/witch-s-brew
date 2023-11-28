@@ -1,5 +1,8 @@
 import java.util.Random;
-
+/** A class that acts as a "game-board", where everything is handled, ex enemy options, player choice
+ * contains methods that allows the fundamental parts of the game to function
+ * @author Matthew Lin
+ * @version 1.??? */
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int turns = 1; //internal counter, if i add another turn counter, create new variable to handle that
@@ -72,7 +75,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             turns += 1;
         }
     }
-
+    /**Checks what skill player uses and acts accordingly **/
     public void skillCheck() {
         skill = pro.getSkills().get(protagChoice - 1);
         switch (skill) {
@@ -101,6 +104,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 break;
         }
     }
+    /**Same function as skillCheck, except these handles enemies **/
 
     public void enemySkillCheck() {
         try {
@@ -132,7 +136,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Parry" -> pro.resetParry();
         }
     }
-
+    /**Checks if the target is able to dodge an attack, this is pure chance **/
     public boolean evasionCheck(int evasion, String name) {
         if (rand.nextInt(1, 101) <= evasion) {
             System.out.println(name + " whiffs their attack!");
@@ -163,7 +167,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         System.out.println(status());
         System.out.println(enemy.getBattleStats()[2]);
     }
-
+    /** Gives player rough estimate of enemy health**/
     public String status() {
         if (enemy.getBattleStats()[2] > (.66) * enemy.getHealth()) {
             return enemy.getName() + " looks unscathed, ready to take on the world! Yeah...";

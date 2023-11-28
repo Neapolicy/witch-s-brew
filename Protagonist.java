@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// once i finish protagonist, I might be able to use inheritance and have enemies borrow most of this code (except for variables cuz of that one req)
+/** A class that holds player information for combat
+ * contains methods that assist with player decision-making
+ * @author Matthew Lin
+ * @version 1.??? */
 public class Protagonist {
     private int[] charStats = {8, 5, 30, 7, -5}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private boolean parry;
@@ -81,9 +84,7 @@ public class Protagonist {
         this.skillPoints = skillPoints;
         switch (skill) {
             case "Uppercut" -> { // 40% to stun the opponent, but only does ok dmg
-                if (skillCheck(1)) {
-                    uppercut();
-                }
+                if (skillCheck(1)) {uppercut();}
             }
             case "Parry" -> { // prepare to counter the next attack, makes it so that if the enemy attacks while you're parrying, it does no damage
                 if (skillCheck(1)) parry(name);
@@ -95,6 +96,7 @@ public class Protagonist {
                     chainsaw();
         }
     }
+    /**methods below are code that allows the skill to function**/
 
     public void uppercut()
     {
@@ -135,6 +137,7 @@ public class Protagonist {
             return false;
         }
     }
+    /** method checks if player has enough skill points to perform an action**/
 
     public void weaponCheck() {
         switch (weapon) {
@@ -150,6 +153,8 @@ public class Protagonist {
             }
         }
     }
+    /** method plays sound corresponding to the weapon the player has equipped**/
+
 
     public void sideArm() {
         if (sideArm.equals("Off-hand Revolver")) {
@@ -157,6 +162,7 @@ public class Protagonist {
             sound.sound("Gun_Fire", 800);
         }
     }
+    /**same function as weaponCheck, seperated for the purpose of neatness**/
 
     public void updateStats(int days)
     {
@@ -175,7 +181,7 @@ public class Protagonist {
                 break;
         }
     }
-
+    /** methods below are getters + setters **/
     public void checkObtained(String name) {if (!skills.contains(name)) {skills.add(name);}}
 
     public void resetParry() {parry = false;}
@@ -188,19 +194,11 @@ public class Protagonist {
 
     public void addAccessory(String accessory) {accessoriesOn.add(accessory);}
 
-    public int getInvSize()
-    {
-        return accessoriesOn.size();
-    }
+    public int getInvSize() {return accessoriesOn.size();}
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
 
-    public ArrayList<String> getAccessoriesOn()
-    {
-        return accessoriesOn;
-    }
+    public ArrayList<String> getAccessoriesOn() {return accessoriesOn;}
     public int getSkillPoints() {return skillPoints;}
     public int getDmgDealt() {return dmgDealt;}
 
