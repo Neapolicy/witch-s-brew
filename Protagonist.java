@@ -164,7 +164,7 @@ public class Protagonist {
             sound.sound("Gun_Fire", 800);
         }
     }
-    /**same function as weaponCheck, seperated for the purpose of neatness**/
+    /**same function as weaponCheck, separated for the purpose of neatness**/
 
     public void updateStats(int days)
     {
