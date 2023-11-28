@@ -171,10 +171,11 @@ public class Lobby {
             equipNum = s.nextInt();
             if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
             {
-                String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the qeapon you equipped is a side arm
+                String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the weapon you equipped is a side arm
                 if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
                 else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
                 sound.sound("Equip", 1800);
+                changeWep();
             }
             else if (equipNum == -1) {}
             else
@@ -202,10 +203,14 @@ public class Lobby {
         else if(equipNum == -1) {}
         else
         {
-            switch (pro.getSkills().get(equipNum - 1))
-            {
-
+            switch (pro.getSkills().get(equipNum - 1)) {
+                case "Basic Attack" -> System.out.println("Your primary attack, costs no SP, gives you one SP on use, does moderate damage\n");
+                case "Parry" -> System.out.println("Prepare to parry the next BASIC attack, does not work on skills, 1 SP\n");
+                case "Uppercut" -> System.out.println("An attack that does low damage, but has a high chance of stunning your opponent, allowing you to take another action, 1 SP\n");
+                case "Fireball" -> System.out.println("A generic fireball, does damage over time on your enemy, and deals decent base damage\n");
+                case "Chainsaw" -> System.out.println("A chainsaw, damage scales with the amount of SP you invest in it, does damage over time \n");
             }
+            inspect();
         }
     }
     public void printAccessory()
