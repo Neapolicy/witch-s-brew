@@ -89,11 +89,10 @@ public class Protagonist {
             case "Parry" -> { // prepare to counter the next attack, makes it so that if the enemy attacks while you're parrying, it does no damage
                 if (skillCheck(1)) parry(name);
             }
-            case "Fireball" -> { //fireball attack, doesn't do much dmg, but has DOT across two turns? just timestamp
+            case "Fireball" -> { //fireball attack, doesn't do much dmg, but has DOT across two turns? just timestamp if possible
                 if (skillCheck(1)) fireball();
             }
-            case "Chainsaw" -> // this attack requires investment with skill points, can do a lot if you "rev" (invest enough sp) it up enough, also does DOT
-                    chainsaw();
+            case "Chainsaw" -> chainsaw(); // this attack requires investment with skill points, can do a lot if you "rev" (invest enough sp) it up enough, also does DOT
         }
     }
     /**methods below are code that allows the skill to function**/
@@ -106,15 +105,18 @@ public class Protagonist {
     }
     public void fireball()
     {
-
+        System.out.println(name + " threw out a fireball!");
+        sound.sound("Finger-Snap", 500);
+        sound.sound("Fireball", 400);
+        sound.sound("Explosion", 400);
     }
 
 
     public void parry(String name)
     {
         parry = true;
-        sound.sound("Block_Attempt", 500);
         System.out.println("\n" + name + " prepares to parry the next attack!\n");
+        sound.sound("Block_Attempt", 500);
     }
 
 
