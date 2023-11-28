@@ -14,14 +14,11 @@ public class Protagonist {
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Scanner s = new Scanner(System.in);
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
-    private ArrayList<String> skillList = new ArrayList<String>(); //list of skills you have
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
 
     public Protagonist() {
         skills.add("Basic Attack");
         skills.add("Parry");
-        skillList.add("Basic Attack");
-        skillList.add("Parry");
     }
 
     public void accessoriesCheck() {
@@ -96,12 +93,6 @@ public class Protagonist {
             }
             case "Chainsaw" -> // this attack requires investment with skill points, can do a lot if you "rev" (invest enough sp) it up enough, also does DOT
                     chainsaw();
-            case "Deus Ex Machina" -> { // hc gun barrage lmao, it just does the BIG damage, but is costs a decent amount of sp
-                if (skillCheck(4)) deusEx();
-            }
-            case "Recover" -> {  // simple move that restores 30% of your hp
-                if (skillCheck(1)) recover();
-            }
         }
     }
 
@@ -128,24 +119,6 @@ public class Protagonist {
     public void chainsaw()
     {
 
-    }
-
-
-    public void recover()
-    {
-        System.out.println("You drink some vending machine coffee, restoring some HP in the process!\n");
-        battleStats[2] += (int) (charStats[2] * .3);
-        if (battleStats[2] > charStats[2])
-        {
-            battleStats[2] = charStats[2];
-        }
-    }
-
-    public void deusEx()
-    {
-        System.out.println("You used a teeny bit of magic to project some magical guns\nThen unleashed a barrage of bullets!");
-        sound.sound("Deus_Ex", 5000);
-        dmgDealt = battleStats[0] * 3;
     }
 
     public boolean skillCheck(int cost)
@@ -193,29 +166,21 @@ public class Protagonist {
         }
         switch (days)
         {
-            case 2:
+            case 1:
                 checkObtained("Uppercut");
                 break;
+            case 2:
+                break;
             case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
                 break;
         }
     }
 
-    public void addSkill(String skillName) {skills.add(skillName);}
-
-    public void checkObtained(String name)
-    {if (!skillList.contains(name)) {skillList.add(name);}}
+    public void checkObtained(String name) {if (!skills.contains(name)) {skills.add(name);}}
 
     public void resetParry() {parry = false;}
 
     public boolean getParry() {return parry;}
-    public ArrayList<String> getSkillList() {return skillList;} // prints out all your skills, meant to be used when doing character editing
 
     public void setWeapon(String weapon) {this.weapon = weapon;}
 

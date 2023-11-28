@@ -18,6 +18,7 @@ public class Enemy extends Protagonist { // day one enemy
     public Enemy() { // add accessories here and skills
         skills.add("Basic Attack");
         skills.add("Parry");
+        skills.add("Uppercut");
     }
 
     public void weaponCheck() { // play weapon sound
@@ -35,7 +36,7 @@ public class Enemy extends Protagonist { // day one enemy
         if (count == 1) choice = 2; // first turn, enemy will always parry
         count++;
         switch (choice) {
-            case 1, 3, 4, 5:
+            case 1, 5, 4:
                 System.out.println(getName() + " strikes!\n");
                 skillPoints += 1;
                 if (skillPoints > 5) {
@@ -46,6 +47,10 @@ public class Enemy extends Protagonist { // day one enemy
                 break;
             case 2:
                 String skill = skills.get(choice - 1);
+                skillBook(skill, skillPoints);
+                break;
+            case 3:
+                skill = skills.get(choice - 1);
                 skillBook(skill, skillPoints);
                 break;
         }

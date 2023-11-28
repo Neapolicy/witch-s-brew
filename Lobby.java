@@ -24,8 +24,8 @@ public class Lobby {
 
     public void decisionMaker() throws InterruptedException { // make your choice, spend your day wisely
         System.out.println("Day " + days);
-        System.out.println("You have " + (7 - days) + " days left");
-        while (turns != 0 && days != 7) {
+        System.out.println("You have " + (3 - days) + " days left");
+        while (turns != 0) {
             pro.resetStats();
             System.out.println("\nWhat would " + name + " like to do?\n");
             System.out.println("Lower this island's security (1)");
@@ -86,7 +86,7 @@ public class Lobby {
         decisionMaker();
     }
     public void dayCheck() throws InterruptedException {
-        if (days == 7) {bossRaidOni();}
+        if (days == 4) {bossRaidOni();}
         else {dayCount();}
     }
 
@@ -188,13 +188,13 @@ public class Lobby {
     public void inspect()
     {
         System.out.println("\nWhich Skill would you like to inspect? (-1) to exit");
-        for (int i = 0; i < pro.getSkillList().size(); i++) {
+        for (int i = 0; i < pro.getSkills().size(); i++) {
             if (i == 0) System.out.println("Here's your skills!!");
-            System.out.println(i + 1 + ": " + pro.getSkillList().get(i));
+            System.out.println(i + 1 + ": " + pro.getSkills().get(i));
         }
         System.out.println("Please type the number corresponding to the skill you would like to inspect");
         equipNum = s.nextInt();
-        if (equipNum > pro.getSkillList().size())
+        if (equipNum > pro.getSkills().size())
         {
             System.out.println("Can't do that, chum.");
             inspect();
@@ -202,7 +202,7 @@ public class Lobby {
         else if(equipNum == -1) {}
         else
         {
-            switch (pro.getSkillList().get(equipNum - 1))
+            switch (pro.getSkills().get(equipNum - 1))
             {
 
             }

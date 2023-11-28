@@ -16,7 +16,9 @@ public class Enemy2 extends Enemy{
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     public Enemy2() {
         skills.add("Basic Attack");
+        skills.add("Parry");
         skills.add("Uppercut");
+        skills.add("Fireball");
     }
 
 

@@ -76,8 +76,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     public void skillCheck() {
         skill = pro.getSkills().get(protagChoice - 1);
         switch (skill) {
-            case "Basic Attack", "Deus Ex Machina": // parries only work against basic attacks, not skills, also enemy parries work slightly differently, i give up on fixing this bug, so its a feature now
-                if (enemy.getParry()) //this function only works if theres a certain property to the move, ie stun dot etc
+            case "Basic Attack": // parries only work against basic attacks, not skills, also enemy parries work slightly differently, i give up on fixing this bug, so its a feature now
+                if (enemy.getParry()) //this function only works if there's a certain property to the move, ie stun dot etc
                 {
                     System.out.println(enemy.getName() + " blocked " + pro.getName() + "'s attack!");
                     sound.sound("Blocked", 1000);
@@ -111,16 +111,15 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             skill = "Basic Attack"; //defaults to basic attack if the number roller is index out of bounds
         }
         switch (skill) {
-            case "Basic Attack":
-                if (pro.getParry())
-                {
+            case "Basic Attack" -> {  // checks for parry, if parry on, no dmg, else take dmg
+                if (pro.getParry()) {
                     System.out.println(pro.getName() + " parries " + enemy.getName() + "'s attack!");
                     sound.sound("Parry", 1200);
                     enemy.resetDmg();
                 }
                 pro.resetParry();
-                break;
-            case "Uppercut": //should only determine stun, theoretically
+            }
+            case "Uppercut" -> { //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
                     if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
                         System.out.println(pro.getName() + " resisted the stun!");
@@ -129,10 +128,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                         turns += 1;
                     }
                 }
-                break;
-            case "Parry":
-                pro.resetParry();
-                break;
+            }
+            case "Parry" -> pro.resetParry();
         }
     }
 
@@ -147,24 +144,9 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
 
     public void dayCheck() {
         switch (days) {
-            case 1:
-                enemy = new Enemy();
-                break;
-            case 2:
-                enemy = new Enemy2();
-                break;
-            case 3:
-                enemy = null;
-                break;
-            case 4:
-                enemy = null;
-                break;
-            case 5:
-                enemy = null;
-                break;
-            case 6:
-                enemy = null; // 2-5 are all placeholders for now (nulls delete the object so i can create a new enemy type object under same name)
-                break;
+            case 1 -> enemy = new Enemy();
+            case 2 -> enemy = new Enemy2();
+            case 3 -> enemy = null;
         }
     }
 
