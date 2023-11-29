@@ -23,6 +23,7 @@ public class Protagonist {
         skills.add("Basic Attack");
         skills.add("Parry");
         skills.add("Fireball"); // reminder to remove this when done testing
+        skills.add("Chainsaw");
     }
 
     public void accessoriesCheck() {
@@ -124,7 +125,18 @@ public class Protagonist {
 
     public void chainsaw()
     {
-
+        System.out.println("How many times would you live to rev your chainsaw?");
+        int response = s.nextInt();
+        if (skillPoints - response < 0)
+        {
+            System.out.println("Not enough SP!\n");
+            choice();
+        }
+        else
+        {
+            dmgDealt = (battleStats[0] * response) + 5;
+            skillPoints -= response;
+        }
     }
 
     public boolean skillCheck(int cost)

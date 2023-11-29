@@ -15,7 +15,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     private int PlayerDotDuration;
     private boolean enemyDot;
     private boolean playerDot;
-    private Sound sound = new Sound();
+    private final Sound sound = new Sound();
     private String skill;
     private Enemy enemy = null;
 
@@ -96,9 +96,9 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Uppercut" -> { //should only determine stun, theoretically, also uppercut goes past guard, it is intentional
                 if (rand.nextBoolean()) {
                     if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
-                        System.out.println(enemy.toString() + " resisted the stun!");
+                        System.out.println(enemy.toString() + " resisted the stun!\n");
                     } else {
-                        System.out.println(enemy.toString() + " is stunned! Use this chance to strike them again!");
+                        System.out.println(enemy.toString() + " is stunned! Use this chance to strike them again!\n");
                         turns += 1;
                     }
                 }
@@ -109,7 +109,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
                     System.out.println(enemy.toString() + " was not set on fire\n");
                 } else {
-                    System.out.println(enemy.toString() + " is on fire!");
+                    System.out.println(enemy.toString() + " is on fire!\n");
                     enemyDot = true;
                 }
             }
@@ -137,9 +137,9 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Uppercut" -> { //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
                     if (rand.nextInt(1, 101) <= pro.getBattleStats()[3]) {
-                        System.out.println(pro.toString() + " resisted the stun!");
+                        System.out.println(pro.toString() + " resisted the stun!\n");
                     } else {
-                        System.out.println(pro.toString() + " is stunned!");
+                        System.out.println(pro.toString() + " is stunned!\n");
                         turns += 1;
                     }
                 }
@@ -150,7 +150,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 if (rand.nextInt(1, 101) <= pro.getBattleStats()[3]) {
                     System.out.println(pro.toString() + " was not set on fire\n");
                 } else {
-                    System.out.println(pro.toString() + " is on fire!");
+                    System.out.println(pro.toString() + " is on fire!\n");
                     playerDot = true;
                 }
             }
