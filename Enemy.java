@@ -58,7 +58,7 @@ public class Enemy extends Protagonist { // day one enemy
     }
     public void uppercut()
     {
-        System.out.println(this + " tried to perform an uppercut, but accidentally punches your face!");
+        System.out.println(this + " tried to perform an uppercut, but went too low!");
         dmgDealt = (int) (battleStats[0] * .6);
         sound.sound("Uppercut", 1000);
     }

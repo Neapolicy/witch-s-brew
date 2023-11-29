@@ -11,6 +11,10 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     private Random rand = new Random();
     private int enemyChoice;
     private int protagChoice;
+    private int EnemyDotDuration;
+    private int PlayerDotDuration;
+    private boolean enemyDot;
+    private boolean playerDot;
     private Sound sound = new Sound();
     private String skill;
     private Enemy enemy = null;
@@ -29,6 +33,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         pro.weaponBoost();
         while (pro.getBattleStats()[2] > 0) {
             getInfo();
+            enemyDot();
+            playerDot();
             playerAction();
             if (enemy.getBattleStats()[2] <= 0) {
                 getBalance();
@@ -90,15 +96,23 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Uppercut" -> { //should only determine stun, theoretically, also uppercut goes past guard, it is intentional
                 if (rand.nextBoolean()) {
                     if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
-                        System.out.println("Enemy resisted the stun!");
+                        System.out.println(enemy.toString() + " resisted the stun!");
                     } else {
-                        System.out.println("Enemy is stunned! Use this chance to strike them again!");
+                        System.out.println(enemy.toString() + " is stunned! Use this chance to strike them again!");
                         turns += 1;
                     }
                 }
-                enemy.resetParry();
-            } // dont include parry, (nvm it is relevant)
+                enemy.resetParry(); // dont include parry, (nvm it is relevant)
+            }
             case "Parry" -> enemy.resetParry();
+            case "Fireball" -> {
+                if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
+                    System.out.println(enemy.toString() + " was not set on fire\n");
+                } else {
+                    System.out.println(enemy.toString() + " is on fire!");
+                    enemyDot = true;
+                }
+            }
         }
     }
     /**Same function as skillCheck, except these handles enemies **/
@@ -122,7 +136,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             }
             case "Uppercut" -> { //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
-                    if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
+                    if (rand.nextInt(1, 101) <= pro.getBattleStats()[3]) {
                         System.out.println(pro.toString() + " resisted the stun!");
                     } else {
                         System.out.println(pro.toString() + " is stunned!");
@@ -131,6 +145,15 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 }
             }
             case "Parry" -> pro.resetParry();
+            case "Fireball" ->
+            {
+                if (rand.nextInt(1, 101) <= pro.getBattleStats()[3]) {
+                    System.out.println(pro.toString() + " was not set on fire\n");
+                } else {
+                    System.out.println(pro.toString() + " is on fire!");
+                    playerDot = true;
+                }
+            }
         }
     }
     /**Checks if the target is able to dodge an attack, this is pure chance **/
@@ -141,7 +164,18 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         }
         return false;
     }
-
+    public void enemyDot()
+    {
+        if (enemyDot) {EnemyDotDuration = turns + 2;}
+        enemyDot = false;
+        if (turns < EnemyDotDuration) {enemy.takeDmg((int) (pro.getBattleStats()[0] * .4));}
+    }
+    public void playerDot()
+    {
+        if (playerDot) {PlayerDotDuration = turns + 2;}
+        playerDot = false;
+        if (turns < PlayerDotDuration) {pro.takeDmg((int) (enemy.getBattleStats()[0] * .8));}
+    }
 
     public void dayCheck() {
         switch (days) {

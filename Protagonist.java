@@ -22,6 +22,7 @@ public class Protagonist {
     public Protagonist() {
         skills.add("Basic Attack");
         skills.add("Parry");
+        skills.add("Fireball"); // reminder to remove this when done testing
     }
 
     public void accessoriesCheck() {
@@ -106,6 +107,7 @@ public class Protagonist {
     public void fireball()
     {
         System.out.println(name + " threw out a fireball!");
+        dmgDealt = (int) (battleStats[0] * .8);
         sound.sound("Finger-Snap", 500);
         sound.sound("Fireball", 400);
         sound.sound("Explosion", 400);
