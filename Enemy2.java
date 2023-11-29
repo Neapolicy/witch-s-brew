@@ -55,8 +55,8 @@ public class Enemy2 extends Enemy{
     }
     public void uppercut()
     {
-        System.out.println(name.toString() + " tried to perform an uppercut, but accidentally punches your face!");
-        dmgDealt = (int) (battleStats[0] * .7);
+        System.out.println(this + " tried to perform an uppercut, but accidentally punches your face!");
+        dmgDealt = (int) (battleStats[0] * .8);
         sound.sound("Uppercut", 1000);
     }
 

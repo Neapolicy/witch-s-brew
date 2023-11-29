@@ -39,6 +39,7 @@ public class Lobby {
                 case "1" -> {
                     Gameboard g = new Gameboard(days, pro);
                     if (!g.getResults()) {
+                        System.out.println(g.getPro() + " is victorious!");
                         balance += g.getBalance();
                         pro.updateStats(days);
                         turns -= 1;

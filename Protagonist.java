@@ -196,9 +196,6 @@ public class Protagonist {
     public void addAccessory(String accessory) {accessoriesOn.add(accessory);}
 
     public int getInvSize() {return accessoriesOn.size();}
-
-    public String getName() {return name;}
-
     public ArrayList<String> getAccessoriesOn() {return accessoriesOn;}
     public int getSkillPoints() {return skillPoints;}
     public int getDmgDealt() {return dmgDealt;}
@@ -213,4 +210,5 @@ public class Protagonist {
 
     public void resetStats() {battleStats = charStats.clone();}
     public void resetDmg() {dmgDealt = 0;}
+    public String toString() {return name;}
 }

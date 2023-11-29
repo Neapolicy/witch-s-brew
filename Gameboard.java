@@ -31,7 +31,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             getInfo();
             playerAction();
             if (enemy.getBattleStats()[2] <= 0) {
-                System.out.println(enemy.getName() + " has been taken down!");
                 getBalance();
                 break;
             }
@@ -52,7 +51,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     public void enemyAction() {
         enemyChoice = enemy.enemyChoice();
         if (turns % 2 == 0) {
-            if (!evasionCheck(pro.getBattleStats()[4], enemy.getName())) {
+            if (!evasionCheck(pro.getBattleStats()[4], enemy.toString())) {
                 enemySkillCheck();
                 pro.takeDmg(enemy.getDmgDealt());
             } else {
@@ -66,7 +65,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 1, also,
         {
             protagChoice = pro.choice();
-            if ((!evasionCheck(enemy.getBattleStats()[4], pro.getName()))) {
+            if ((!evasionCheck(enemy.getBattleStats()[4], pro.toString()))) {
                 skillCheck();
                 enemy.takeDmg(pro.getDmgDealt());
             } else {
@@ -79,16 +78,16 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     public void skillCheck() {
         skill = pro.getSkills().get(protagChoice - 1);
         switch (skill) {
-            case "Basic Attack": // parries only work against basic attacks, not skills, also enemy parries work slightly differently, i give up on fixing this bug, so its a feature now
+            case "Basic Attack" -> { // parries only work against basic attacks, not skills, also enemy parries work slightly differently, i give up on fixing this bug, so its a feature now
                 if (enemy.getParry()) //this function only works if there's a certain property to the move, ie stun dot etc
                 {
-                    System.out.println(enemy.getName() + " blocked " + pro.getName() + "'s attack!");
+                    System.out.println(enemy.toString() + " blocked " + pro.toString() + "'s attack!");
                     sound.sound("Blocked", 1000);
                     pro.resetDmg();
                 }
                 enemy.resetParry();
-                break;
-            case "Uppercut": //should only determine stun, theoretically, also uppercut goes past guard, it is intentional
+            }
+            case "Uppercut" -> { //should only determine stun, theoretically, also uppercut goes past guard, it is intentional
                 if (rand.nextBoolean()) {
                     if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
                         System.out.println("Enemy resisted the stun!");
@@ -98,10 +97,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     }
                 }
                 enemy.resetParry();
-                break; // dont include parry, (nvm it is relevant)
-            case "Parry":
-                enemy.resetParry();
-                break;
+            } // dont include parry, (nvm it is relevant)
+            case "Parry" -> enemy.resetParry();
         }
     }
     /**Same function as skillCheck, except these handles enemies **/
@@ -117,7 +114,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         switch (skill) {
             case "Basic Attack" -> {  // checks for parry, if parry on, no dmg, else take dmg
                 if (pro.getParry()) {
-                    System.out.println(pro.getName() + " parries " + enemy.getName() + "'s attack!");
+                    System.out.println(pro.toString() + " parries " + enemy.toString() + "'s attack!");
                     sound.sound("Parry", 1200);
                     enemy.resetDmg();
                 }
@@ -126,9 +123,9 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Uppercut" -> { //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
                     if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
-                        System.out.println(pro.getName() + " resisted the stun!");
+                        System.out.println(pro.toString() + " resisted the stun!");
                     } else {
-                        System.out.println(pro.getName() + " is stunned!");
+                        System.out.println(pro.toString() + " is stunned!");
                         turns += 1;
                     }
                 }
@@ -170,11 +167,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     /** Gives player rough estimate of enemy health**/
     public String status() {
         if (enemy.getBattleStats()[2] > (.66) * enemy.getHealth()) {
-            return enemy.getName() + " looks unscathed, ready to take on the world! Yeah...";
+            return enemy.toString() + " looks unscathed, ready to take on the world! Yeah...";
         } else if ((enemy.getBattleStats()[2] < (.66) * enemy.getHealth()) && (enemy.getBattleStats()[2] > (.33) * enemy.getHealth())) {
-            return enemy.getName() + " looks a bit injured, but still able to keep fighting.";
+            return enemy.toString() + " looks a bit injured, but still able to keep fighting.";
         } else {
-            return enemy.getName() + " looks like they're two steps from keeling over.";
+            return enemy.toString() + " looks like they're two steps from keeling over.";
         }
     }
+    public Protagonist getPro() {return pro;}
 }
