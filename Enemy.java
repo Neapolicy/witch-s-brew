@@ -7,11 +7,9 @@ public class Enemy extends Protagonist { // day one enemy
     private int health = charStats[2];
     private boolean parry;
     private Sound sound = new Sound();
-    private String name = "CEO Goon";
     private int skillPoints = 3;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
-    private int choice = 2;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private int count = 1;
 
@@ -28,6 +26,7 @@ public class Enemy extends Protagonist { // day one enemy
 
     public int enemyChoice() { // enemy makes their decision
         resetDmg();
+        int choice;
         if (skillPoints <= 0) {
             choice = 1;
         } else {
@@ -102,5 +101,5 @@ public class Enemy extends Protagonist { // day one enemy
     {
         dmgDealt = 0;
     }
-    public String toString() {return name;}
+    public String toString() {return "CEO Goon";}
 }

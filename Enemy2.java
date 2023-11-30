@@ -7,12 +7,10 @@ public class Enemy2 extends Enemy{
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health = charStats[2];
     private int count;
-    private String name = "Underpaid CEO Goon";
     private Sound sound = new Sound();
     private int skillPoints = 0;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
-    private int choice = 2;
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     public Enemy2() {
         skills.add("Basic Attack");
@@ -29,6 +27,7 @@ public class Enemy2 extends Enemy{
 
     public int enemyChoice() { // enemy makes their decision
         resetDmg();
+        int choice;
         if (skillPoints <= 0) {
             choice = 1;
         } else {
@@ -37,7 +36,7 @@ public class Enemy2 extends Enemy{
         if (count == 1) choice = 2; // first turn, enemy will always parry
         count++;
         switch (choice) {
-            case 1, 3, 4, 5:
+            case 1, 3, 4, 5 -> {
                 System.out.println(getName() + " strikes!\n");
                 skillPoints += 1;
                 if (skillPoints > 5) {
@@ -45,11 +44,11 @@ public class Enemy2 extends Enemy{
                 }
                 dmgDealt = battleStats[0];
                 weaponCheck();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 String skill = skills.get(choice - 1);
                 skillBook(skill, skillPoints);
-                break;
+            }
         }
         return choice;
     }
@@ -77,9 +76,7 @@ public class Enemy2 extends Enemy{
         battleStats[2] -= (int) (damage * (100.0 / (100 + battleStats[1])));
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return "Underpaid CEO Goon";}
 
     public ArrayList<String> getSkills() {
         return skills;

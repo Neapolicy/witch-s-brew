@@ -13,8 +13,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     private int protagChoice;
     private int EnemyDotDuration;
     private int PlayerDotDuration;
+    private int EnemyDotDuration2;
+    private int PlayerDotDuration2;
     private boolean enemyDot;
     private boolean playerDot;
+    private boolean enemySaw;
+    private boolean playerSaw;
     private final Sound sound = new Sound();
     private String skill;
     private Enemy enemy = null;
@@ -33,7 +37,9 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         pro.weaponBoost();
         while (pro.getBattleStats()[2] > 0) {
             getInfo();
+            DotP(); //enemy takes dot if applicable
             enemyDot();
+            DotE(); // player takes dot if inflicted
             playerDot();
             playerAction();
             if (enemy.getBattleStats()[2] <= 0) {
@@ -113,6 +119,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     enemyDot = true;
                 }
             }
+            case "Chainsaw" -> {
+                if (rand.nextInt(1, 101) >= enemy.getBattleStats()[3]) {
+                    System.out.println(enemy.toString() + " is bleeding!\n");
+                    playerSaw = true;
+                }
+            }
         }
     }
     /**Same function as skillCheck, except these handles enemies **/
@@ -154,6 +166,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     playerDot = true;
                 }
             }
+            case "Chainsaw" -> {
+                if (rand.nextInt(1, 101) >= pro.getBattleStats()[3]) {
+                    System.out.println(pro.toString() + " is bleeding!\n");
+                    enemySaw = true;
+                }
+            }
         }
     }
     /**Checks if the target is able to dodge an attack, this is pure chance **/
@@ -177,11 +195,25 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         if (turns < PlayerDotDuration) {pro.takeDmg((int) (enemy.getBattleStats()[0] * .8));}
     }
 
+    public void DotP() // enemy bleeds
+    {
+        if (playerSaw) {PlayerDotDuration2 = turns + 3;}
+        playerSaw = false;
+        if (turns < PlayerDotDuration2) {enemy.takeDmg((int) (pro.getBattleStats()[0] * .7));}
+    }
+
+    public void DotE() // you take bleed
+    {
+        if (enemySaw) {EnemyDotDuration2 = turns + 3;}
+        enemySaw = false;
+        if (turns < EnemyDotDuration2) {pro.takeDmg((int) (enemy.getBattleStats()[0] * .9));}
+    }
+
     public void dayCheck() {
         switch (days) {
             case 1 -> enemy = new Enemy();
             case 2 -> enemy = new Enemy2();
-            case 3 -> enemy = null;
+            case 3 -> enemy = new Enemy3();
         }
     }
 

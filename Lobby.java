@@ -93,7 +93,8 @@ public class Lobby {
 
     private void bossRaidOni()
     {
-
+        editChar();
+        BossRaidOni bossFight = new BossRaidOni(pro);
     }
 
     public void editChar() {
@@ -106,11 +107,13 @@ public class Lobby {
         System.out.println("1) Change Weapons");
         System.out.println("2) Equip Accessories");
         System.out.println("3) Inspect Skills");
+        System.out.println("-1 to exit");
         String answer = s.nextLine().toLowerCase();
         switch (answer) {
             case "1", "weapon" -> changeWep();
             case "2", "accessories" -> changeAcc();
             case "3", "inspect" -> inspect();
+            case "-1" -> System.out.println("Successfully exited\n");
             default -> System.out.println("Not an option, chum");
         }
     }
@@ -208,8 +211,8 @@ public class Lobby {
                 case "Basic Attack" -> System.out.println("Your primary attack, costs no SP, gives you one SP on use, does moderate damage\n");
                 case "Parry" -> System.out.println("Prepare to parry the next BASIC attack, does not work on skills, 1 SP\n");
                 case "Uppercut" -> System.out.println("An attack that does low damage, but has a high chance of stunning your opponent, allowing you to take another action, 1 SP\n");
-                case "Fireball" -> System.out.println("A generic fireball, does damage over time on your enemy, and deals decent base damage\n");
-                case "Chainsaw" -> System.out.println("A chainsaw, damage scales with the amount of SP you invest in it, does damage over time \n");
+                case "Fireball" -> System.out.println("A generic fireball, does damage over time on your enemy, and deals decent base damage, 1 SP\n");
+                case "Chainsaw" -> System.out.println("A chainsaw, damage scales with the amount of SP you invest in it, does damage over time, SP varies\n");
             }
             inspect();
         }
