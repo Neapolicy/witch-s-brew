@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Enemy2 extends Enemy{
 
-    private int[] charStats = {6, 5, 50, 7, 5}; ////attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
+    private int[] charStats = {14, 10, 50, 7, 5}; ////attack, defense, health, resistance to debuffs, evasion, do not modify these in battle
     private int[] battleStats = charStats; //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private int health = charStats[2];
     private int count;

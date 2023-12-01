@@ -1,3 +1,4 @@
+/*
 import static java.lang.Thread.sleep;
 import java.util.Random;
 
@@ -46,3 +47,4 @@ public class BossRaidOni { // you have ten turns, it ends either when you or the
         }
     }
 }
+*/
