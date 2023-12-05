@@ -72,9 +72,7 @@ public class Enemy extends Protagonist { // day one enemy
     }
 
     public int getDmgDealt() //every enemy needs their own dedicated getter, idk why
-    {
-        return dmgDealt;
-    }
+    {return dmgDealt;}
 
     public void parry(String name) {
         parry = true;

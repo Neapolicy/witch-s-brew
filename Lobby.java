@@ -10,7 +10,7 @@ public class Lobby {
     private int equipNum;
     private String answer;
     private int turns = 2;
-    private int days = 1;
+    private int days = 3;
     private Protagonist pro = new Protagonist();
     private final Scanner s = new Scanner(System.in);
 
@@ -91,9 +91,10 @@ public class Lobby {
         else {dayCount();}
     }
 
-    private void bossRaidOni()
-    {
+    private void bossRaidOni() throws InterruptedException {
+        System.out.println("Last chance to edit your character before the Boss Fight\n");
         editChar();
+        System.out.println("Attempt " + CEO.attempts);
         BossRaidOni bossFight = new BossRaidOni(pro);
     }
 
