@@ -5,7 +5,6 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     private int tally = 1;
     private double multiplier;
     private int protagChoice;
-    private int ceoChoice;
     private Protagonist pro;
     private CEO ceo = new CEO();
     private Random rand = new Random();
@@ -77,7 +76,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
         }
     }
     public void ceoAction() {
-        ceoChoice = ceo.enemyChoice();
+        int ceoChoice = ceo.enemyChoice();
         if (tally % 2 == 0) {
             if (!evasionCheck(pro.getBattleStats()[4], ceo.toString())) {
                 ceoSkillCheck();
