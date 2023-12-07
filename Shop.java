@@ -88,9 +88,9 @@ public class Shop {
         }
     }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
+    public void setBalance(int balance) {this.balance = balance;}
+
+    public int getBalance() {return balance;}
 
     public ArrayList<String> getItemsBought()
     {

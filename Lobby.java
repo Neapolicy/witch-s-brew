@@ -59,6 +59,7 @@ public class Lobby {
                 case "3" -> {
                     shop.setBalance(balance);
                     shop.goods();
+                    balance = shop.getBalance();
                 }
                 case "4" -> {
                     if (shop.getItemsBought().isEmpty() && shop.getWeaponsBought().isEmpty()) {
@@ -87,14 +88,13 @@ public class Lobby {
         decisionMaker();
     }
     public void dayCheck() throws InterruptedException {
-        if (days == 4) {bossRaidOni();}
+        if (days == 3) {bossRaidOni();}
         else {dayCount();}
     }
 
     private void bossRaidOni() throws InterruptedException {
         System.out.println("Last chance to edit your character before the Boss Fight\n");
         editChar();
-        System.out.println("Attempt " + CEO.attempts);
         BossRaidOni bossFight = new BossRaidOni(pro);
     }
 
@@ -108,14 +108,13 @@ public class Lobby {
         System.out.println("1) Change Weapons");
         System.out.println("2) Equip Accessories");
         System.out.println("3) Inspect Skills");
-        System.out.println("-1 to exit");
+        System.out.println("(-1 to exit)");
         String answer = s.nextLine().toLowerCase();
         switch (answer) {
             case "1", "weapon" -> changeWep();
             case "2", "accessories" -> changeAcc();
             case "3", "inspect" -> inspect();
             case "-1" -> System.out.println("Successfully exited\n");
-            default -> System.out.println("Not an option, chum");
         }
     }
 
@@ -155,7 +154,7 @@ public class Lobby {
                     changeAcc();
                 }
             }
-            else if (equipNum == -1) {}
+            else if (equipNum == -1) {editChar();}
             else
             {
                 System.out.println("Invalid option, please try again!");
@@ -174,7 +173,8 @@ public class Lobby {
             }
             System.out.println("Please type the number corresponding to the weapon you would like to equip");
             equipNum = s.nextInt();
-            if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
+            if (equipNum == -1) {editChar();}
+            else if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
             {
                 String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the weapon you equipped is a side arm
                 if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
@@ -182,7 +182,6 @@ public class Lobby {
                 sound.sound("Equip", 1800);
                 changeWep();
             }
-            else if (equipNum == -1) {}
             else
             {
                 System.out.println("Invalid option, please try again!");
@@ -205,7 +204,7 @@ public class Lobby {
             System.out.println("Can't do that, chum.");
             inspect();
         }
-        else if(equipNum == -1) {}
+        else if(equipNum == -1) {editChar();}
         else
         {
             switch (pro.getSkills().get(equipNum - 1)) {

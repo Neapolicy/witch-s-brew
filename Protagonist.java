@@ -18,6 +18,7 @@ public class Protagonist {
     private Scanner s = new Scanner(System.in);
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
+    private int maxHealth;
 
     public Protagonist() {
         skills.add("Basic Attack");
@@ -37,6 +38,7 @@ public class Protagonist {
                 case "Cool Looking Helmet" -> battleStats[3] += 15;
             }
         }
+        maxHealth = battleStats[2];
     }
 
     public void weaponBoost() {
@@ -225,4 +227,6 @@ public class Protagonist {
     public void resetStats() {battleStats = charStats.clone();}
     public void resetDmg() {dmgDealt = 0;}
     public String toString() {return name;}
+    public void alterStats(int statChange, double percent) {battleStats[statChange] *= percent;}
+    public int getMaxHealth() {return maxHealth;}
 }

@@ -8,7 +8,6 @@ public class Main {
         sound.sound("Fireball", 400);
         sound.sound("Explosion", 400);*/
     }
-
     private static void printSlow(String text) {
         for (int i = 0; i < text.length(); i++) {
             System.out.print(text.charAt(i));

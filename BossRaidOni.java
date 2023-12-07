@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class BossRaidOni { // you have ten tally, it ends either when you or the boss dies, or 10 tally have passed
     private int tally = 1;
-    private double multiplier;
+    private double multiplier = 1;
     private int protagChoice;
     private Protagonist pro;
     private CEO ceo = new CEO();
@@ -16,7 +16,6 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     private boolean enemyDot;
     private boolean playerDot;
     private boolean playerSaw;
-    private boolean playerAdvantage;
 
     public BossRaidOni(Protagonist pro) throws InterruptedException {
         this.pro = pro;
@@ -25,16 +24,20 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     public void game() throws InterruptedException { //remember to change this to prioritize speed
         pro.accessoriesCheck();
         pro.weaponBoost();
+        System.out.println("Attempt " + CEO.attempts);
         System.out.println("You were ambushed by the CEO of Racism!");
-        if (CEO.attempts > 1) System.out.println("How did you let him get the jump on you again");
+        if (CEO.attempts > 1) System.out.println("How did you let him get the jump on you again??");
         sound.sound("FIGHT-BACK", 5000);
-        pro.takeDmg((int) (.3 * pro.getBattleStats()[2]));
+        pro.takeDmg((int) (.1 * pro.getBattleStats()[2]));
         while (pro.getBattleStats()[2] > 0 && tally <= 10) {
             while (rand.nextInt(1, 11) != 5)
             {
                 multiplier ++;
             }
-            if (multiplier > 1.3) {playerAdvantage = true;}
+            if (multiplier > 1.3) {
+                pro.alterStats(0, 1.2);
+                multiplier = 1;
+            }
             System.out.println("Turn " + tally);
             getInfo();
             enemyDot();//enemy takes dot
@@ -52,14 +55,11 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
             if (pro.getBattleStats()[2] <= 0) {
                 System.out.println("hah, loser, we're going in for another round BABY");
                 pro.resetStats();
-                CEO.attempts += 1;
-                System.out.println("Attempt " + CEO.attempts);
                 BossRaidOni retry = new BossRaidOni(pro);
                 break;
             }
             sleep(200);
             // Display stats at the start of the turn
-            tally++;
         }
     }
     public void playerAction() {
@@ -75,8 +75,8 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
             tally += 1;
         }
     }
-    public void ceoAction() {
-        int ceoChoice = ceo.enemyChoice();
+    public void ceoAction() throws InterruptedException {
+        ceo.enemyChoice();
         if (tally % 2 == 0) {
             if (!evasionCheck(pro.getBattleStats()[4], ceo.toString())) {
                 ceoSkillCheck();
@@ -122,12 +122,41 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     public void ceoSkillCheck() {
         skill = ceo.getSkill();
         switch (skill) {
-            case "Basic Attack":
-            case "Taunt":
-            case "Impale":
-            case "Axe Kick":
-            case "RAGING DEMON":
+            case "Basic Attack" -> {
+                parryCheck();
+                pro.resetParry();
+            }
+            case "Taunt" -> //permanently lowers your defense by 5%
+                    pro.alterStats(1, .95);
+            case "Impale" -> { //permanently lowers your attack by 3%, applies dot
+                if (!parryCheck()) {
+                    pro.alterStats(0, .97);
+                    playerDot = true;
+                }
+            }
+            case "Axe Kick" -> {
+                if (pro.getBattleStats()[2] <= pro.getMaxHealth() * .3) {
+                    System.out.println("You got executed by his axe kick, ngl I think it's a skill issue\n");
+                    pro.alterStats(2, 0);
+                }
+            }
+            case "RAGING DEMON" -> {
+                if (!parryCheck()) {
+                    sound.sound("FIGHT-BACK", 5000);
+                }
+            }
         }
+    }
+
+    public boolean parryCheck()
+    {
+        if (pro.getParry()) {
+            System.out.println(pro.toString() + " parries " + ceo.toString() + "'s attack!");
+            sound.sound("Parry", 1200);
+            ceo.resetDmg();
+            return true;
+        }
+        return false;
     }
     public boolean evasionCheck(int evasion, String name) {
         if (rand.nextInt(1, 101) <= evasion) {

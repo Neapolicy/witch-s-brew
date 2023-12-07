@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class CEO {
-    public static int attempts = 1;
+    public static int attempts;
     private ArrayList<String> skills = new ArrayList<>(); // equip skills here
     private Sound sound = new Sound();
     private Random rand = new Random();
     private int dmgDealt;
     private int pity;
     private String skill;
-    private int[] charStats = {30, 50, 1000, 50, 0}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in charStats
+    private int[] charStats = {20, 50, 500, 50, 0}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in charStats
 
     public CEO()
     {
@@ -25,7 +25,7 @@ public class CEO {
         sound.sound("Hit", 400);
     }
 
-    public int enemyChoice() { // enemy makes their decision
+    public int enemyChoice() throws InterruptedException { // enemy makes their decision
         resetDmg();
         int choice = rand.nextInt(1, 21);
         if (pity >= 5) {choice = rand.nextInt(1, 26);}
@@ -58,16 +58,23 @@ public class CEO {
         return choice;
     }
 
-    public void skillBook(String skill)
-    {
+    public void skillBook(String skill) throws InterruptedException {
         switch (skill) {
             case "Uppercut" -> { // 40% to stun the opponent, but only does ok dmg
                 {uppercut();}
             }
             case "Taunt" -> System.out.println(this + " started to say some not so nice things to you\n");
-            case "RAGING DEMON" -> System.out.println("Ruh Roh\n");
-            case "Axe Kick" -> System.out.println(this + " performs a sick looking axe kick\n");
-            case "Impale" -> System.out.println("You were impaled by " + this + "\n");
+            case "RAGING DEMON" ->
+            {   System.out.println("Ruh Roh\n");
+                Thread.sleep(2000);
+                dmgDealt = (int) (charStats[0] * 1.15);}
+            case "Axe Kick" ->
+            {   System.out.println(this + " performs a sick looking axe kick\n");
+                dmgDealt = (int) (charStats[0] * .4);}
+            case "Impale" -> {
+                System.out.println("You were impaled by " + this + "\n");
+                dmgDealt = (int) (charStats[0] * 1.1);
+            }
         }
     }
     public void uppercut()
