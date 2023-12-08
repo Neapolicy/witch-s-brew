@@ -2,7 +2,9 @@ import java.util.Random;
 /** A class that acts as a "game-board", where everything is handled, ex enemy options, player choice
  * contains methods that allows the fundamental parts of the game to function
  * @author Matthew Lin
- * @version 1.??? */
+ * @version 1.???
+ * precondition: both the protagonist and enemy must have above 0 hp for the gameboard to function
+ * post condition: either you or the enemy wins, if enemy wins, game ends*/
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int turns = 1; //internal counter, if i add another turn counter, create new variable to handle that

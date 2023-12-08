@@ -13,7 +13,6 @@ public class CEO {
 
     public CEO()
     {
-        attempts++;
         skills.add("Basic Attack");
         skills.add("Impale"); // lowers your attack, does insane damage
         skills.add("Taunt"); // lowers defense
