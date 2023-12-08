@@ -26,20 +26,22 @@ public class Sound
         }
     }
 
-    public void loopSound(String name)
+    public void soundMP3(String name, int time)
     {
-        try
-        {
-            File file = new File("Sound/Music/" + name + ".wav");
+        try {
+            File file = new File("Sound/Music/" + name + ".mp3");
             AudioInputStream stream = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();
             clip.open(stream);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
             clip.start();
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
+
+            // sleep to allow enough time for the clip to play
+            Thread.sleep(time);
+
+            stream.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 }
