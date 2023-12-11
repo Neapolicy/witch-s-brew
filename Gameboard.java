@@ -132,13 +132,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     /**Same function as skillCheck, except these handles enemies **/
 
     public void enemySkillCheck() {
-        try {
-            skill = enemy.getSkills().get(enemyChoice - 1);
-        }
-        catch (Exception e)
-        {
-            skill = "Basic Attack"; //defaults to basic attack if the number roller is index out of bounds
-        }
+        skill = enemy.getSkill();
         switch (skill) {
             case "Basic Attack" -> {  // checks for parry, if parry on, no dmg, else take dmg
                 if (pro.getParry()) {

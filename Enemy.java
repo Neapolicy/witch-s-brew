@@ -12,6 +12,7 @@ public class Enemy extends Protagonist { // day one enemy
     private Random rand = new Random();
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private int count = 1;
+    private String skill;
 
     public Enemy() { // add accessories here and skills
         skills.add("Basic Attack");
@@ -35,23 +36,21 @@ public class Enemy extends Protagonist { // day one enemy
         if (count == 1) choice = 2; // first turn, enemy will always parry
         count++;
         switch (choice) {
-            case 1, 5, 4:
+            case 1, 5, 4 -> {
                 System.out.println(this + " strikes!\n");
                 skillPoints += 1;
-                if (skillPoints > 5) {
-                    skillPoints = 5;
-                }
+                skill = skills.get(0);
                 dmgDealt = battleStats[0];
                 weaponCheck();
-                break;
-            case 2:
-                String skill = skills.get(choice - 1);
+            }
+            case 2 -> {
+                skill = skills.get(1); //parry
                 skillBook(skill, skillPoints);
-                break;
-            case 3:
-                skill = skills.get(choice - 1);
+            }
+            case 3 -> {
+                skill = skills.get(2); //uppercut
                 skillBook(skill, skillPoints);
-                break;
+            }
         }
         return choice;
     }
@@ -100,4 +99,5 @@ public class Enemy extends Protagonist { // day one enemy
         dmgDealt = 0;
     }
     public String toString() {return "CEO Goon";}
+    public String getSkill() {return skill;}
 }

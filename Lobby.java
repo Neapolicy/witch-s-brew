@@ -10,7 +10,7 @@ public class Lobby {
     private int equipNum;
     private String answer;
     private int turns = 2;
-    private int days = 3;
+    private int days = 1;
     private Protagonist pro = new Protagonist();
     private final Scanner s = new Scanner(System.in);
 
