@@ -9,6 +9,7 @@ public class Enemy2 extends Enemy{
     private Sound sound = new Sound();
     private int skillPoints = 0;
     private String previousSkill;
+    private String RESET = "\u001B[0m";
     private String skill;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
@@ -75,7 +76,7 @@ public class Enemy2 extends Enemy{
         battleStats[2] -= (int) (damage * (100.0 / (100 + battleStats[1])));
     }
 
-    public String getName() {return "Underpaid CEO Goon";}
+    public String getName() {return "\u001B[31m" + "CEO Goon" + RESET;}
 
     public ArrayList<String> getSkills() {
         return skills;

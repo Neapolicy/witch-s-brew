@@ -13,6 +13,7 @@ public class Enemy extends Protagonist { // day one enemy
     private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
     private int count = 1;
     private String skill;
+    private String RESET = "\u001B[0m";
 
     public Enemy() { // add accessories here and skills
         skills.add("Basic Attack");
@@ -98,6 +99,6 @@ public class Enemy extends Protagonist { // day one enemy
     {
         dmgDealt = 0;
     }
-    public String toString() {return "CEO Goon";}
+    public String toString() {return "\u001B[31m" + "CEO Goon" + RESET;}
     public String getSkill() {return skill;}
 }

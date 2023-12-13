@@ -11,20 +11,21 @@ public class Lobby {
     private String answer;
     private int turns = 2;
     private int days = 1;
+    private String RESET = "\u001B[0m";
     private Protagonist pro = new Protagonist();
     private final Scanner s = new Scanner(System.in);
 
     public Lobby() throws InterruptedException // i might have to delegate cash flow to the lobby function instead of doing it in the stock market itself
     {
         System.out.print("Enter your name: ");
-        name = s.nextLine();
+        name = "\u001B[34m" + s.nextLine() + RESET;
         pro.setName(name);
         decisionMaker();
     }
 
     public void decisionMaker() throws InterruptedException { // make your choice, spend your day wisely
         System.out.println("Day " + days);
-        System.out.println("You have " + (3 - days) + " days left");
+        System.out.println("You have " + "\u001B[35m" + (3 - days) + RESET + " days left");
         while (turns != 0) {
             pro.resetStats();
             System.out.println("\nWhat would " + name + " like to do?\n");

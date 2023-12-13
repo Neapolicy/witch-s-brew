@@ -123,10 +123,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     public void ceoSkillCheck() {
         skill = ceo.getSkill();
         switch (skill) {
-            case "Basic Attack" -> {
-                parryCheck();
-                pro.resetParry();
-            }
+            case "Basic Attack" -> parryCheck();
             case "Taunt" -> //permanently lowers your defense by 5%
                     pro.alterStats(1, .95);
             case "Impale" -> { //permanently lowers your attack by 3%, applies dot
@@ -147,6 +144,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
                 }
             }
         }
+        pro.resetParry();
     }
 
     public boolean parryCheck()

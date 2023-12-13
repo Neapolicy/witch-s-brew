@@ -8,6 +8,7 @@ public class Enemy3 extends Enemy { // day three enemy
     private boolean parry;
     private Sound sound = new Sound();
     private int revs;
+    private String RESET = "\u001B[0m";
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
     private ArrayList<String> skills = new ArrayList<>(); // equip skills here
@@ -84,6 +85,6 @@ public class Enemy3 extends Enemy { // day three enemy
     public ArrayList<String> getSkills() {return skills;}
 
     public void resetDmg() {dmgDealt = 0;}
-    public String toString() {return "Maniacal Goon";}
+    public String toString() {return "\u001B[31m" + "Maniacal Goon" + RESET;}
     public String getSkill() {return skill;}
 }
