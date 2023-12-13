@@ -6,7 +6,7 @@ public class Lobby {
     private Sound sound = new Sound(); // add sound effects for selecting stuff, and errors
     private Shop shop = new Shop();
     private StockMarket stockMarket = new StockMarket();
-    private int balance = 4000;
+    private int balance = 4000; //for the sake of demonstration and stuff, you get way more money than you're supposed to
     private int equipNum;
     private String answer;
     private int turns = 2;
@@ -16,7 +16,7 @@ public class Lobby {
 
     public Lobby() throws InterruptedException // i might have to delegate cash flow to the lobby function instead of doing it in the stock market itself
     {
-        System.out.print("And what's your name, questionable hero(?): ");
+        System.out.print("Enter your name: ");
         name = s.nextLine();
         pro.setName(name);
         decisionMaker();
@@ -82,7 +82,7 @@ public class Lobby {
 
     public void dayCount() throws InterruptedException {
         stockMarket.cashFlow();
-        System.out.println("A day had passed");
+        System.out.println("A day has passed");
         days += 1;
         turns = 2;
         decisionMaker();
@@ -101,9 +101,7 @@ public class Lobby {
     public void editChar() {
         System.out.println("\nCharacter Stats (Attack, Defense, Health, Debuff Resistance, and Evasion, respectively)");
         System.out.println("Do note that this is after the modifications of your stats through accessories");
-        for (int charStat : pro.getBattleStats()) {
-            System.out.print(charStat + " ");
-        }
+        for (int charStat : pro.getBattleStats()) {System.out.print(charStat + " ");}
         System.out.println("\n\nHow would you like to modify your character?");
         System.out.println("1) Change Weapons");
         System.out.println("2) Equip Accessories");
@@ -130,7 +128,9 @@ public class Lobby {
             printAccessory();
             System.out.println("Please type the number corresponding to the accessory you would like to equip");
             equipNum = s.nextInt();
-            if (shop.getItemsBought().contains(shop.getItemsBought().get(equipNum - 1)))
+            s.nextLine();
+            if (equipNum == -1) {editChar();}
+            else if (shop.getItemsBought().contains(shop.getItemsBought().get(equipNum - 1)))
             {
                 if (pro.getInvSize() == 3)
                 {
@@ -154,7 +154,6 @@ public class Lobby {
                     changeAcc();
                 }
             }
-            else if (equipNum == -1) {editChar();}
             else
             {
                 System.out.println("Invalid option, please try again!");
@@ -173,6 +172,7 @@ public class Lobby {
             }
             System.out.println("Please type the number corresponding to the weapon you would like to equip");
             equipNum = s.nextInt();
+            s.nextLine(); //necessary, consumes the line
             if (equipNum == -1) {editChar();}
             else if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
             {
@@ -199,6 +199,7 @@ public class Lobby {
         }
         System.out.println("Please type the number corresponding to the skill you would like to inspect");
         equipNum = s.nextInt();
+        s.nextLine();
         if (equipNum > pro.getSkills().size())
         {
             System.out.println("Can't do that, chum.");

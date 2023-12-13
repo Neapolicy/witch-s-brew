@@ -23,8 +23,6 @@ public class Protagonist {
     public Protagonist() {
         skills.add("Basic Attack");
         skills.add("Parry");
-        skills.add("Fireball"); // reminder to remove this when done testing
-        skills.add("Chainsaw");
     }
 
     public void accessoriesCheck() {

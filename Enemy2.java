@@ -12,7 +12,7 @@ public class Enemy2 extends Enemy{
     private String skill;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
-    private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
+    private ArrayList<String> skills = new ArrayList<>(); // equip skills here
     public Enemy2() {
         skills.add("Basic Attack");
         skills.add("Parry");
@@ -43,7 +43,7 @@ public class Enemy2 extends Enemy{
             }
             case 11 -> uppercut();
             default -> {
-                skill = skills.get(3); // parry
+                skill = skills.get(3); // fireball
                 skillBook(skill, skillPoints);
             }
         }

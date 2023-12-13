@@ -33,7 +33,7 @@ public class Enemy extends Protagonist { // day one enemy
         } else {
             choice = rand.nextInt(1, 6);
         }
-        if (count == 1) choice = 2; // first turn, enemy will always parry
+        if (count == 1) choice = 3; // first turn, enemy will always parry
         count++;
         switch (choice) {
             case 1, 5, 4 -> {

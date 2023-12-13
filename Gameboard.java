@@ -99,7 +99,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     sound.sound("Blocked", 1000);
                     pro.resetDmg();
                 }
-                enemy.resetParry();
             }
             case "Uppercut" -> { //should only determine stun, theoretically, also uppercut goes past guard, it is intentional
                 if (rand.nextBoolean()) {
@@ -109,10 +108,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                         System.out.println(enemy.toString() + " is stunned! Use this chance to strike them again!\n");
                         turns += 1;
                     }
-                }
-                enemy.resetParry(); // dont include parry, (nvm it is relevant)
+                }// dont include parry, (nvm it is relevant)
             }
-            case "Parry" -> enemy.resetParry();
             case "Fireball" -> {
                 if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
                     System.out.println(enemy.toString() + " was not set on fire\n");
@@ -128,6 +125,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 }
             }
         }
+        enemy.resetParry();
     }
     /**Same function as skillCheck, except these handles enemies **/
 
@@ -140,7 +138,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     sound.sound("Parry", 1200);
                     enemy.resetDmg();
                 }
-                pro.resetParry();
             }
             case "Uppercut" -> { //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
@@ -152,7 +149,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     }
                 }
             }
-            case "Parry" -> pro.resetParry();
             case "Fireball" ->
             {
                 if (rand.nextInt(1, 101) <= pro.getBattleStats()[3]) {
@@ -169,6 +165,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 }
             }
         }
+        pro.resetParry();
     }
     /**Checks if the target is able to dodge an attack, this is pure chance **/
     public boolean evasionCheck(int evasion, String name) {
@@ -224,7 +221,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     public void getInfo() {
         System.out.println("Your stats: " + pro.getBattleStats()[2] + " health, " + pro.getSkillPoints() + " skill points");
         System.out.println(status());
-        System.out.println(enemy.getBattleStats()[2]);
     }
     /** Gives player rough estimate of enemy health**/
     public String status() {
