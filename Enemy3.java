@@ -11,7 +11,6 @@ public class Enemy3 extends Enemy { // day three enemy
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Random rand = new Random();
     private ArrayList<String> skills = new ArrayList<>(); // equip skills here
-    private int count = 1;
     private String skill;
 
     public Enemy3() { // add accessories here and skills
@@ -33,8 +32,6 @@ public class Enemy3 extends Enemy { // day three enemy
         } else {
             choice = rand.nextInt(1, 20);
         }
-        if (count == 1) choice = 2; // first turn, enemy will always parry
-        count++;
         switch (choice) {
             case 1, 2, 3, 4 -> {
                 skill = null;
