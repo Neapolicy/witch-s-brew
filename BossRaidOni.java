@@ -24,6 +24,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     public void game() throws InterruptedException { //remember to change this to prioritize speed
         pro.accessoriesCheck();
         pro.weaponBoost();
+        CEO.attempts++;
         System.out.println("Attempt " + CEO.attempts);
         System.out.println("You were ambushed by the CEO of Racism!");
         if (CEO.attempts > 1) System.out.println("How did you let him get the jump on you again??");
@@ -34,8 +35,8 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
             {
                 multiplier ++;
             }
-            if (multiplier > 1.3) {
-                pro.alterStats(0, 1.2);
+            if (multiplier > 1.5) {
+                pro.alterStats(0, 1.1);
                 multiplier = 1;
             }
             System.out.println("Turn " + tally);
@@ -122,10 +123,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     public void ceoSkillCheck() {
         skill = ceo.getSkill();
         switch (skill) {
-            case "Basic Attack" -> {
-                parryCheck();
-                pro.resetParry();
-            }
+            case "Basic Attack" -> parryCheck();
             case "Taunt" -> //permanently lowers your defense by 5%
                     pro.alterStats(1, .95);
             case "Impale" -> { //permanently lowers your attack by 3%, applies dot
@@ -146,6 +144,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
                 }
             }
         }
+        pro.resetParry();
     }
 
     public boolean parryCheck()

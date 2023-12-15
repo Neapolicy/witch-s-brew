@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        //printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");
+        /*printSlow("You start here, in an unknown land, after the CEO of Racism\nWhat could go wrong?\n");*/
         Lobby lobby = new Lobby();
         Sound sound = new Sound();
         /*sound.sound("Finger-Snap", 500);

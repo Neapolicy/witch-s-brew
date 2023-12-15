@@ -9,11 +9,11 @@ public class CEO {
     private int dmgDealt;
     private int pity;
     private String skill;
+    private String RESET = "\u001B[0m";
     private int[] charStats = {20, 50, 500, 50, 0}; //attack, defense, health, resistance to debuffs, evasion, do not modify these in charStats
 
     public CEO()
     {
-        attempts++;
         skills.add("Basic Attack");
         skills.add("Impale"); // lowers your attack, does insane damage
         skills.add("Taunt"); // lowers defense
@@ -94,5 +94,5 @@ public class CEO {
     {return dmgDealt;}
 
     public void resetDmg() {dmgDealt = 0;}
-    public String toString() {return "CEO of Racism";}
+    public String toString() {return "\\u001B[35m" + "CEO Goon" + RESET;}
 }

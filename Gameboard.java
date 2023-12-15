@@ -2,7 +2,9 @@ import java.util.Random;
 /** A class that acts as a "game-board", where everything is handled, ex enemy options, player choice
  * contains methods that allows the fundamental parts of the game to function
  * @author Matthew Lin
- * @version 1.??? */
+ * @version 1.???
+ * precondition: both the protagonist and enemy must have above 0 hp for the gameboard to function
+ * post condition: either you or the enemy wins, if enemy wins, game ends*/
 public class Gameboard // im gonna need to do some heavy rewriting of this code LMAO
 {
     private int turns = 1; //internal counter, if i add another turn counter, create new variable to handle that
@@ -97,7 +99,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     sound.sound("Blocked", 1000);
                     pro.resetDmg();
                 }
-                enemy.resetParry();
             }
             case "Uppercut" -> { //should only determine stun, theoretically, also uppercut goes past guard, it is intentional
                 if (rand.nextBoolean()) {
@@ -107,10 +108,8 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                         System.out.println(enemy.toString() + " is stunned! Use this chance to strike them again!\n");
                         turns += 1;
                     }
-                }
-                enemy.resetParry(); // dont include parry, (nvm it is relevant)
+                }// dont include parry, (nvm it is relevant)
             }
-            case "Parry" -> enemy.resetParry();
             case "Fireball" -> {
                 if (rand.nextInt(1, 101) <= enemy.getBattleStats()[3]) {
                     System.out.println(enemy.toString() + " was not set on fire\n");
@@ -126,17 +125,12 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 }
             }
         }
+        enemy.resetParry();
     }
     /**Same function as skillCheck, except these handles enemies **/
 
     public void enemySkillCheck() {
-        try {
-            skill = enemy.getSkills().get(enemyChoice - 1);
-        }
-        catch (Exception e)
-        {
-            skill = "Basic Attack"; //defaults to basic attack if the number roller is index out of bounds
-        }
+        skill = enemy.getSkill();
         switch (skill) {
             case "Basic Attack" -> {  // checks for parry, if parry on, no dmg, else take dmg
                 if (pro.getParry()) {
@@ -144,7 +138,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     sound.sound("Parry", 1200);
                     enemy.resetDmg();
                 }
-                pro.resetParry();
             }
             case "Uppercut" -> { //should only determine stun, theoretically
                 if (rand.nextBoolean()) {
@@ -156,7 +149,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                     }
                 }
             }
-            case "Parry" -> pro.resetParry();
             case "Fireball" ->
             {
                 if (rand.nextInt(1, 101) <= pro.getBattleStats()[3]) {
@@ -173,6 +165,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 }
             }
         }
+        pro.resetParry();
     }
     /**Checks if the target is able to dodge an attack, this is pure chance **/
     public boolean evasionCheck(int evasion, String name) {
@@ -228,7 +221,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     public void getInfo() {
         System.out.println("Your stats: " + pro.getBattleStats()[2] + " health, " + pro.getSkillPoints() + " skill points");
         System.out.println(status());
-        System.out.println(enemy.getBattleStats()[2]);
     }
     /** Gives player rough estimate of enemy health**/
     public String status() {
