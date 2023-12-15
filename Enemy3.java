@@ -37,6 +37,7 @@ public class Enemy3 extends Enemy { // day three enemy
             case 1, 2, 3, 4 -> {
                 skill = null;
                 System.out.println(this + " revs their chainsaw");
+                sound.sound("low_revs", 200);
                 revs++;
             }
             case 5, 6 -> uppercut();
@@ -48,6 +49,7 @@ public class Enemy3 extends Enemy { // day three enemy
             {
                 skill = skills.get(0);
                 System.out.println(this + " lunges at you like a madman!");
+                sound.sound("chain_attack", 500);
                 dmgDealt = battleStats[0] * revs;
                 revs = 0;
             }

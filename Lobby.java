@@ -151,6 +151,7 @@ public class Lobby {
                 }
                 else {
                     pro.addAccessory(shop.getItemsBought().get(equipNum - 1));
+                    sound.sound("accessory_equip", 500);
                     shop.getItemsBought().remove(equipNum - 1);
                     changeAcc();
                 }

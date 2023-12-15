@@ -136,9 +136,11 @@ public class Protagonist {
         {
             dmgDealt = (battleStats[0] * response) + 5;
             skillPoints -= response;
+            if (response >=2) sound.sound("low_revs", 300);
+            else sound.sound("high_rev", 300);
+            sound.sound("chain_attack", 500);
         }
     }
-
     public boolean skillCheck(int cost)
     {
         if (skillPoints >= cost)
