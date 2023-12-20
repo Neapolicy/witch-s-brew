@@ -30,7 +30,7 @@ public class StockMarket {
     public void invest()
     {
         System.out.println("How much would you like to invest?");
-        answer = s.nextInt();
+        answer = Math.abs(s.nextInt());
         if (answer > cash)
         {
             System.out.println("As much as I would like to allow you to invest yourself into debt, I can't, sorry.");

@@ -8,7 +8,7 @@ public class Enemy2 extends Enemy{
     private int health = charStats[2];
     private Sound sound = new Sound();
     private int skillPoints = 0;
-    private String previousSkill;
+    private String previousSkill = "lol";
     private String RESET = "\u001B[0m";
     private String skill;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
