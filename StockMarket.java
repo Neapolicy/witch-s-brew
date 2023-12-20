@@ -6,12 +6,13 @@ public class StockMarket {
     private Random rand = new Random();
     private Scanner s = new Scanner(System.in);
     private int answer;
+    private String RESET = "\u001B[0m";
     public void setCash(int cash)
     {
         this.cash = cash;
         cashFlow();
-        System.out.println("Invest (1) or sell (2)? (Current balance is " + cash + " shells)");
-        System.out.println("Your stocks are currently worth " + stockVal + " shells");
+        System.out.println("Invest (1) or sell (2)? (Current balance is " + "\u001B[32m" + cash + RESET + " shells)");
+        System.out.println("Your stocks are currently worth " + "\u001B[32m" + stockVal + RESET + " shells");
         answer = s.nextInt();
         if (answer == 1)
         {
@@ -46,7 +47,7 @@ public class StockMarket {
     public void sell()
     {
         System.out.println("How much would you like to sell?");
-        answer = s.nextInt();
+        answer = Math.abs(s.nextInt());
         if (answer > stockVal)
         {
             System.out.println("Can't do that!");

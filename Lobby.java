@@ -10,7 +10,7 @@ public class Lobby {
     private int equipNum;
     private String answer;
     private int turns = 2;
-    private int days = 2;
+    private int days = 1;
     private String RESET = "\u001B[0m";
     private Protagonist pro = new Protagonist();
     private final Scanner s = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class Lobby {
     }
 
     public void decisionMaker() throws InterruptedException { // make your choice, spend your day wisely
-        System.out.println("Day " + days);
+        System.out.println("Day " + "\u001B[35m" + days + RESET);
         System.out.println("You have " + "\u001B[35m" + (3 - days) + RESET + " days left");
         while (turns != 0) {
             pro.resetStats();

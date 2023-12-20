@@ -94,5 +94,5 @@ public class CEO {
     {return dmgDealt;}
 
     public void resetDmg() {dmgDealt = 0;}
-    public String toString() {return "\\u001B[35m" + "CEO Goon" + RESET;}
+    public String toString() {return "\\u001B[35m" + "CEO of Racism" + RESET;}
 }

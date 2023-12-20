@@ -8,13 +8,14 @@ public class Shop {
     private ArrayList<String> goods = new ArrayList<>();
     private ArrayList<String> bought = new ArrayList<>(); // keeps track of bought accessories
     private ArrayList<String> boughtWeapons = new ArrayList<>();
+    private String RESET = "\u001B[0m";
 
     public Shop() {
         addItems();
     }
 
     public void goods() throws InterruptedException {
-        System.out.println("\nWhat would you like to buy?\nYou have " + balance + " shells\n\nType -1 to exit, -2 for inventory\n");
+        System.out.println("\nWhat would you like to buy?\nYou have " + "\u001B[32m" + balance + RESET + " shells\n\nType -1 to exit, -2 for inventory\n");
         for (int i = 0; i < goods.size(); i++) {
             System.out.println(i + 1 + ": " + goods.get(i));
         }
