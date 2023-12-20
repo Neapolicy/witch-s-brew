@@ -44,14 +44,6 @@ Honkai Impact 3rd, Herrscher of Flamescion for fireball sound effect
 [Death Sound Effect](https://www.youtube.com/watch?v=vthaBJaTWcE)
 
 ## Self Reminders to implement these features
-skill system
-<br>
-character customization
-<br>
-more enemies
-<br>
-create the boss fight and the boss itself
-<br>
 add more sound to stuff
 <br>
 balance out the enemies and items
@@ -59,8 +51,6 @@ balance out the enemies and items
 adjust the item prices
 <br>
 make sure the accessories actually work
-<br>
-CC resist
 <br>
 give the lines flair by giving it color and improve readability
 <br>
