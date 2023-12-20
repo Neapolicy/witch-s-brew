@@ -76,7 +76,7 @@ public class Enemy2 extends Enemy{
         battleStats[2] -= (int) (damage * (100.0 / (100 + battleStats[1])));
     }
 
-    public String getName() {return "\u001B[31m" + "CEO Goon" + RESET;}
+    public String getName() {return "\u001B[31m" + "Fire Wielding Goon" + RESET;}
 
     public ArrayList<String> getSkills() {
         return skills;
