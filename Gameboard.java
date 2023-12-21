@@ -168,7 +168,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
     /**Checks if the target is able to dodge an attack, this is pure chance **/
     public boolean evasionCheck(int evasion, String name) {
-        if (rand.nextInt(1, 101) <= evasion && !skill.equals("Parry")) {
+        if (rand.nextInt(1, 101) <= evasion) {
             System.out.println(name + " whiffs their attack!");
             return true;
         }
