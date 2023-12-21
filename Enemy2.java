@@ -30,7 +30,6 @@ public class Enemy2 extends Enemy{
         resetDmg();
         int choice = rand.nextInt(1, 10); //INCOMPLETE WIP
         if (previousSkill.equals("Fireball")) choice = 11;
-        choice = 10;
         switch (choice) {
             case 1, 3, 4, 5 -> {
                 System.out.println(this + " strikes!\n");

@@ -56,7 +56,6 @@ public class Protagonist {
     public int choice() { // The place where you make your choice
         while (true) {
             dmgDealt = 0;
-            System.out.println(sideArm);
             System.out.println("\nPick your move");
             for (int i = 0; i < skills.size(); i++) {
                 System.out.println("(" + (i + 1) + ") " + skills.get(i));
@@ -135,10 +134,10 @@ public class Protagonist {
 
 
     public void chainsaw() {
-        System.out.println("How many times would you live to rev your chainsaw?");
+        System.out.println("How many times would you like to rev your chainsaw?");
         int response = s.nextInt();
         if (skillPoints - response < 0) {
-            System.out.println("Not enough Skill Points!\n");
+            System.out.println("Not enough Skill Points.TM!\n");
             choice();
         } else {
             dmgDealt = (battleStats[0] * response) + 5;

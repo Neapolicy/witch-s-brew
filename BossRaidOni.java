@@ -167,7 +167,6 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     public void getInfo() {
         System.out.println("Your stats: " + pro.getBattleStats()[2] + " health, " + pro.getSkillPoints() + " skill points");
         System.out.println(status());
-        System.out.println(ceo.getBattleStats()[2]);
     }
     /** Gives player rough estimate of ceo health**/
     public String status() {
