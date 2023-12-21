@@ -33,8 +33,8 @@ public class Lobby {
             System.out.println("Invest in the stock market (2)");
             System.out.println("Access the shop (3)");
             System.out.println("Edit character (4)");
-            System.out.println("(You currently have " + balance + " shells)");
-            System.out.println("You have " + turns + " moves left" );
+            System.out.println("(You currently have " + "\u001B[32m" + balance + RESET + " shells)");
+            System.out.println("You have " + "\u001B[33m" + turns + RESET + " moves left" );
             answer = s.nextLine();
             switch (answer) {
                 case "1" -> {
@@ -45,7 +45,10 @@ public class Lobby {
                         pro.updateStats(days);
                         turns -= 1;
                     } else {
-                        System.out.println("\nYour soul got sent to the depths, harsh lesson you learned from the CEO goons huh?\n");
+                        System.out.println("""
+                                \u001B[36m
+                                Your soul got sent to the depths, harsh lesson you learned from the CEO goons huh?
+                                """);
                         System.out.println("\nGame Over, Thanks For Playing!");
                         sound.sound("To_The_Depths!", 2000);
                         System.exit(1);

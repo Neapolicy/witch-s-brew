@@ -119,8 +119,8 @@ public class Protagonist {
     }
 
     public void fireball() {
-        System.out.println(name + " threw out a fireball!");
-        dmgDealt = (int) (battleStats[0] * .8);
+        System.out.println(this + " threw out a fireball!");
+        dmgDealt = (int) (this.battleStats[0] * .8);
         sound.sound("Finger-Snap", 500);
         sound.sound("Fireball", 400);
         sound.sound("Explosion", 400);
@@ -138,7 +138,7 @@ public class Protagonist {
         System.out.println("How many times would you live to rev your chainsaw?");
         int response = s.nextInt();
         if (skillPoints - response < 0) {
-            System.out.println("Not enough SP!\n");
+            System.out.println("Not enough Skill Points!\n");
             choice();
         } else {
             dmgDealt = (battleStats[0] * response) + 5;
@@ -154,7 +154,7 @@ public class Protagonist {
             skillPoints -= cost;
             return true;
         } else {
-            System.out.println("Not enough skill points!");
+            System.out.println("Not enough Skill Points!");
             choice();
             return false;
         }
@@ -199,13 +199,9 @@ public class Protagonist {
             charStats[i] += days;
         }
         switch (days) {
-            case 1:
-                checkObtained("Uppercut");
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
+            case 1 -> checkObtained("Uppercut");
+            case 2 -> checkObtained("Fireball");
+            case 3 -> checkObtained("Chainsaw");
         }
     }
 

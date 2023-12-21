@@ -11,7 +11,6 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     private Protagonist pro;
     private int days;
     private Random rand = new Random();
-    private int enemyChoice;
     private int protagChoice;
     private int EnemyDotDuration;
     private int PlayerDotDuration;
@@ -63,7 +62,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
 
     public void enemyAction() {
-        enemyChoice = enemy.enemyChoice();
+        enemy.enemyChoice();
         if (turns % 2 == 0) {
             if (!evasionCheck(pro.getBattleStats()[4], enemy.toString())) {
                 enemySkillCheck();
@@ -169,7 +168,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
     /**Checks if the target is able to dodge an attack, this is pure chance **/
     public boolean evasionCheck(int evasion, String name) {
-        if (rand.nextInt(1, 101) <= evasion) {
+        if (rand.nextInt(1, 101) <= evasion && !skill.equals("Parry")) {
             System.out.println(name + " whiffs their attack!");
             return true;
         }
