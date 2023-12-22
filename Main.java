@@ -4,10 +4,6 @@ public class Main {
         obligatory[0] = "idk";
         printSlow("You start here, on an unknown island, after the CEO of Racism\nWhat could go wrong?\n");
         Lobby lobby = new Lobby();
-        Sound sound = new Sound();
-        /*sound.sound("Finger-Snap", 500);
-        sound.sound("Fireball", 400);
-        sound.sound("Explosion", 400);*/
     }
     private static void printSlow(String text) {
         for (int i = 0; i < text.length(); i++) {
