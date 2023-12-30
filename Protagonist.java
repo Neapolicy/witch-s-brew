@@ -122,7 +122,6 @@ public class Protagonist {
         dmgDealt = (int) (this.battleStats[0] * .8);
         sound.sound("Finger-Snap", 500);
         sound.sound("Fireball", 400);
-        sound.sound("Explosion", 400);
     }
 
 
