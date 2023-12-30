@@ -39,8 +39,7 @@ Failing to carry out this hit will most likely result in your death under "myste
 <br>
 Rogue Lineage for the move **FIGHT BACK**
 <br>
-Honkai Impact 3rd, Herrscher of Flamescion for fireball sound effect 
-<br>
+
 [Death Sound Effect](https://www.youtube.com/watch?v=vthaBJaTWcE)
 
 ## Self Reminders to implement these features
