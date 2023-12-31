@@ -79,7 +79,7 @@ public class CEO {
     }
     public void uppercut()
     {
-        System.out.println(this + " sent you into the heavens!\n");
+        System.out.println(this + " sent you into the stratosphere!\n");
         dmgDealt = (int) (charStats[0] * 1.3);
         sound.sound("Uppercut", 1000);
     }
