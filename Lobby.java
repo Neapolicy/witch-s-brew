@@ -33,6 +33,7 @@ public class Lobby {
             System.out.println("Invest in the stock market (2)");
             System.out.println("Access the shop (3)");
             System.out.println("Edit character (4)");
+            System.out.println("Type 5 to skip a day");
             System.out.println("(You currently have " + "\u001B[32m" + balance + RESET + " shells)");
             System.out.println("You have " + "\u001B[33m" + turns + RESET + " moves left" );
             answer = s.nextLine();
@@ -79,6 +80,7 @@ public class Lobby {
                     }
                     editChar();
                 }
+                case "5" -> turns = 0;
             }
         }
         dayCheck();
