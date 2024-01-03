@@ -42,14 +42,6 @@ Rogue Lineage for the move **FIGHT BACK**
 [Death Sound Effect](https://www.youtube.com/watch?v=vthaBJaTWcE)
 
 ## Self Reminders to implement these features
-add more sound to stuff
-<br>
-balance out the enemies and items
-<br>
-adjust the item prices
-<br>
-make sure the accessories actually work
-<br>
 give the lines flair by giving it color and improve readability
 <br>
 make sure evrything works / no bugs
