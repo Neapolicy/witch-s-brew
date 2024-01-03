@@ -19,8 +19,8 @@ public class Protagonist {
     private int skillPoints;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Scanner s = new Scanner(System.in);
-    private ArrayList<String> skills = new ArrayList<String>(); // equip skills here
-    private ArrayList<String> accessoriesOn = new ArrayList<String>(); // accessories that you have equipped
+    private ArrayList<String> skills = new ArrayList<>(); // equip skills here
+    private ArrayList<String> accessoriesOn = new ArrayList<>(); // accessories that you have equipped
     private int maxHealth;
 
     public Protagonist() {
@@ -60,7 +60,7 @@ public class Protagonist {
             for (int i = 0; i < skills.size(); i++) {
                 System.out.println("(" + (i + 1) + ") " + skills.get(i));
             }
-            int choice = s.nextInt();
+            var choice = s.nextInt();
             System.out.println();
             if (choice > skills.size() || choice < 1) {
                 System.out.println("Invalid!");
@@ -207,79 +207,58 @@ public class Protagonist {
      * methods below are getters + setters
      **/
     public void checkObtained(String name) {
-        if (!skills.contains(name)) {
-            skills.add(name);
-        }
+        if (!skills.contains(name)) {skills.add(name);}
     }
 
     public void resetParry() {
         parry = false;
     }
-
     public boolean getParry() {
         return parry;
     }
-
     public void setWeapon(String weapon) {
         this.weapon = weapon;
     }
-
     public void setSide(String weapon) {
         this.sideArm = weapon;
     }
-
     public void addAccessory(String accessory) {
         accessoriesOn.add(accessory);
     }
-
     public int getInvSize() {
         return accessoriesOn.size();
     }
-
     public ArrayList<String> getAccessoriesOn() {
         return accessoriesOn;
     }
-
     public int getSkillPoints() {
         return skillPoints;
     }
-
     public int getDmgDealt() {
         return dmgDealt;
     }
-
     public void takeDmg(int damage) {
         battleStats[2] -= (int) (damage * (100.0 / (100 + battleStats[1])));
     }
-
     public ArrayList<String> getSkills() {
         return skills;
     }
-
-    public int[] getBattleStats() {
-        return battleStats;
-    } // possible enemy move, use a while loop to generate a number, ex, number you want is five, and it keeps track of how much times it loops until it generates a five
-
+    public int[] getBattleStats() {return battleStats;}
     public void setName(String name) {
         this.name = name;
     }
-
     public void resetStats() {
         battleStats = charStats.clone();
     }
-
     public void resetDmg() {
         dmgDealt = 0;
     }
-
     public String toString() {
         return name;
     }
-
     public void alterStats(int statChange, double percent) {
         battleStats[statChange] *= percent;
     }
-
     public int getMaxHealth() {
         return maxHealth;
     }
