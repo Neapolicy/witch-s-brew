@@ -2,6 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 public class StockMarket {
     private int cash;
+    public static int timesInvested;
     private int stockVal;
     private Random rand = new Random();
     private Scanner s = new Scanner(System.in);
@@ -9,6 +10,7 @@ public class StockMarket {
     private String RESET = "\u001B[0m";
     public void setCash(int cash)
     {
+        timesInvested += 1;
         this.cash = cash;
         cashFlow();
         System.out.println("Invest (1) or sell (2)? (Current balance is " + "\u001B[32m" + cash + RESET + " shells)");
@@ -69,6 +71,7 @@ public class StockMarket {
     public void cashFlow()
     {
         double multiplier = rand.nextDouble(-.2, .35);
+        if (timesInvested > 3) multiplier = rand.nextDouble(-.75, .1);
         stockVal *=  (1 + multiplier);
     }
 }
