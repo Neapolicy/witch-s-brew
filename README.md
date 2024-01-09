@@ -41,7 +41,3 @@ Rogue Lineage for the move **FIGHT BACK**
 <br>
 [Death Sound Effect](https://www.youtube.com/watch?v=vthaBJaTWcE)
 
-## Self Reminders to implement these features
-give the lines flair by giving it color and improve readability
-<br>
-make sure evrything works / no bugs
