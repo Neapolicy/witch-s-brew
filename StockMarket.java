@@ -7,24 +7,23 @@ public class StockMarket {
     private Random rand = new Random();
     private Scanner s = new Scanner(System.in);
     private int answer;
+    private boolean first = false;
     private String RESET = "\u001B[0m";
     public void setCash(int cash)
     {
+        if (first) System.out.println("The stock market has crashed!");
         timesInvested += 1;
         this.cash = cash;
         cashFlow();
         System.out.println("Invest (1) or sell (2)? (Current balance is " + "\u001B[32m" + cash + RESET + " shells)");
         System.out.println("Your stocks are currently worth " + "\u001B[32m" + stockVal + RESET + " shells");
         answer = s.nextInt();
-        if (answer == 1)
+        try
         {
-            invest();
+            if (answer == 1) {invest();}
+            else if (answer == 2) {sell();}
         }
-        else if (answer == 2)
-        {
-            sell();
-        }
-        else
+        catch(Exception e)
         {
             System.out.println("...Please try again");
             setCash(cash);
@@ -71,7 +70,11 @@ public class StockMarket {
     public void cashFlow()
     {
         double multiplier = rand.nextDouble(-.2, .35);
-        if (timesInvested > 3) multiplier = rand.nextDouble(-.75, .1);
+        if (timesInvested > 3)
+        {
+            multiplier = rand.nextDouble(-.75, .1);
+            first = true;
+        }
         stockVal *=  (1 + multiplier);
     }
 }
