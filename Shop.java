@@ -60,6 +60,7 @@ public class Shop {
                 if (i == 0) System.out.println("Heres your accessories!!");
                 System.out.println(i + 1 + ": " + bought.get(i));
             }
+            System.out.println();
             for (int i = 0; i < boughtWeapons.size(); i++) {
                 if (i == 0) System.out.println("Heres your weapons!!");
                 System.out.println(i + 1 + ": " + boughtWeapons.get(i));

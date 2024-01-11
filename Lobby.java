@@ -33,6 +33,7 @@ public class Lobby {
             System.out.println("Invest in the stock market (2)");
             System.out.println("Access the shop (3)");
             System.out.println("Edit character (4)");
+            System.out.println("Type 5 to skip a day");
             System.out.println("(You currently have " + "\u001B[32m" + balance + RESET + " shells)");
             System.out.println("You have " + "\u001B[33m" + turns + RESET + " moves left" );
             answer = s.nextLine();
@@ -79,6 +80,7 @@ public class Lobby {
                     }
                     editChar();
                 }
+                case "5" -> turns = 0;
             }
         }
         dayCheck();
@@ -124,7 +126,7 @@ public class Lobby {
     {
         if (!shop.getItemsBought().isEmpty()) // checks if accessory is empty
         {
-            System.out.println("\nWhich accessories would you like to equip? (-1) to exit");
+            System.out.println("\nWhich accessories would you like to equip? (-1) to exit\n");
             for (int i = 0; i < shop.getItemsBought().size(); i++) {
                 if (i == 0) System.out.println("Here's your accessories!!");
                 System.out.println(i + 1 + ": " + shop.getItemsBought().get(i));
@@ -133,37 +135,38 @@ public class Lobby {
             System.out.println("Please type the number corresponding to the accessory you would like to equip");
             equipNum = s.nextInt();
             s.nextLine();
-            if (equipNum == -1) {editChar();}
-            else if (shop.getItemsBought().contains(shop.getItemsBought().get(equipNum - 1)))
+            try
             {
-                if (pro.getInvSize() == 3)
+                if (equipNum == -1) {editChar();}
+                else if (shop.getItemsBought().contains(shop.getItemsBought().get(equipNum - 1)))
                 {
-                    System.out.println("Inventory is full!\nWhich item would you like to remove?");
-                    printAccessory();
-                    try {
-                        int temp = s.nextInt();
-                        shop.addAccessory(pro.getAccessoriesOn().get(temp - 1)); // returns the removed item back to your inventory
-                        pro.getAccessoriesOn().remove(temp - 1); //actually removes it from your inventory
-                        changeAcc();
-                    }
-                    catch (Exception e)
+                    if (pro.getInvSize() == 3)
                     {
-                        System.out.println("Can't do that!");
-                        changeAcc();
+                        System.out.println("Inventory is full!\nWhich item would you like to remove?");
+                        printAccessory();
+                        System.out.println("Type the number corresponding to the position of the item you would like to remove");
+                        try {
+                            int temp = Math.abs(s.nextInt());
+                            shop.addAccessory(pro.getAccessoriesOn().get(temp - 1)); // returns the removed item back to your inventory
+                            pro.getAccessoriesOn().remove(temp - 1); //actually removes it from your inventory
+                        }
+                        catch (Exception e)
+                        {
+                            System.out.println("Can't do that!");
+                        }
                     }
-                }
-                else {
-                    pro.addAccessory(shop.getItemsBought().get(equipNum - 1));
-                    sound.sound("accessory_equip", 500);
-                    shop.getItemsBought().remove(equipNum - 1);
-                    changeAcc();
+                    else {
+                        pro.addAccessory(shop.getItemsBought().get(equipNum - 1));
+                        sound.sound("accessory_equip", 500);
+                        shop.getItemsBought().remove(equipNum - 1);
+                    }
                 }
             }
-            else
+            catch (Exception e)
             {
                 System.out.println("Invalid option, please try again!");
-                changeAcc();
             }
+            changeAcc();
         }
     }
     public void changeWep() // REMEMBER TO ADD SFX TO ACCESSORY EQUIP, SKILL EQUIP(IDK IF I HAVE TO DO THIS IF I'M LOWERING THE SKILLS YOU CAN GET), AND ACCESSORY REMOVAL
@@ -178,20 +181,22 @@ public class Lobby {
             System.out.println("Please type the number corresponding to the weapon you would like to equip");
             equipNum = s.nextInt();
             s.nextLine(); //necessary, consumes the line
-            if (equipNum == -1) {editChar();}
-            else if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
+            try
             {
-                String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the weapon you equipped is a side arm
-                if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
-                else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
-                sound.sound("Equip", 1800);
-                changeWep();
+                if (equipNum == -1) {editChar();}
+                else if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
+                {
+                    String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the weapon you equipped is a side arm
+                    if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
+                    else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
+                    sound.sound("Equip", 1800);
+                }
             }
-            else
+            catch (Exception e)
             {
                 System.out.println("Invalid option, please try again!");
-                changeWep();
             }
+            changeWep();
         }
     }
 
@@ -205,23 +210,25 @@ public class Lobby {
         System.out.println("Please type the number corresponding to the skill you would like to inspect");
         equipNum = s.nextInt();
         s.nextLine();
-        if (equipNum > pro.getSkills().size())
+        try{
+            if(equipNum == -1) {editChar();}
+            else
+            {
+                equipNum = Math.abs(equipNum);
+                switch (pro.getSkills().get(equipNum - 1)) {
+                    case "Basic Attack" -> System.out.println("Your primary attack, costs no SP, gives you one SP on use, does moderate damage\n");
+                    case "Parry" -> System.out.println("Prepare to parry the next BASIC attack, does not work on skills, 1 SP\n");
+                    case "Uppercut" -> System.out.println("An attack that does low damage, but has a high chance of stunning your opponent, allowing you to take another action, 1 SP\n");
+                    case "Fireball" -> System.out.println("A generic fireball, does damage over time on your enemy, and deals decent base damage, 1 SP\n");
+                    case "Chainsaw" -> System.out.println("A chainsaw, damage scales with the amount of SP you invest in it, does damage over time, SP varies\n");
+                }
+            }
+        }
+        catch (Exception e)
         {
             System.out.println("Can't do that, chum.");
-            inspect();
         }
-        else if(equipNum == -1) {editChar();}
-        else
-        {
-            switch (pro.getSkills().get(equipNum - 1)) {
-                case "Basic Attack" -> System.out.println("Your primary attack, costs no SP, gives you one SP on use, does moderate damage\n");
-                case "Parry" -> System.out.println("Prepare to parry the next BASIC attack, does not work on skills, 1 SP\n");
-                case "Uppercut" -> System.out.println("An attack that does low damage, but has a high chance of stunning your opponent, allowing you to take another action, 1 SP\n");
-                case "Fireball" -> System.out.println("A generic fireball, does damage over time on your enemy, and deals decent base damage, 1 SP\n");
-                case "Chainsaw" -> System.out.println("A chainsaw, damage scales with the amount of SP you invest in it, does damage over time, SP varies\n");
-            }
-            inspect();
-        }
+        inspect();
     }
     public void printAccessory()
     {
@@ -231,6 +238,7 @@ public class Lobby {
             {
                 System.out.println(pro.getAccessoriesOn().get(i));
             }
+            System.out.println();
         }
     }
     public void updateBalance() {
