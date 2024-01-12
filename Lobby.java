@@ -9,7 +9,7 @@ public class Lobby {
     private int balance = 4000; //for the sake of demonstration and stuff, you get way more money than you're supposed to
     private int equipNum;
     private String answer;
-    private int turns = 2;
+    public static int turns = 2;
     private int days = 1;
     private String RESET = "\u001B[0m";
     private Protagonist pro = new Protagonist();
@@ -29,11 +29,11 @@ public class Lobby {
         while (turns != 0) {
             pro.resetStats();
             System.out.println("\nWhat would " + name + " like to do?\n");
-            System.out.println("Lower this island's security (1)");
-            System.out.println("Invest in the stock market (2)");
-            System.out.println("Access the shop (3)");
-            System.out.println("Edit character (4)");
-            System.out.println("Type 5 to skip a day");
+            System.out.println("(1) Lower this island's security");
+            System.out.println("(2) Invest in the stock market");
+            System.out.println("(3) Access the shop");
+            System.out.println("(4) Edit character");
+            System.out.println("(5) Skip a day");
             System.out.println("(You currently have " + "\u001B[32m" + balance + RESET + " shells)");
             System.out.println("You have " + "\u001B[33m" + turns + RESET + " moves left" );
             answer = s.nextLine();

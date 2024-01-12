@@ -218,7 +218,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
     }
 
     public void getInfo() {
-        System.out.println("Your stats: " + pro.getBattleStats()[2] + " health, " + pro.getSkillPoints() + " skill points");
+        System.out.println("Your stats: " + pro.getBattleStats()[2] + " health, " + pro.getSkillPoints() + " skill points\n");
         System.out.println(status());
     }
     /** Gives player rough estimate of enemy health**/

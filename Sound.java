@@ -20,7 +20,7 @@ public class Sound implements Runnable
     public void play(String fileName, boolean loopable) //make sure to use the full file name maybe?
     {
         this.loopable = loopable;
-        fileLocation = "SFX/Sounds/" + fileName + ".wav";
+        fileLocation = "Sound/Music/" + fileName + ".wav";
         t1 = new Thread(this);
         t1.start();
     }
