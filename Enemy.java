@@ -22,8 +22,8 @@ public class Enemy extends Protagonist { // day one enemy
     }
 
     public void weaponCheck() { // play weapon sound
-        sound.sound("Melee-Swing", 300);
-        sound.sound("Hit", 400);
+        sound.play("Melee-Swing", false);
+        sound.play("Hit", false);
     }
 
     public int enemyChoice() { // enemy makes their decision
@@ -59,7 +59,7 @@ public class Enemy extends Protagonist { // day one enemy
     {
         System.out.println(this + " tried to perform an uppercut, but went too low!\n");
         dmgDealt = (int) (battleStats[0] * .6);
-        sound.sound("Uppercut", 1000);
+        sound.play("Uppercut", false);
     }
 
     public void resetParry()
@@ -76,7 +76,7 @@ public class Enemy extends Protagonist { // day one enemy
 
     public void parry(String name) {
         parry = true;
-        sound.sound("Block_Attempt", 500);
+        sound.play("Block_Attempt", false);
         System.out.println("\n" + this + " prepares to block the next attack!\n");
     }
 

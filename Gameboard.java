@@ -95,7 +95,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
                 if (enemy.getParry()) //this function only works if there's a certain property to the move, ie stun dot etc
                 {
                     System.out.println(enemy.toString() + " blocked " + pro.toString() + "'s attack!");
-                    sound.sound("Blocked", 1000);
+                    sound.play("Blocked", false);
                     pro.resetDmg();
                 }
             }
@@ -134,7 +134,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
             case "Basic Attack" -> {  // checks for parry, if parry on, no dmg, else take dmg
                 if (pro.getParry()) {
                     System.out.println(pro.toString() + " parries " + enemy.toString() + "'s attack!");
-                    sound.sound("Parry", 1200);
+                    sound.play("Parry", false);
                     enemy.resetDmg();
                 }
             }

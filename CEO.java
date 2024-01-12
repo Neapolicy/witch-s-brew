@@ -21,8 +21,8 @@ public class CEO {
         skills.add("RAGING DEMON"); // ult move
     }
     public void weaponCheck() { // play weapon sound
-        sound.sound("Melee-Swing", 300);
-        sound.sound("Hit", 400);
+        sound.play("Melee-Swing", false);
+        sound.play("Hit", false);
     }
 
     public int enemyChoice() throws InterruptedException { // enemy makes their decision
@@ -81,7 +81,7 @@ public class CEO {
     {
         System.out.println(this + " sent you into the stratosphere!\n");
         dmgDealt = (int) (charStats[0] * 1.3);
-        sound.sound("Uppercut", 1000);
+        sound.play("Uppercut", false);
     }
 
     public int getHealth() {return charStats[2];}

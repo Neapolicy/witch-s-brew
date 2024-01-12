@@ -28,7 +28,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
         System.out.println("Attempt " + CEO.attempts);
         System.out.println("You were ambushed by the CEO of Racism!");
         if (CEO.attempts > 1) System.out.println("How did you let him get the jump on you again??");
-        sound.sound("FIGHT-BACK", 5000);
+        sound.play("FIGHT-BACK", false);
         pro.takeDmg((int) (.1 * pro.getBattleStats()[2]));
         while (pro.getBattleStats()[2] > 0 && tally <= 10) {
             while (rand.nextInt(1, 11) != 5)

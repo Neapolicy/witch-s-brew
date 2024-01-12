@@ -114,21 +114,21 @@ public class Protagonist {
     public void uppercut() {
         System.out.println("You tried to perform an uppercut, but accidentally strike them in the throat!");
         dmgDealt = (int) (battleStats[0] * .7);
-        sound.sound("Uppercut", 1000);
+        sound.play("Uppercut", false);
     }
 
     public void fireball() {
         System.out.println(this + " threw out a fireball!");
         dmgDealt = (int) (this.battleStats[0] * .8);
-        sound.sound("Finger-Snap", 500);
-        sound.sound("Fireball", 400);
+        sound.play("Finger-Snap", false);
+        sound.play("Fireball", false);
     }
 
 
     public void parry(String name) {
         parry = true;
         System.out.println("\n" + name + " prepares to parry the next attack!\n");
-        sound.sound("Block_Attempt", 500);
+        sound.play("Block_Attempt", false);
     }
 
 
@@ -141,9 +141,9 @@ public class Protagonist {
         } else {
             dmgDealt = (battleStats[0] * response) + 5;
             skillPoints -= response;
-            if (response >= 2) sound.sound("low_revs", 300);
-            else sound.sound("high_rev", 300);
-            sound.sound("chain_attack", 500);
+            if (response >= 2) sound.play("low_revs", false);
+            else sound.play("high_rev", false);
+            sound.play("chain_attack", false);
         }
     }
 
@@ -165,13 +165,13 @@ public class Protagonist {
     public void weaponCheck() {
         switch (weapon) {
             case "Switchblade", "Machete" -> {
-                sound.sound("Melee-Swing", 300);
-                sound.sound("Hit", 400);
+                sound.play("Melee-Swing", false);
+                sound.play("Hit", false);
                 sideArm();
             }
             case "Musket", "Flintlock" -> {
-                sound.sound("Gun_Load", 400);
-                sound.sound("Gun_Fire", 800);
+                sound.play("Gun_Load", false);
+                sound.play("Gun_Fire", false);
                 sideArm();
             }
         }
@@ -183,8 +183,8 @@ public class Protagonist {
 
     public void sideArm() {
         if (sideArm.equals("Off-hand Revolver")) {
-            sound.sound("Gun_Load", 400);
-            sound.sound("Gun_Fire", 800);
+            sound.play("Gun_Load", false);
+            sound.play("Gun_Fire", false);
         }
     }
 

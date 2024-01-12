@@ -22,8 +22,8 @@ public class Enemy2 extends Enemy{
 
 
     public void weaponCheck() { // play weapon sound
-        sound.sound("Melee-Swing", 300);
-        sound.sound("Hit", 400);
+        sound.play("Melee-Swing", false);
+        sound.play("Hit", false);
     }
 
     public int enemyChoice() { // enemy makes their decision
@@ -55,7 +55,7 @@ public class Enemy2 extends Enemy{
         skill = skills.get(2);
         System.out.println(this + " tried to perform an uppercut, but accidentally punches your face!");
         dmgDealt = (int) (battleStats[0] * .8);
-        sound.sound("Uppercut", 1000);
+        sound.play("Uppercut", false);
     }
 
     public int getHealth() {

@@ -51,7 +51,7 @@ public class Lobby {
                                 Your soul got sent to the depths, harsh lesson you learned from the CEO goons huh?
                                 """);
                         System.out.println("\nGame Over, Thanks For Playing!");
-                        sound.sound("To_The_Depths!", 2000);
+                        sound.play("To_The_Depths!", false);
                         System.exit(1);
                     }
                 }
@@ -157,7 +157,7 @@ public class Lobby {
                     }
                     else {
                         pro.addAccessory(shop.getItemsBought().get(equipNum - 1));
-                        sound.sound("accessory_equip", 500);
+                        sound.play("accessory_equip", false);
                         shop.getItemsBought().remove(equipNum - 1);
                     }
                 }
@@ -189,7 +189,7 @@ public class Lobby {
                     String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the weapon you equipped is a side arm
                     if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
                     else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
-                    sound.sound("Equip", 1800);
+                    sound.play("Equip", false);
                 }
             }
             catch (Exception e)

@@ -21,8 +21,8 @@ public class Enemy3 extends Enemy { // day three enemy
     }
 
     public void weaponCheck() { // play weapon sound
-        sound.sound("Melee-Swing", 300);
-        sound.sound("Hit", 400);
+        sound.play("Melee-Swing", false);
+        sound.play("Hit", false);
     }
 
     public int enemyChoice() { // enemy makes their decision
@@ -37,7 +37,7 @@ public class Enemy3 extends Enemy { // day three enemy
             case 1, 2, 3, 4 -> {
                 skill = null;
                 System.out.println(this + " revs their chainsaw");
-                sound.sound("low_revs", 200);
+                sound.play("low_revs", false);
                 revs++;
             }
             case 5, 6 -> uppercut();
@@ -49,7 +49,7 @@ public class Enemy3 extends Enemy { // day three enemy
             {
                 skill = skills.get(0);
                 System.out.println(this + " lunges at you like a madman!");
-                sound.sound("chain_attack", 500);
+                sound.play("chain_attack", false);
                 dmgDealt = battleStats[0] * revs;
                 revs = 0;
             }
@@ -61,7 +61,7 @@ public class Enemy3 extends Enemy { // day three enemy
         System.out.println(this + " tried to perform an uppercut, but went too low!\n");
         dmgDealt = (battleStats[0] * 2);
         skill = skills.get(2);
-        sound.sound("Uppercut", 1000);
+        sound.play("Uppercut", false);
     }
 
     public void resetParry() {parry = false;}
@@ -75,7 +75,7 @@ public class Enemy3 extends Enemy { // day three enemy
     public void parry(Enemy3 enemy3) {
         parry = true;
         skill = skills.get(1);
-        sound.sound("Block_Attempt", 500);
+        sound.play("Block_Attempt", false);
         System.out.println("\n" + enemy3 + " prepares to block the next attack!\n");
     }
 
