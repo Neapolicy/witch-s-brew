@@ -15,7 +15,7 @@ public class Protagonist {
     private int[] battleStats = charStats.clone(); //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
-    private String sideArm = "";
+    private String sideArm = "nothing";
     private int skillPoints;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Scanner s = new Scanner(System.in);
@@ -115,7 +115,7 @@ public class Protagonist {
         System.out.println(this + " threw out a fireball!");
         dmgDealt = (int) (this.battleStats[0] * .8);
         sound.play("Finger-Snap", false);
-        Thread.sleep(10);
+        Thread.sleep(400);
         sound.play("Fireball", false);
     }
 
@@ -167,7 +167,7 @@ public class Protagonist {
             }
             case "Musket", "Flintlock" -> {
                 sound.play("Gun_Load", false);
-                Thread.sleep(10);
+                Thread.sleep(400);
                 sound.play("Gun_Fire", false);
             }
         }
@@ -181,7 +181,7 @@ public class Protagonist {
     public void sideArm() throws InterruptedException {
         if (sideArm.equals("Off-hand Revolver")) {
             sound.play("Gun_Load", false);
-            Thread.sleep(10);
+            Thread.sleep(400);
             sound.play("Gun_Fire", false);
         }
     }
@@ -260,4 +260,7 @@ public class Protagonist {
     public int getMaxHealth() {
         return maxHealth;
     }
+
+    public String getWeapon() {return weapon;}
+    public String getSideArm() {return sideArm;}
 }

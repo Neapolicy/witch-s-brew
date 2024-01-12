@@ -177,12 +177,14 @@ public class Lobby {
     {
         if (!shop.getWeaponsBought().isEmpty())
         {
+            System.out.println("You currently have a" + pro.getWeapon() + " as your main weapon\n");
+            System.out.println("You currently have a" + pro.getSideArm() + " as your side weapon\n");
             System.out.println("\nWhich weapon would you like to equip? (-1) to exit");
             for (int i = 0; i < shop.getWeaponsBought().size(); i++) {
                 if (i == 0) System.out.println("Here's your weapons!!");
                 System.out.println(i + 1 + ": " + shop.getWeaponsBought().get(i));
             }
-            System.out.println("Please type the number corresponding to the weapon you would like to equip");
+            System.out.println("\nPlease type the number corresponding to the weapon you would like to equip");
             equipNum = s.nextInt();
             s.nextLine(); //necessary, consumes the line
 
@@ -192,7 +194,7 @@ public class Lobby {
                     String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the weapon you equipped is a side arm
                     if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
                     else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
-                    sound.play("Equip", false);
+                    sound.play("Equip", false); // i don't think equip actually has any audio to it for some reason?
                 }
                 else {System.out.println("Invalid option, please try again!");}
             changeWep();
@@ -206,7 +208,7 @@ public class Lobby {
             if (i == 0) System.out.println("Here's your skills!!");
             System.out.println(i + 1 + ": " + pro.getSkills().get(i));
         }
-        System.out.println("Please type the number corresponding to the skill you would like to inspect");
+        System.out.println("\nPlease type the number corresponding to the skill you would like to inspect");
         equipNum = s.nextInt();
         s.nextLine();
         try{
