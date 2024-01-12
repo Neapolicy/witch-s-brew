@@ -187,7 +187,6 @@ public class Lobby {
             System.out.println("\nPlease type the number corresponding to the weapon you would like to equip");
             equipNum = s.nextInt();
             s.nextLine(); //necessary, consumes the line
-
                 if (equipNum == -1) {editChar();}
                 else if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
                 {
