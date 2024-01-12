@@ -140,7 +140,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
             }
             case "RAGING DEMON" -> {
                 if (!parryCheck()) {
-                    sound.sound("FIGHT-BACK", 5000);
+                    sound.play("FIGHT-BACK", false);
                 }
             }
         }
@@ -151,7 +151,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
     {
         if (pro.getParry()) {
             System.out.println(pro.toString() + " parries " + ceo.toString() + "'s attack!");
-            sound.sound("Parry", 1200);
+            sound.play("Parry", false);
             ceo.resetDmg();
             return true;
         }
