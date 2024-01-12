@@ -26,7 +26,7 @@ public class Enemy2 extends Enemy{
         sound.play("Hit", false);
     }
 
-    public int enemyChoice() { // enemy makes their decision
+    public int enemyChoice() throws InterruptedException { // enemy makes their decision
         resetDmg();
         int choice = rand.nextInt(1, 10); //INCOMPLETE WIP
         if (previousSkill.equals("Fireball")) choice = 11;

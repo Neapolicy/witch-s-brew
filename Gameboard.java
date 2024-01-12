@@ -61,7 +61,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         Thread.sleep(time);
     }
 
-    public void enemyAction() {
+    public void enemyAction() throws InterruptedException {
         enemy.enemyChoice();
         if (turns % 2 == 0) {
             if (!evasionCheck(pro.getBattleStats()[4], enemy.toString())) {
@@ -74,7 +74,7 @@ public class Gameboard // im gonna need to do some heavy rewriting of this code 
         }
     }
 
-    public void playerAction() {
+    public void playerAction() throws InterruptedException {
         if (turns % 2 == 1) // this is an implement for stun moves, which will skip over enemy turn by += 1, also,
         {
             protagChoice = pro.choice();

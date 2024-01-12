@@ -26,7 +26,7 @@ public class Enemy extends Protagonist { // day one enemy
         sound.play("Hit", false);
     }
 
-    public int enemyChoice() { // enemy makes their decision
+    public int enemyChoice() throws InterruptedException { // enemy makes their decision
         resetDmg();
         int choice;
         if (skillPoints <= 0) {

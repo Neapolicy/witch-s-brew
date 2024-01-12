@@ -63,7 +63,7 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
             // Display stats at the start of the turn
         }
     }
-    public void playerAction() {
+    public void playerAction() throws InterruptedException {
         if (tally % 2 == 1) // this is an implement for stun moves, which will skip over ceo turn by += 1, also,
         {
             protagChoice = pro.choice();

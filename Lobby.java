@@ -101,10 +101,10 @@ public class Lobby {
     private void bossRaidOni() throws InterruptedException {
         System.out.println("Last chance to edit your character before the Boss Fight\n");
         editChar();
-        BossRaidOni bossFight = new BossRaidOni(pro);
+        new BossRaidOni(pro);
     }
 
-    public void editChar() {
+    public void editChar() throws InterruptedException {
         System.out.println("\nCharacter Stats (Attack, Defense, Health, Debuff Resistance, and Evasion, respectively)");
         System.out.println("Do note that this is after the modifications of your stats through accessories");
         for (int charStat : pro.getBattleStats()) {System.out.print(charStat + " ");}
@@ -118,7 +118,11 @@ public class Lobby {
             case "1", "weapon" -> changeWep();
             case "2", "accessories" -> changeAcc();
             case "3", "inspect" -> inspect();
-            case "-1" -> System.out.println("Successfully exited\n");
+            case "-1" ->
+            {
+                System.out.println("Successfully exited\n");
+                decisionMaker();
+            }
         }
     }
 
@@ -169,7 +173,7 @@ public class Lobby {
             changeAcc();
         }
     }
-    public void changeWep() // REMEMBER TO ADD SFX TO ACCESSORY EQUIP, SKILL EQUIP(IDK IF I HAVE TO DO THIS IF I'M LOWERING THE SKILLS YOU CAN GET), AND ACCESSORY REMOVAL
+    public void changeWep() throws InterruptedException // REMEMBER TO ADD SFX TO ACCESSORY EQUIP, SKILL EQUIP(IDK IF I HAVE TO DO THIS IF I'M LOWERING THE SKILLS YOU CAN GET), AND ACCESSORY REMOVAL
     {
         if (!shop.getWeaponsBought().isEmpty())
         {
@@ -181,8 +185,7 @@ public class Lobby {
             System.out.println("Please type the number corresponding to the weapon you would like to equip");
             equipNum = s.nextInt();
             s.nextLine(); //necessary, consumes the line
-            try
-            {
+
                 if (equipNum == -1) {editChar();}
                 else if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
                 {
@@ -191,11 +194,7 @@ public class Lobby {
                     else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
                     sound.play("Equip", false);
                 }
-            }
-            catch (Exception e)
-            {
-                System.out.println("Invalid option, please try again!");
-            }
+                else {System.out.println("Invalid option, please try again!");}
             changeWep();
         }
     }

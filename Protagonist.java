@@ -53,7 +53,7 @@ public class Protagonist {
         }
     }
 
-    public int choice() { // The place where you make your choice
+    public int choice() throws InterruptedException { // The place where you make your choice
         while (true) {
             dmgDealt = 0;
             System.out.println("\nPick your move");
@@ -73,14 +73,10 @@ public class Protagonist {
     }
 
 
-    public void skillBook(String skill, int skillPoints) {
+    public void skillBook(String skill, int skillPoints) throws InterruptedException {
         this.skillPoints = skillPoints;
         switch (skill) {
-            case "Basic Attack" -> { // 40% to stun the opponent, but only does ok dmg
-                if (skillCheck(0)) {
-                    basicAttack();
-                }
-            }
+            case "Basic Attack" -> basicAttack(); // 40% to stun the opponent, but only does ok dmg
             case "Uppercut" -> { // 40% to stun the opponent, but only does ok dmg
                 if (skillCheck(1)) {
                     uppercut();
@@ -101,14 +97,12 @@ public class Protagonist {
      * methods below are code that allows the skill to function
      **/
 
-    public void basicAttack() {
+    public void basicAttack() throws InterruptedException {
+        weaponCheck();
         System.out.println(name + " strikes!\n");
         skillPoints += 1;
-        if (skillPoints > 5) {
-            skillPoints = 5;
-        }
+        if (skillPoints > 5) {skillPoints = 5;}
         dmgDealt = battleStats[0];
-        weaponCheck();
     }
 
     public void uppercut() {
@@ -117,10 +111,11 @@ public class Protagonist {
         sound.play("Uppercut", false);
     }
 
-    public void fireball() {
+    public void fireball() throws InterruptedException {
         System.out.println(this + " threw out a fireball!");
         dmgDealt = (int) (this.battleStats[0] * .8);
         sound.play("Finger-Snap", false);
+        Thread.sleep(10);
         sound.play("Fireball", false);
     }
 
@@ -132,7 +127,7 @@ public class Protagonist {
     }
 
 
-    public void chainsaw() {
+    public void chainsaw() throws InterruptedException {
         System.out.println("How many times would you like to rev your chainsaw?");
         int response = s.nextInt();
         if (skillPoints - response < 0) {
@@ -143,11 +138,12 @@ public class Protagonist {
             skillPoints -= response;
             if (response >= 2) sound.play("low_revs", false);
             else sound.play("high_rev", false);
+            Thread.sleep(10);
             sound.play("chain_attack", false);
         }
     }
 
-    public boolean skillCheck(int cost) {
+    public boolean skillCheck(int cost) throws InterruptedException {
         if (skillPoints >= cost) {
             skillPoints -= cost;
             return true;
@@ -162,28 +158,30 @@ public class Protagonist {
      * method checks if player has enough skill points to perform an action
      **/
 
-    public void weaponCheck() {
+    public void weaponCheck() throws InterruptedException {
         switch (weapon) {
             case "Switchblade", "Machete" -> {
                 sound.play("Melee-Swing", false);
+                Thread.sleep(10);
                 sound.play("Hit", false);
-                sideArm();
             }
             case "Musket", "Flintlock" -> {
                 sound.play("Gun_Load", false);
+                Thread.sleep(10);
                 sound.play("Gun_Fire", false);
-                sideArm();
             }
         }
+        sideArm();
     }
 
     /**
      * method plays sound corresponding to the weapon the player has equipped
      **/
 
-    public void sideArm() {
+    public void sideArm() throws InterruptedException {
         if (sideArm.equals("Off-hand Revolver")) {
             sound.play("Gun_Load", false);
+            Thread.sleep(10);
             sound.play("Gun_Fire", false);
         }
     }

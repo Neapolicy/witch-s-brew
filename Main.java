@@ -4,7 +4,7 @@ public class Main {
         obligatory[0] = "idk";
         boolean a = obligatory[0].equals("lol");
         /*printSlow("You start here, on an unknown island, after the CEO of Racism\nWhat could go wrong?\n");*/
-        Lobby lobby = new Lobby();
+        new Lobby();
     }
     private static void printSlow(String text) {
         for (int i = 0; i < text.length(); i++) {
