@@ -15,7 +15,7 @@ public class StockMarket {
         timesInvested += 1;
         this.cash = cash;
         cashFlow();
-        System.out.println("Invest (1), sell (2), type anything else to leave? (You can invest up to " + "\u001B[32m" + cash + RESET + " shells)\n");
+        System.out.println("Invest (1), sell (2), type anything else to leave (You can invest up to " + "\u001B[32m" + cash + RESET + " shells)\n");
         System.out.println("Your stocks are currently worth " + "\u001B[32m" + stockVal + RESET + " shells");
         answer = s.nextInt();
         try
