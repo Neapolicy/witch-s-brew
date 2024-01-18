@@ -56,7 +56,8 @@ public class BossRaidOni { // you have ten tally, it ends either when you or the
             if (pro.getBattleStats()[2] <= 0) {
                 System.out.println("hah, loser, we're going in for another round BABY");
                 pro.resetStats();
-                BossRaidOni retry = new BossRaidOni(pro);
+                Thread.sleep(3000);
+                new BossRaidOni(pro);
                 break;
             }
             sleep(200);

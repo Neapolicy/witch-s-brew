@@ -15,7 +15,7 @@ public class Protagonist {
     private int[] battleStats = charStats.clone(); //these are the stats that are used in battle, as i plan on hp carrying over (?)
     private String weapon = "Switchblade";
     private Sound sound = new Sound();
-    private String sideArm = "nothing";
+    private String sideArm = "Fist(?)";
     private int skillPoints;
     private int dmgDealt; //takes the damage that you do with your attack and deals it to the enemy
     private Scanner s = new Scanner(System.in);
@@ -167,8 +167,9 @@ public class Protagonist {
             }
             case "Musket", "Flintlock" -> {
                 sound.play("Gun_Load", false);
-                Thread.sleep(400);
+                Thread.sleep(700);
                 sound.play("Gun_Fire", false);
+                Thread.sleep(700);
             }
         }
         sideArm();
@@ -181,7 +182,7 @@ public class Protagonist {
     public void sideArm() throws InterruptedException {
         if (sideArm.equals("Off-hand Revolver")) {
             sound.play("Gun_Load", false);
-            Thread.sleep(400);
+            Thread.sleep(700);
             sound.play("Gun_Fire", false);
         }
     }

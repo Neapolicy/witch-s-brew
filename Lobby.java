@@ -177,8 +177,8 @@ public class Lobby {
     {
         if (!shop.getWeaponsBought().isEmpty())
         {
-            System.out.println("You currently have a" + pro.getWeapon() + " as your main weapon\n");
-            System.out.println("You currently have a" + pro.getSideArm() + " as your side weapon\n");
+            System.out.println("You currently have a " + pro.getWeapon() + " as your main weapon\n");
+            System.out.println("You currently have a " + pro.getSideArm() + " as your side weapon\n");
             System.out.println("\nWhich weapon would you like to equip? (-1) to exit");
             for (int i = 0; i < shop.getWeaponsBought().size(); i++) {
                 if (i == 0) System.out.println("Here's your weapons!!");
@@ -187,15 +187,19 @@ public class Lobby {
             System.out.println("\nPlease type the number corresponding to the weapon you would like to equip");
             equipNum = s.nextInt();
             s.nextLine(); //necessary, consumes the line
-                if (equipNum == -1) {editChar();}
-                else if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
+            if (equipNum == -1) {editChar();}
+            else if (equipNum <= shop.getWeaponsBought().size())
+            {
+                if (shop.getWeaponsBought().contains(shop.getWeaponsBought().get(equipNum - 1)))
                 {
                     String wep = shop.getWeaponsBought().get(equipNum - 1); //checks if the weapon you equipped is a side arm
                     if (wep.equals("Off-hand Revolver")) {pro.setSide(wep);}
                     else {pro.setWeapon(shop.getWeaponsBought().get(equipNum - 1));}
                     sound.play("Equip", false); // i don't think equip actually has any audio to it for some reason?
                 }
-                else {System.out.println("Invalid option, please try again!");}
+                changeWep();
+            }
+            else {System.out.println("Invalid option, please try again!");}
             changeWep();
         }
     }
