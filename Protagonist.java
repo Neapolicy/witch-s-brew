@@ -138,7 +138,7 @@ public class Protagonist {
             skillPoints -= response;
             if (response >= 2) sound.play("low_revs", false);
             else sound.play("high_rev", false);
-            Thread.sleep(10);
+            Thread.sleep(700);
             sound.play("chain_attack", false);
         }
     }
