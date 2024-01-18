@@ -35,7 +35,7 @@ public class Enemy3 extends Enemy { // day three enemy
         }
         switch (choice) {
             case 1, 2, 3, 4 -> {
-                skill = null;
+                skill = "null";
                 System.out.println(this + " revs their chainsaw");
                 sound.play("low_revs", false);
                 revs++;
